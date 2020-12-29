@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist", // emit js files in this directory (the bundle.js)
+    "jsx": "preserve", // controls how jsx emitted in JS files, affects output of JS files started in tsx files
+    "noImplicitAny": true, // Error reporting for implied types "any"
+    "module": "commonjs", // specifies what module code is created
+    "target": "es5", // sets a lower target if code is deployed to older environmente
+    "allowJs": true, // allows js files into your project (like webpack.config.js)
+    "sourceMap": true, // allows you to map between emitted JS files - improves devTools
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "skipLibCheck": true,
+    "strict": false,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true
+  },
+  "exclude": [
+    "node_modules"
+  ],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx"
+  ]
+}
