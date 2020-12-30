@@ -1,13 +1,15 @@
 import styles from './message.module.css'
 
-const Message = () => {
-  function cycle() {
+import React, { useContext } from 'react';
 
-  }
+import { Context } from '../context';
+
+const Message = () => {
+  const global = useContext(Context);
+
   return (
     <div className={styles.message}>
-      This is a long and thoughtful message, <br/>
-      i am a decieteful and wreckless whore
+      { global.message }
     </div>
   )
 }

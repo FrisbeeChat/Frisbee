@@ -3,10 +3,14 @@
   flex-flow: row-reverse nowrap;
   justify-content: space-between;
   align-items: center;
-  background: #9c747469;
+  background: linear-gradient(to bottom right ,#04cccc, #955ad4);
   padding: 10px;
   text-align: center;
   height: 10%;
+
+  bottom: 0;
+  left: 0;
+
 }
 .container {
   display: flex;

@@ -1,6 +1,6 @@
 import styles from './Header.module.css'
 import { useContext } from 'react';
-
+import Link from 'next/link'
 import { Context } from '../context'
 
 
@@ -13,7 +13,15 @@ const Header: React.FC = () => {
         {global.appName}
       </span>
       <span className={styles.container}>
-        <button id={styles.button}>See All Messages</button>
+        <Link href="/search">
+          <button id={styles.button}>Connect</button>
+        </Link>
+        <Link href="/contacts">
+          <button id={styles.button}>Send a message</button>
+        </Link>
+        <Link href="/view">
+          <button id={styles.button}>See All Messages</button>
+        </Link>
         <img id={styles.avatar} src={global.avatar} />
       </span>
     </div>

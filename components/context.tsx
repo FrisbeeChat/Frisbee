@@ -11,8 +11,10 @@ interface AppContextInterface {
   setAuthorName: (arg: string) => void,
   avatar: string,
   setAvatar: (arg: string) => void;
-  messages: [string],
-  setMessages: (arg:[string]) => void;
+  message: string,
+  setMessage: (arg:string) => void;
+  messages: string[],
+  setMessages: (arg: string[]) => void;
 }
 export const Context = createContext<AppContextInterface | null>(null);
 type Props = {
@@ -20,10 +22,10 @@ type Props = {
 }
 export const ConfigProvider: React.FC = ({ children }: Props) => {
   const [authorAvatar, setAuthorAvatar] = useState<string>('https://static.independent.co.uk/s3fs-public/thumbnails/image/2020/05/01/08/avatar-sigourney-weaver.jpg')
-  const [authorName, setAuthorName] = useState<string>('that cunt nancy pelosi')
+  const [authorName, setAuthorName] = useState<string>('not nancy pelosi')
   const [avatar, setAvatar] = useState<string>('https://i.pinimg.com/564x/0a/dd/87/0add874e1ea0676c4365b2dd7ddd32e3.jpg');
-  const [messages, setMessages] = useState<[string]>([`This is a long and thoughtful message, <br/>
-    i am a decieteful and wreckless whore`, 'i am buddha, i like da buddah'])
+  const [message, setMessage] = useState<string>('This is a long and thoughtful message')
+  const [messages, setMessages] = useState<string[]>([])
   const appName = "Frisbie"
   return (
     <Context.Provider
@@ -35,6 +37,8 @@ export const ConfigProvider: React.FC = ({ children }: Props) => {
         setAuthorAvatar,
         avatar,
         setAvatar,
+        message,
+        setMessage,
         messages,
         setMessages,
       }}
