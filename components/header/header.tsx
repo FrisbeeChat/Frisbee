@@ -1,15 +1,17 @@
-
+import styles from './Header.module.css'
 
 const Header: React.FC = () => {
-  return (
-    <div className="header">
-      <div id="app-title">
-        Helloworld
-      </div>
-      <div id="all-messages">
-        <button>See All Messages</button>
-      </div>
+  const global = React.useContext(Context);
 
+  return (
+    <div className={styles.header}>
+      <span id={styles.title}>
+        Helloworld
+      </span>
+      <span className={styles.container}>
+        <button id={styles.button}>See All Messages</button>
+        <img id={styles.avatar} src={globalavatar} />
+      </span>
     </div>
   )
 }

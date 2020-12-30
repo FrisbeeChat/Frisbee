@@ -1,17 +1,35 @@
 .header {
   display: flex;
-  flex: 1;
   flex-flow: row nowrap;
-  background-color: #f1f1f1;
+  justify-content: space-between;
+  align-items: center;
+  background: #9c747469;
   padding: 30px;
   text-align: center;
-  font-size: 35px;
+  height: 10%;
 }
-#app-title {
+.container {
+  display: flex;
+  flex-flow: row nowrap;
+  align-content: center;
+}
+#title {
   align-self: left;
+  font-size: 20px;
+}
+#button {
+  background-color: rgba(240, 248, 255, 0.158);
+  border-radius: 10px;
+  border: none;
 
 }
-
-#all-messages {
-  align-self: right;
+#messages {
+  align-self: center;
+}
+#avatar {
+  align-self: center;
+  margin-left: 20px;
+  width: 30px;
+  height:30px;
+  border-radius: 50%;
 }
