@@ -1,0 +1,7 @@
+.home {
+  display: flex;
+  flex: 1;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  height: 98vh;
+}

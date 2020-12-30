@@ -1,13 +1,24 @@
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
-import App from '../components/App'
+import Message from '../components/message/message';
 
-const index: React.FC = () => {
+import styles from '../styles/Home.module.css'
+
+import Header from '../components/header/header'
+import Footer from '../components/footer/footer'
+
+import { ConfigProvider } from '../components/context'
+
+const Home: React.FC = () => {
   return (
-    <div>
-      <App/>
-    </div>
+      <ConfigProvider>
+        <div className={styles.home}>
+          <Header />
+            <Message />
+          <Footer />
+        </div>
+      </ConfigProvider>
+
   )
 }
 
-export default index;
+export default Home;

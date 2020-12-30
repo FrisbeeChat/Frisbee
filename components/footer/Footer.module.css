@@ -1,0 +1,26 @@
+.footer {
+  display: flex;
+  flex-flow: row-reverse nowrap;
+  justify-content: space-between;
+  align-items: center;
+  background: #9c747469;
+  padding: 10px;
+  text-align: center;
+  height: 10%;
+}
+.container {
+  display: flex;
+  flex-flow: row nowrap;
+}
+#name{
+  align-self: center;
+  margin-left: 7px;
+  font-size: 20px;
+}
+#avatar {
+  align-self: center;
+  margin-left: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
