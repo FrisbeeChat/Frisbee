@@ -1,16 +1,16 @@
 import { aql } from 'arangojs'
 import db from '../connect/db';
 
-export interface Friend {
+export interface User {
   username: string;
   first: string;
   last: string;
   avatar: string;
 }
 
-interface FriendCallback {
+interface UserCallback {
   (err: Error, result?: undefined | null): void;
-  (err: undefined | null, result: Friend[]): void;
+  (err: undefined | null, result: User[]): void;
 }
 
 interface StCallback {
@@ -19,32 +19,34 @@ interface StCallback {
 }
 
 export default {
-  getFriends: async (user: {username: string}, callback: FriendCallback) => {
-    db.query(`
-      let list = (for u in users
-        filter u.username == '${user.username}'
-        return u.friends)[0]
-      for l in list
-        for u in users
-        filter l == u._key
-        return {"username": u.username, "first": u.first, "last": u.last, "avatar": u.avatar}
-      `)
-      .then((cursor: any) => cursor.all())
-      .then(
-        (result: Friend[]) => callback(null, result),
-        (err: Error) => callback(err),
-      )
+  getFriends: async (user: {username: string}, callback: UserCallback) => {
+    try {
+      const friendsBox = await db.query(`
+        let list = (for u in users
+          filter u.username == '${user.username}'
+          return u.friends)[0]
+        for l in list
+          for u in users
+          filter l == u._key
+          return {"username": u.username, "first": u.first, "last": u.last, "avatar": u.avatar}
+        `);
+      const friends: User[] = await friendsBox.all();
+      callback(null, friends);
+    } catch (err) {
+      callback(err);
+    }
   },
 
-  getUsers: async (callback: FriendCallback) => {
-    db.query(
-      'for u in users return {"username": u.username, "first": u.first, "last": u.last, "avatar": u.avatar}'
-      )
-      .then((cursor: any) => cursor.all())
-      .then(
-        (result: Friend[]) => callback(null, result),
-        (err: Error) => callback(err),
-      )
+  getUsers: async (callback: UserCallback) => {
+    try {
+      const usersBox = await db.query(
+        'for u in users return {"username": u.username, "first": u.first, "last": u.last, "avatar": u.avatar}'
+        )
+      const users: User[] = await usersBox.all();
+      callback(null, users)
+    } catch (err) {
+      callback(err);
+    }
   },
 
   addUser: async (add: {me: string, them: string}, callback: StCallback) => {
@@ -65,7 +67,7 @@ export default {
     }
   },
 
-  getFriendRequests: async (user: {username: string}, callback: FriendCallback) => {
+  getFriendRequests: async (user: {username: string}, callback: UserCallback) => {
     try {
       const requestsBox = await db.query(`
       let filt = (for u in users
@@ -76,35 +78,68 @@ export default {
       for u in users
         for f in filt
           filter u._key == f.from
-          return {"username": u.username}
+          return {"username": u.username, "first": u.first, "last": u.last, "avatar": u.avatar}
       `)
-      const requests = await requestsBox.all();
-      console.log(requests);
+      const requests: User[] = await requestsBox.all();
       callback(null, requests)
     } catch (err) {
       callback(err);
     }
   },
+
+  acceptFriend: async (users: {me: string, them: string}, callback: StCallback) => {
+    try {
+      await db.query(`
+        let them = (for u in users
+            filter u.username == '${users.them}'
+            return u._key)
+        for u in users
+          for t in them
+            filter u.username == '${users.me}'
+            UPDATE u with { friends: APPEND(u.friends, t)} IN users
+      `);
+      await db.query(`
+        let them = (for u in users
+          filter u.username == '${users.me}'
+            return u._key)
+        for u in users
+          for t in them
+            filter u.username == '${users.them}'
+            UPDATE u with { friends: APPEND(u.friends, t)} IN users
+      `);
+      await db.query(`
+        let them = (for u in users
+            filter u.username == '${users.them}'
+            return u._key)
+        for r in requests
+          for u in users
+           for t in them
+            filter u.username == '${users.me}'
+            filter r.from == t
+            remove r in requests
+        `);
+      callback(null, 'added friend');
+    } catch (err) {
+      callback(err);
+    }
+  },
+
+  ignoreRequest: async (users: {me: string, them: string}, callback: StCallback) => {
+    try {
+      await db.query(`
+        let them = (for u in users
+            filter u.username == '${users.them}'
+            return u._key)
+        for r in requests
+          for u in users
+           for t in them
+            filter u.username == '${users.me}'
+            filter r.from == t
+            remove r in requests
+        `);
+      callback(null, 'ignored friend request');
+    } catch (err) {
+      callback(err);
+    }
+  },
 }
-
-
-// await db.query(`
-//         for u in users
-//         let them = (
-//           for i in users
-//             filter i.username == '${add.them}'
-//             return i
-//           )[0]
-//         filter u.username == '${add.me}'
-//         UPDATE u with { friends: APPEND(u.friends, {'_key': them._key, 'pending': true})} IN users
-//         `)
-//       await db.query(`
-//         for u in users
-//         let me = (
-//           for i in users
-//             filter i.username == '${add.me}'
-//             return i
-//           )[0]
-//         filter u.username == '${add.them}'
-//         UPDATE u with { friends: APPEND(u.friends, {'_key': me._key, 'pending': true})} IN users
-//       `)

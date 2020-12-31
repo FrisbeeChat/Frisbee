@@ -1,10 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import db from '../../database/connect/db';
 import model from '../../database/model/MessageModel';
-import { Message } from '../../database/model/MessageModel';
 
 export default (req: NextApiRequest, res: NextApiResponse) => {
-  model.writeMessage(req.body, (err: Error | null, results?: Message[] | null) => {
+  model.writeMessage(req.body, (err: Error | null, results?: string | null) => {
     if (err) {
       console.log('error');
       res.status(400).end();
