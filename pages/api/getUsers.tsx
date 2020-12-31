@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import db from '../../database/connect/db';
-import model from '../../database/model/model';
-import { Friend } from '../../database/model/model';
+import model from '../../database/model/UserModel';
+import { Friend } from '../../database/model/UserModel';
 
 export default (req: NextApiRequest, res: NextApiResponse) => {
   model.getUsers((err: Error | null, results?: Friend[] | null) => {
@@ -11,4 +11,10 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
       res.json(results);
     }
   })
+}
+
+export const config = {
+  api: {
+    externalResolver: true,
+  },
 }
