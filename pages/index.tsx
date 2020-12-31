@@ -13,7 +13,9 @@ const Home: React.FC = () => {
       <ConfigProvider>
         <div className={styles.home}>
           <Header />
-            <Message />
+            <div className={styles.body}>
+              <Message />
+            </div>
           <Footer />
         </div>
       </ConfigProvider>

@@ -1,5 +1,74 @@
 .message {
-  text-align: center;
   font-size: 30px;
   line-height: 45px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%)
+}
+.messageContainer {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-items: center;
+  justify-content: center;
+  align-content: center;
+
+}
+.container {
+  height: 100%;
+  width: 100%;
+}
+
+.curl{
+  width: 50px;
+  height: 50px;
+  position: sticky;
+  left: calc(100% - 60px);
+  top: calc(100% - 60px);
+	z-index: 1000;
+  overflow: hidden;
+  background: rgb(255, 255, 255);
+  box-shadow: -3px -3px 5px -2px rgba(128, 128, 128, 0.473), 10px 10px white;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.curl .curlcontent{
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+}
+
+.curl:after{
+  position: absolute;
+  content: '';
+  width: 100%;
+  height: 100%;
+  bottom: 0;
+  left: auto;
+  right: 0;
+  transform: rotate(225deg) translateX(70%) scale(1.4);
+  background: #ffffff;
+  background: -moz-linear-gradient(right,  #afafaf 0%, #ffffff 29%);
+  background: -webkit-linear-gradient(right,  #afafaf 0%,#ffffff 29%);
+  background: linear-gradient(to right,   #afafaf 0%,#ffffff 29%);
+  /* filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#afafaf', endColorstr='#ffffff',GradientType=1 ); */
+
+}
+
+.curl:hover{
+  width: 100px; /* width of page curl when mouse over */
+  height: 100px; /* height of page curl when mouse over */
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+  box-shadow: -5px -5px 20px -15px  rgba(128, 128, 128, 0.473), 10px 10px white ;
+}
+/* box-shadow: 0 8px 6px -6px black */
+.curl .button {
+  border: none;
+  width: 100px;
+  height: 100px;
 }
