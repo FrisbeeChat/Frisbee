@@ -1,1 +1,0 @@
-{"ast":null,"code":"import { jsx as _jsx } from \"react/jsx-runtime\";\nimport * as React from 'react';\nimport App from '../components/App';\n\nvar index = function index() {\n  return /*#__PURE__*/_jsx(\"div\", {\n    children: /*#__PURE__*/_jsx(App, {})\n  });\n};\n\nexport default index;","map":null,"metadata":{},"sourceType":"module"}
