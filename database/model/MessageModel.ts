@@ -39,22 +39,41 @@ export default {
       callback(err);
     }
   },
-  writeMessage: async (data: {from: string, to: string, text: string}, callback: StringCallback) => {
+  writeMessage: async (data: {me: string, them: string, text: string}, callback: StringCallback) => {
     try {
       await db.query(`
         let keys = (for u in users
           let them = (
             for i in users
-              filter i.username == '${data.to}'
+              filter i.username == '${data.them}'
               return i
             )[0]
-          filter u.username == '${data.from}'
+          filter u.username == '${data.me}'
           return {from: u._key, to: them._key})[0]
-        UPSERT { from: keys.from }
+        UPSERT { from: keys.from, to: keys.to }
         INSERT { from: keys.from, to: keys.to, text: '${data.text}' }
         UPDATE { from: keys.from, to: keys.to, text: '${data.text}' } IN messages
         `)
       callback(null, 'created message');
+    } catch (err) {
+      callback(err);
+    }
+  },
+
+  deleteMessage: async (users: {me: string, them: string}, callback: StringCallback) => {
+    try {
+      await db.query(`
+        let them = (for u in users
+          filter u.username == '${users.them}'
+          return u._key)[0]
+        for u in users
+          for m in messages
+            filter u.username == '${users.me}'
+            filter m.from == u._key
+            filter m.to == them
+            remove m in messages
+        `)
+      callback(null, 'deleted message');
     } catch (err) {
       callback(err);
     }

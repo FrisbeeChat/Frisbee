@@ -86,4 +86,22 @@ describe('Endpoint Tests', () => {
     expect(afterAnakin.data.length).toEqual(beforeAnakin.data.length + 1);
     expect(afterChewbacca.data.length).toEqual(beforeChewbacca.data.length + 1);
   });
+
+  it('should write a message, then delete it', async () => {
+    // write a message from Obi Wan to Anakin
+    const note = 'You were supposed to destroy the sith not join them';
+    await axios.get('http://localhost:3000/api/writeMessage', {
+      data: {me: 'TheHigherGround', them: 'ChosenOne', text: note}
+    })
+    // Get all messages to Anakin
+    const messages = await axios.get('http://localhost:3000/api/getMessages', {
+      data: {username: 'ChosenOne'}
+    })
+    // Delete the message
+    await axios.get('http://localhost:3000/api/deleteMessage', {
+      data: {me: 'TheHigherGround', them: 'ChosenOne'}
+    })
+    const testNote = messages.data.filter((message: any) => message.text === note);
+    expect(testNote.length).toEqual(1);
+  });
 });
