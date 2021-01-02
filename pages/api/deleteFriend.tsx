@@ -1,12 +1,11 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import db from '../../database/connect/db';
 import model from '../../database/model/UserModel';
-import { User } from '../../database/model/UserModel';
 
 export default (req: NextApiRequest, res: NextApiResponse) => {
-  model.getFriends(req.body, (err: Error | null, results?: User[] | null) => {
+  model.deleteFriend(req.body, (err: Error | null, results?: string | null) => {
     if (err) {
-      res.status(400).end();
+      console.log('error');
     } else {
       res.json(results);
     }

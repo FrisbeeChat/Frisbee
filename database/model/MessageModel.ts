@@ -58,5 +58,5 @@ export default {
     } catch (err) {
       callback(err);
     }
-  }
+  },
 }
