@@ -87,6 +87,7 @@ export default {
         callback(null, 'incorrect username or password', null)
       } else {
         compare(data.password, user[0].password, (err: Error, result: boolean) => {
+          console.log(err, result);
           if (!err && result) {
             const claim = {username: data.username};
             const jwt = sign(claim, token);

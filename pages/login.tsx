@@ -24,8 +24,8 @@ const App: React.FC = () => {
       </div>
       }
       <div>
-        <button>Login</button>
-        <button onClick={() => {setOnLogin(false)}}>Create Account</button>
+        <button onClick={()=>{setOnLogin(true)}}>Login</button>
+        <button onClick={()=>{setOnLogin(false)}}>Create Account</button>
       </div>
       <br />
       <Link href="/">

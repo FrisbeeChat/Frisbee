@@ -10,4 +10,4 @@ yarn-error.log*
 logs
 *.log
 token.ts
-db.ts
+database/connect/db.ts
