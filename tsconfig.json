@@ -14,13 +14,13 @@
       "dom.iterable",
       "esnext"
     ],
-    "skipLibCheck": true,
+    "skipLibCheck": true, // skip type checking of all declaration files (*.d.ts)
     "strict": false,
-    "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
-    "esModuleInterop": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true
+    "forceConsistentCasingInFileNames": true, // allow inconsistently-cased references to the same file
+    "noEmit": true, // don't emit messages
+    "esModuleInterop": true, //
+    "resolveJsonModule": true, // allows importing .json extensions
+    "isolatedModules": true // able to import a type and export it
   },
   "exclude": [
     "node_modules"
