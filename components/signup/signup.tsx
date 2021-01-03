@@ -1,11 +1,32 @@
-import React from 'react';
-
+import React, {useRef} from 'react';
+import axios from 'axios';
 
 const SignUp:React.FC = () => {
+  const userNameRef = useRef<HTMLInputElement>(null)
+  const passwordRef = useRef<HTMLInputElement>(null)
+  const emailRef = useRef<HTMLInputElement>(null)
+
+  async function handleSignUp() {
+    const resp = await axios.post('http://localhost:3000/api/signup', {
+      data: {
+        username: userNameRef.current?.value,
+        password: passwordRef.current?.value
+      }
+    })
+    console.log(resp);
+  }
+
   return (
     <div>
       <form>
-        <input
+      <input
+          id="userName"
+          type="text"
+          placeholder="User Name"
+          ref={userNameRef}
+          required
+        />
+      <input
           id="inputFirstName"
           type="text"
           placeholder="First Name"
@@ -28,6 +49,7 @@ const SignUp:React.FC = () => {
           type="password"
           minLength={8}
           placeholder="password"
+          ref={passwordRef}
           required
         />
         <input
@@ -38,6 +60,7 @@ const SignUp:React.FC = () => {
           required
         />
       </form>
+      <button onClick={handleSignUp}> Submit </button>
     </div>
   )
 }

@@ -9,7 +9,6 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <ConfigProvider>
       <Component {...pageProps} />
-      {console.log(Context.Provider)}
     </ConfigProvider>
   )
 }

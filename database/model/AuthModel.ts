@@ -65,19 +65,20 @@ export default {
 
   login: async (data: Login, callback: StringCallback) => {
     try {
-      const passwordBox = await db.query(`
+      const userBox = await db.query(`
         for u in users
           filter u.username == '${data.username}'
-          return u.password
+          return u
       `)
-      const password = await passwordBox.all();
-      if (password.length === 0) {
+      const user = await userBox.all();
+      if (user.length === 0) {
         callback(null, 'incorrect username or password')
       } else {
-        compare(data.password, password[0], (err: Error, result: boolean) => {
+        compare(data.password, user[0].password, (err: Error, result: boolean) => {
           if (!err && result) {
             const claim = {username: data.username};
             const jwt = sign(claim, token);
+            console.log('user', user[0]);
             callback(null, jwt);
           } else {
             callback('Failed Login', null);

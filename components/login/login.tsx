@@ -1,36 +1,39 @@
-import React from 'react';
-
+import React, {useRef} from 'react';
+import fetch from 'isomorphic-unfetch';
+import axios from 'axios';
 
 const Login:React.FC = () => {
+  const userNameRef = useRef<HTMLInputElement>(null);
+  const passwordRef = useRef<HTMLInputElement>(null);
+
+  async function handleLogin() {
+
+    const resp = await axios.post('http://localhost:3000/api/login', {
+      data: {
+        username: "Landooo",
+        password: "cloudcity"
+      }
+    })
+    console.log(resp);
+  }
   return (
     <div>
-      <form>
         <input
-          id="inputFirstName"
+          id="userName"
           type="text"
-          placeholder="First Name"
-          required
-        />
-        <input
-          id="inputLastName"
-          type="text"
-          placeholder="Last Name"
-          required
-        />
-        <input
-          id="inputEmail"
-          type="email"
-          placeholder="Email"
+          placeholder="User Name"
+          ref={userNameRef}
           required
         />
         <input
           id="inputPassword"
-          type="password"
+          type="text"
           minLength={8}
           placeholder="password"
+          ref={passwordRef}
           required
         />
-      </form>
+        <button onClick={handleLogin} >Submit</button>
     </div>
   )
 }

@@ -10,6 +10,7 @@ import SignUp from '../components/signup/signup'
 
 const App: React.FC = () => {
   const [onLogin, setOnLogin] = useState(true);
+
 // wrap in a two branch useContext containing all of login / signup state
   return (
     <div>

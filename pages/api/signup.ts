@@ -10,7 +10,7 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
     } else {
       res.setHeader('Set-Cookie', cookie.serialize('auth', results, {
         httpOnly: true,
-        maxAge: 5,
+        // maxAge: 5,
         path: '/'
       }))
       res.json({message: 'signed up'});
