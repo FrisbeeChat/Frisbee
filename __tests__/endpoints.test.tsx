@@ -1,10 +1,15 @@
 import axios from 'axios';
-import getFriends from '../pages/api/getFriends';
+// let running = false;
+// export default running;
 
 describe('Startup', () => {
     it('jest should run', () => {
       const sum = (x: number, y: number) => x + y;
       expect(sum(1, 2)).toBe(3);
+    });
+
+    it('should change test to running', () => {
+      // running = true;
     });
 });
 
@@ -105,3 +110,5 @@ describe('Endpoint Tests', () => {
     expect(testNote.length).toEqual(1);
   });
 });
+
+// export default running;

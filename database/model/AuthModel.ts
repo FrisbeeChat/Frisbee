@@ -19,7 +19,7 @@ export interface Login {
 
 interface StringCallback {
   (err: Error, result?: undefined | null): void;
-  (err: undefined | null, result: string): void;
+  (err: string | undefined | null, result: string): void;
 }
 
 export default {
@@ -71,7 +71,6 @@ export default {
           return u.password
       `)
       const password = await passwordBox.all();
-      console.log(password);
       if (password.length === 0) {
         callback(null, 'incorrect username or password')
       } else {
@@ -81,7 +80,7 @@ export default {
             const jwt = sign(claim, token);
             callback(null, jwt);
           } else {
-            callback(err, null);
+            callback('Failed Login', null);
           }
         })
       }
