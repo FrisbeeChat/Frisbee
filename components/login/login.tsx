@@ -10,8 +10,8 @@ const Login:React.FC = () => {
 
     const resp = await axios.post('http://localhost:3000/api/login', {
       data: {
-        username: "Landooo",
-        password: "cloudcity"
+        username: userNameRef.current.value,
+        password: passwordRef.current.value
       }
     })
     console.log(resp);
