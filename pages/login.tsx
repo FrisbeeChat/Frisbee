@@ -1,58 +1,35 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 
 import Link from 'next/link';
 // import Header from '../components/header/header'
 // import Footer from '../components/footer/footer'
-
+import Login from '../components/login/login'
+import SignUp from '../components/signup/signup'
 
 
 
 const App: React.FC = () => {
+  const [onLogin, setOnLogin] = useState(true);
+// wrap in a two branch useContext containing all of login / signup state
   return (
     <div>
-      LOGIN PAGE
-      <form>
-        <input
-          id="inputFirstName"
-          type="text"
-          placeholder="First Name"
-          required
-        />
-        <input
-          id="inputLastName"
-          type="text"
-          placeholder="Last Name"
-          required
-        />
-        <input
-          id="inputEmail"
-          type="email"
-          placeholder="Email"
-          required
-        />
-        <input
-          id="inputPassword"
-          type="password"
-          minLength={8}
-          placeholder="password"
-          required
-        />
-        <input
-          id="inputPassword"
-          type="password"
-          minLength={8}
-          placeholder="retype password"
-          required
-        />
-      </form>
+      { onLogin ?
+      <div>
+        <Login />
+      </div>
+      :
+      <div>
+        <SignUp />
+      </div>
+      }
       <div>
         <button>Login</button>
-        <button>Create Account</button>
+        <button onClick={() => {setOnLogin(false)}}>Create Account</button>
       </div>
       <br />
       <Link href="/">
         HOME
-        </Link>
+      </Link>
     </div>
   )
 }
