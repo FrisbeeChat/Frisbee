@@ -8,7 +8,7 @@ import type { AppProps } from 'next/app'
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <ConfigProvider>
-      <Component {...pageProps} value={Context} />
+      <Component {...pageProps}/>
     </ConfigProvider>
   )
 }

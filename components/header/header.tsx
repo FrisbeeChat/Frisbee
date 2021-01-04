@@ -22,7 +22,7 @@ const Header: React.FC = () => {
         <Link href="/view">
           <button id={styles.button}>See All Messages</button>
         </Link>
-          <img id={styles.avatar} src={global.avatar} /> {/*//use getInitialProps */}
+          <img id={styles.avatar} src={global.userData.avatar} /> {/*//use getInitialProps */}
       </span>
     </div>
   )

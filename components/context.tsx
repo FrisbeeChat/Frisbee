@@ -5,23 +5,30 @@ import PropTypes from 'prop-types';
 
 interface AppContextInterface {
   appName: string,
-  userData: string,
-  setuserData: (arg: string) => void,
+  userData: User,
+  setUserData: (arg: User) => void,
   currentMessage: number,
   setCurrentMessage: (arg:number) => void;
-  messages: object[],
-  setMessages: (arg: object[]) => void;
+  messages: User[],
+  setMessages: (arg: User[]) => void;
 }
+interface User {
+  username: string,
+  first: string,
+  last: string,
+  avatar: string,
+}
+
 export const Context = createContext<AppContextInterface | null>(null);
 type Props = {
   children: React.ReactNode
 }
 export const ConfigProvider: React.FC = ({ children }: Props) => {
-  const [userData, setuserData] = useState<string>('')
+  const [userData, setUserData] = useState<User>({username: '', first: '', last: '', avatar: ''})
 
   const [currentMessage, setCurrentMessage] = useState<number>(0);
 
-  const [messages, setMessages] = useState<object[]>([]);
+  const [messages, setMessages] = useState<User[]>([]);
 
   const appName = "Frisbie";
 
@@ -32,7 +39,7 @@ export const ConfigProvider: React.FC = ({ children }: Props) => {
       currentMessage,
       setCurrentMessage,
       userData,
-      setuserData,
+      setUserData,
       messages,
       setMessages,
     }}

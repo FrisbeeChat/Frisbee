@@ -4,6 +4,10 @@
 * {
   box-sizing: border-box;
 }
+:root {
+  --desktop-font-size: 16px;
+  --mobile-font-size: 22px;
+}
 
 html, body {
   display: flex;
