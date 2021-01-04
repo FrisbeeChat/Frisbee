@@ -1,12 +1,11 @@
 import React, { useContext, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
+import { NextPageContext } from 'next';
 import { Context } from '../context'
 import axios from 'axios';
-
 import styles from './login.module.css'
 
 const Login: React.FC = () => {
-
   const global = useContext(Context)
   const router = useRouter();
 
@@ -16,8 +15,8 @@ const Login: React.FC = () => {
   const passwordButtonRef = useRef<HTMLButtonElement>(null);
 
 
-  async function handleLogin() {
-
+  async function handleLogin(ctx: NextPageContext) {
+    const cookie = ctx.req?.headers.cookie;
       const resp = await axios.post('http://localhost:3000/api/login', {
         data: {
           username: userNameRef.current.value,
@@ -27,9 +26,7 @@ const Login: React.FC = () => {
       if (resp.data.message) {
         setMessage('please check the user name or password')
       } else {
-        console.log(resp);
         global.setUserData(resp.data);
-        // const pop = await axios.post('')// ? set messages array from here??
         router.replace('/');
       }
   }

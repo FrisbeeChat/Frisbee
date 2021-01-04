@@ -1,5 +1,6 @@
 import { aql } from 'arangojs'
 import db from '../connect/db';
+import { decode } from 'jsonwebtoken';
 
 export interface User {
   username: string;
@@ -10,7 +11,7 @@ export interface User {
 
 interface UserCallback {
   (err: Error, result?: undefined | null): void;
-  (err: undefined | null, result: User[]): void;
+  (err: undefined | null, result: User[] | User): void;
 }
 
 interface StCallback {
@@ -19,6 +20,21 @@ interface StCallback {
 }
 
 export default {
+  getUserData: async (encrypted: string, callback: UserCallback) => {
+    const decoded = decode(encrypted);
+    try {
+      const userDataBox = await db.query(`
+        for u in users
+          filter u.username == '${decoded.username}'
+          return {"username": u.username, "first": u.first, "last": u.last, "avatar": u.avatar}
+        `)
+      const userData: User[] = await userDataBox.all();
+      callback(null, userData[0]);
+    } catch (err) {
+      callback(err);
+    }
+  },
+
   getFriends: async (user: {username: string}, callback: UserCallback) => {
     try {
       const friendsBox = await db.query(`

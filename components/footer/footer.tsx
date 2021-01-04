@@ -2,14 +2,24 @@ import styles from './Footer.module.css'
 
 import Link from 'next/link';
 
-import { useContext } from 'react';
-
-import { Context } from '../context'
+import { useContext, useState, useEffect } from 'react';
+import React from 'react'
+import { Context, Sender } from '../context'
 import { userInfo } from 'os';
 
 
 const Footer: React.FC = () => {
+  const [avatar, setAvatar] = useState('');
+  const [username, setUsername] = useState('');
   const global = useContext(Context);
+
+  useEffect(() => {
+    const sender: Sender = global.messages[global.currentMessage] || global.messages[0];
+    if (sender) {
+      setAvatar(sender.avatar);
+      setUsername(sender.username);
+    }
+  }, [global])
 
   return (
     <div className={styles.footer}>
@@ -19,8 +29,8 @@ const Footer: React.FC = () => {
         </Link>
       </span>
       <span className={styles.container}>
-        <img id={styles.avatar} src={global.authorAvatar} />
-        <p id={styles.name}>{global.authorName}</p>
+        <img id={styles.avatar} src={avatar} />
+        <p id={styles.name}>{username}</p>
       </span>
     </div>
   )
