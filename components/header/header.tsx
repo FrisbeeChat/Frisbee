@@ -13,7 +13,7 @@ const Header: React.FC = () => {
         {global.appName}
       </span>
       <span className={styles.container}>
-        <Link href="/search">
+        <Link href="/connect">
           <button id={styles.button}>Connect</button>
         </Link>
         <Link href="/contacts">

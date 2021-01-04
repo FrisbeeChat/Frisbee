@@ -5,8 +5,6 @@ import Link from 'next/link';
 // import Footer from '../components/footer/footer'
 import Send from '../components/send/send'
 
-
-
 const App: React.FC = () => {
   return (
     <div>

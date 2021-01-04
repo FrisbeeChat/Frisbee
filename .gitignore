@@ -11,3 +11,4 @@ logs
 *.log
 token.ts
 database/connect/db.ts
+bugs.md

@@ -15,8 +15,8 @@ const Login: React.FC = () => {
   const passwordButtonRef = useRef<HTMLButtonElement>(null);
 
 
-  async function handleLogin(ctx: NextPageContext) {
-    const cookie = ctx.req?.headers.cookie;
+  async function handleLogin() {
+
       const resp = await axios.post('http://localhost:3000/api/login', {
         data: {
           username: userNameRef.current.value,
@@ -97,7 +97,7 @@ const Login: React.FC = () => {
           >Show password</button>
 
         </section>
-        <button onClick={handleLogin} >Submit</button>
+        <button onClick={handleLogin}>Submit</button>
       </form>
     </div>
   )

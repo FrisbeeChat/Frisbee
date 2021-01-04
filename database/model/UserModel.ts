@@ -21,7 +21,7 @@ interface StCallback {
 
 export default {
   getUserData: async (encrypted: string, callback: UserCallback) => {
-    const decoded = decode(encrypted);
+    const decoded: any = decode(encrypted);
     try {
       const userDataBox = await db.query(`
         for u in users

@@ -2,9 +2,6 @@ import type { NextApiRequest, NextApiResponse, NextApiHandler } from 'next'
 import db from '../../database/connect/db';
 import { verify } from 'jsonwebtoken';
 import token from '../../database/token';
-// import running from '../../__tests__/endpoints.test';
-
-// console.log(running);
 
 export const authorize = (fn: NextApiHandler) => async (
   req: NextApiRequest,
