@@ -16,5 +16,5 @@ export const authorize = (fn: NextApiHandler) => async (
     }
     res.status(401).json({message: 'Failed Authentication'});
   })
-  // return await fn(req, res)
+  return await fn(req, res)
 }

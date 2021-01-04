@@ -12,6 +12,13 @@ export interface Signup {
   password: string;
 }
 
+export interface SendObj {
+  username: string;
+  first: string;
+  last: string;
+  avatar: string;
+}
+
 export interface Login {
   username: string;
   password: string;
@@ -20,6 +27,11 @@ export interface Login {
 interface StringCallback {
   (err: Error, result?: undefined | null): void;
   (err: string | undefined | null, result: string): void;
+}
+
+interface TripleCallback {
+  (err: Error, result?: undefined | null, send?: null): void;
+  (err: string | undefined | null, result: string, send?: SendObj | null): void;
 }
 
 export default {
@@ -63,24 +75,31 @@ export default {
     }
   },
 
-  login: async (data: Login, callback: StringCallback) => {
+  login: async (data: Login, callback: TripleCallback) => {
     try {
-      const passwordBox = await db.query(`
+      const userBox = await db.query(`
         for u in users
           filter u.username == '${data.username}'
-          return u.password
+          return u
       `)
-      const password = await passwordBox.all();
-      if (password.length === 0) {
-        callback(null, 'incorrect username or password')
+      const user = await userBox.all();
+      if (user.length === 0) {
+        callback(null, 'incorrect username or password', null)
       } else {
-        compare(data.password, password[0], (err: Error, result: boolean) => {
+        compare(data.password, user[0].password, (err: Error, result: boolean) => {
+          console.log(err, result);
           if (!err && result) {
             const claim = {username: data.username};
             const jwt = sign(claim, token);
-            callback(null, jwt);
+            const sendObject = {
+              username: user[0].username,
+              first: user[0].first,
+              last: user[0].last,
+              avatar: user[0].avatar
+            };
+            callback(null, jwt, sendObject);
           } else {
-            callback('Failed Login', null);
+            callback('Failed Login', null, null);
           }
         })
       }

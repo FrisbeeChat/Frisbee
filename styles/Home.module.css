@@ -1,0 +1,23 @@
+.home {
+  display: flex;
+  flex: 1;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  height: 98vh;
+  background: linear-gradient(135deg,#04cccc, #955ad4 50%, transparent 50%);
+  /* background-position: 100vw; */
+
+
+}
+.body {
+  background-color: rgb(247, 247, 247);
+
+  display: flex;
+
+  align-self: center;
+  justify-content: center;
+  align-items: center;
+
+  width: 90vw;
+  height: 83vh;
+}
