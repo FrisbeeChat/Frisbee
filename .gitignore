@@ -10,5 +10,5 @@ yarn-error.log*
 logs
 *.log
 token.ts
-database/connect/db.ts
+.env*
 bugs.md
