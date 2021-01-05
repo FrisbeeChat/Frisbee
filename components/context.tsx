@@ -67,7 +67,6 @@ export const ConfigProvider = ({ children }: Props) => {
         username: username
       }
     })
-    console.log('messages',mess.data);
     setMessages(mess.data)
   }
 
@@ -76,7 +75,7 @@ export const ConfigProvider = ({ children }: Props) => {
     getUserData();
   }, [])
 
-  const appName = "Frisbie";
+  const appName = "Postcard";
 
   return (
     <Context.Provider
