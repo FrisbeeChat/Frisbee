@@ -24,9 +24,9 @@ const Footer: React.FC = () => {
   return (
     <div className={styles.footer}>
       <span>
-        <Link href="/send">
+        {/* <Link href="/send">
           <button id={styles.button}>Reply</button>
-        </Link>
+        </Link> */}
       </span>
     </div>
   )

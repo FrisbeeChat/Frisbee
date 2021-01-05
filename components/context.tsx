@@ -14,6 +14,8 @@ interface AppContextInterface {
   setCurrentMessage: (arg:number) => void;
   messages: Sender[],
   setMessages: (arg: Sender[]) => void;
+  draft: Draft,
+  setDraft: (arg:Draft) => void;
 }
 export interface Sender {
   username: string,
@@ -29,6 +31,10 @@ export interface User {
   last: string,
   avatar: string,
 }
+export interface Draft {
+  username: string,
+  message: string
+}
 
 export const Context = createContext<AppContextInterface | null>(null);
 type Props = {
@@ -41,7 +47,7 @@ export const ConfigProvider = ({ children }: Props) => {
 
   const [messages, setMessages] = useState<Sender[]>([]);
 
-
+  const [draft, setDraft] = useState<Draft>({ username:'', message:'' })
 
   const getUserData = async () => {
     const resp = await axios({
@@ -82,6 +88,8 @@ export const ConfigProvider = ({ children }: Props) => {
       setUserData,
       messages,
       setMessages,
+      draft,
+      setDraft,
     }}
     >
       {children}

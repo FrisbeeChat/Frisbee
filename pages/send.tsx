@@ -15,7 +15,6 @@ const App: React.FC = () => {
       <div className={styles.body}>
         <Send />
       </div>
-      <Footer />
     </div>
   )
 }

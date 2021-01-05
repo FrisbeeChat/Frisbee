@@ -28,7 +28,6 @@ const Home = () => {
       <div className={styles.body}>
         <Message />
       </div>
-      <Footer />
     </div>
   )
 }

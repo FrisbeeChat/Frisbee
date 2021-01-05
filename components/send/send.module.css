@@ -79,3 +79,15 @@
 .input:focus {
   outline: none;
 }
+
+.sendButton {
+  margin-top: 10px;
+  width: 300px;
+  background: linear-gradient(to right, #04cccc, #955ad4);
+  border: none;
+  color: white;
+  padding: 6px 0px;
+  border-radius: 20px;
+  font-size: 20px;
+  cursor: pointer;
+}

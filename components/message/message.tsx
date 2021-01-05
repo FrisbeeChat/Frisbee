@@ -15,12 +15,17 @@ const Message = ({messages}: any) => {
   const [last, setLast] = useState('');
   const global = useContext(Context);
 
-  function increment() {
+  const increment = () => {
     let next = global.currentMessage + 1;
     if (!global.messages[next]) {
       next = 0;
     }
     global.setCurrentMessage(next);
+  }
+
+  const reply = () => {
+    global.setDraft({username: username, message:"navigated from search comp"});
+    Router.replace('/send');
   }
 
   React.useEffect(() => {
@@ -35,27 +40,32 @@ const Message = ({messages}: any) => {
   }, [global])
 
   return (
-    <div className={styles.messageContainer}>
-      <div className={styles.message}>
-        <div className={styles.left}>{text}</div>
+    <div className={styles.container}>
+      <div className={styles.messageContainer}>
+        <div className={styles.message}>
+          <div className={styles.left}>{text}</div>
 
-        <div className={styles.right}>
-          <div className={styles.stamp}>
-            stamp
-          </div>
-          <div className={styles.senderInfo}>
-            <img className={styles.avatar} src={avatar} />
-            <div>
-              <div className={styles.username}>{username}</div>
-              <div className={styles.name}>{first} {last}</div>
+          <div className={styles.right}>
+            <div className={styles.stamp}>
+              stamp
+            </div>
+            <div className={styles.senderInfo}>
+              <img className={styles.avatar} src={avatar} />
+              <div>
+                <div className={styles.username}>{username}</div>
+                <div className={styles.name}>{first} {last}</div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div className={styles.curl}>
-        <div className={styles.curlcontent} onClick={increment} >
-          <div className={styles.button}></div>
+        <div className={styles.curl}>
+          <div className={styles.curlcontent} onClick={increment} >
+            <div className={styles.button}></div>
+          </div>
         </div>
+      </div>
+      <div>
+        <button className={styles.replyButton} onClick={reply}>Reply</button>
       </div>
     </div>
   )

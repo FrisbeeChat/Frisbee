@@ -24,10 +24,7 @@ const App: React.FC = () => {
             autoFocus
           />
         </form>
-        <Search term={searchVal}/>
-        <Link href="/">
-          HOME
-        </Link>
+        <Search query={searchVal}/>
     </div>
   )
 }

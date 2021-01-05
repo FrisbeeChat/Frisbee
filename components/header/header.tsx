@@ -10,9 +10,11 @@ const Header: React.FC = () => {
   return (
     <div className={styles.header}>
       <div className={styles.contWidth}>
-        <span id={styles.title}>
-          {global.appName}
-        </span>
+        <Link href="/">
+          <span id={styles.title}>
+            {global.appName}
+          </span>
+        </Link>
         <span className={styles.buttonContainer}>
           <Link href="/connect">
             <button id={styles.button}>Connect</button>

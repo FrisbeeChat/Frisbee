@@ -56,7 +56,8 @@ export default {
               "first": '${data.first}',
               "last": '${data.last}',
               "avatar": '${avatars[Math.floor(Math.random() * 10)]}',
-              "password": '${hash}'
+              "password": '${hash}',
+              "friends": []
             } into users
           `);
           const newUserBox = await db.query(`

@@ -1,43 +1,18 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import axios from 'axios';
 import React from 'react';
 import styles from './connections.module.css'
-
 import { Context } from '../context';
+import UserCard from '../cards/userCard';
 
-const Connections:React.FC = () => {
+interface Query {
+  query: string;
+}
+const Connections = ({query}: Query) => {
   const global = React.useContext(Context);
 
   const [users, setUsers] = React.useState([]);
 
-  const addFriend = async(friend: string) => {
-    console.log(friend)
-    const resp = await axios({
-      url: 'http://localhost:3000/api/addUser',
-      method: 'post',
-      data: {
-        me: global.userData.username,
-        them: friend,
-      },
-    });
-  }
+
 
   const getUsers = async () => {
     const resp = await axios({
@@ -47,20 +22,8 @@ const Connections:React.FC = () => {
     setUsers(resp.data);
   };
 
-  // const getFriends = async () => {
-  //   const resp = await axios({
-  //     url: 'http://localhost:3000/api/getFriends',
-  //     method: 'post',
-  //     data: {username: global.userData.username}
-  //   });
-  //   setUsers(resp.data);
-  // };
-
   React.useEffect(()=>{
     getUsers();
-    // if (global.userData.username !== '') {
-    //   getFriends();
-    // }
   },[global.userData.username]);
 
   return (
@@ -69,17 +32,17 @@ const Connections:React.FC = () => {
       if (user.username === global.userData.username) {
         return;
       }
-      return (
-        <div className={styles.card} key={i}>
-          <img className={styles.img} src={user.avatar} />
-          <div className={styles.username}>{user.username}</div>
-          <button
-            className={styles.button}
-            value={user.username}
-            onClick={(e)=>addFriend(e.target.value)}
-          >add</button>
-        </div>
-      )
+      for (var key in user) {
+        if (key !== 'avatar' && user[key].toLowerCase().includes(query)) {
+          return (
+            <UserCard
+              username={user.username}
+              avatar={user.avatar}
+              index={i}
+            />
+          )
+        }
+      }
     })}
   </div>
   )

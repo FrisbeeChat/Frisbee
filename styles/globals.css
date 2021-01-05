@@ -14,13 +14,14 @@ html, body {
   flex-flow: column nowrap;
   justify-content: space-between;
   font-family: 'Noto Sans JP', sans-serif;
+  background: rgb(244, 246, 252);
 }
 
 button:hover {
  outline: 0;
  transition: all .15s;
  box-shadow: inset 0 0 10px 1px rgba(0, 0, 0, 0.3);
-
+  cursor: pointer;
 }
 button:focus {
  outline: 0;

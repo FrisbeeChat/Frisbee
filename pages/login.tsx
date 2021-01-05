@@ -30,9 +30,9 @@ const App: React.FC = () => {
           <button onClick={()=>{setOnLogin(false)}}>Create Account</button>
         </div>
         <br />
-        <Link href="/">
+        {/* <Link href="/">
           HOME
-        </Link>
+        </Link> */}
       </div>
 
   )
