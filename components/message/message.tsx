@@ -59,14 +59,15 @@ const Message = ({messages}: any) => {
             </div>
           </div>
         </div>
-        <div className={styles.curl}>
+        {/* <div className={styles.curl}>
           <div className={styles.curlcontent} onClick={increment} >
             <div className={styles.button}></div>
           </div>
-        </div>
+        </div> */}
       </Paper>
       <div>
         <Button variant="contained" color="secondary" className={styles.replyButton} onClick={reply}>Reply</Button>
+        <Button variant="contained" color="primary" className={styles.replyButton} onClick={increment}>Next</Button>
       </div>
     </Container>
   )
