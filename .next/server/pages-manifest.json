@@ -2,10 +2,10 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
+  "/send": "pages/send.js",
   "/": "pages/index.js",
-  "/login": "pages/login.js",
-  "/next/dist/pages/_error": "pages/next/dist/pages/_error.js",
+  "/api/getUsers": "pages/api/getUsers.js",
+  "/connect": "pages/connect.js",
   "/api/getUserData": "pages/api/getUserData.js",
-  "/api/getMessages": "pages/api/getMessages.js",
-  "/connect": "pages/connect.js"
+  "/api/getMessages": "pages/api/getMessages.js"
 }

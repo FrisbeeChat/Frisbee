@@ -9,21 +9,23 @@ const Header: React.FC = () => {
 
   return (
     <div className={styles.header}>
-      <span id={styles.title}>
-        {global.appName}
-      </span>
-      <span className={styles.container}>
-        <Link href="/connect">
-          <button id={styles.button}>Connect</button>
-        </Link>
-        <Link href="/contacts">
-          <button id={styles.button}>Send a message</button>
-        </Link>
-        <Link href="/view">
-          <button id={styles.button}>See All Messages</button>
-        </Link>
-          <img id={styles.avatar} src={global.userData.avatar} /> {/*//use getInitialProps */}
-      </span>
+      <div className={styles.contWidth}>
+        <span id={styles.title}>
+          {global.appName}
+        </span>
+        <span className={styles.buttonContainer}>
+          <Link href="/connect">
+            <button id={styles.button}>Connect</button>
+          </Link>
+          <Link href="/contacts">
+            <button id={styles.button}>Send a message</button>
+          </Link>
+          <Link href="/view">
+            <button id={styles.button}>See All Messages</button>
+          </Link>
+            <img id={styles.avatar} src={global.userData.avatar} /> {/*//use getInitialProps */}
+        </span>
+      </div>
     </div>
   )
 }

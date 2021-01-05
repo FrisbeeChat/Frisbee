@@ -23,7 +23,7 @@ export interface Sender {
   text: string,
 }
 
-interface User {
+export interface User {
   username: string,
   first: string,
   last: string,

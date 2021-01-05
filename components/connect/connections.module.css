@@ -1,0 +1,46 @@
+.container {
+
+  max-width: 60%;
+  max-height: 80vh;
+  overflow-y: scroll;
+  margin: 5px auto 0 auto
+}
+
+.card {
+  justify-self: center;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+
+  height: 7vh;
+  border-color: rgb(150, 150, 150);
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 20px;
+
+  background-color: white;
+  /* offset-x | offset-y | blur-radius | spread-radius | color */
+  box-shadow: 0 15px 10px -5px lightslategrey;
+
+  margin: 15px;
+  padding: 0 5vw 0 7vw;
+
+  z-index: 1000;
+}
+.img {
+  max-width: 10vw;
+  /* max-height: 10vh; */
+  border-radius: 15vw;
+}
+.username {
+
+}
+.button {
+  width: 5vmin;
+  height: 5vmin;
+  border-radius: 5vmin;
+  border: none;
+  background-color: whitesmoke;
+  backdrop-filter: blur(1vw);
+}

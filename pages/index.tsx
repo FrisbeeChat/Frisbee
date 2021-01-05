@@ -21,8 +21,10 @@ const Home = () => {
     //notes
       //gut tells me this cannot be server side rendered, as the site would then need to know the users data upon build, rather than upon access,
       //when the user engauges the site, is when the cascade of api-call is initiated
-    <div className={styles.home}>
-      <Header />
+    <div>
+      <div className={styles.home}>
+        <Header />
+      </div>
       <div className={styles.body}>
         <Message />
       </div>

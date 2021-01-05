@@ -28,10 +28,6 @@ const Footer: React.FC = () => {
           <button id={styles.button}>Reply</button>
         </Link>
       </span>
-      <span className={styles.container}>
-        <img id={styles.avatar} src={avatar} />
-        <p id={styles.name}>{username}</p>
-      </span>
     </div>
   )
 }
