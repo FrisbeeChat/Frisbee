@@ -3,10 +3,6 @@
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
   "/contacts": "pages/contacts.js",
-  "/api/getFriends": "pages/api/getFriends.js",
   "/connect": "pages/connect.js",
-  "/api/getUsers": "pages/api/getUsers.js",
-  "/": "pages/index.js",
-  "/api/getMessages": "pages/api/getMessages.js",
-  "/api/getUserData": "pages/api/getUserData.js"
+  "/": "pages/index.js"
 }

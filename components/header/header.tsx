@@ -1,4 +1,4 @@
-import styles from './Header.module.css'
+import styles from './header.module.css'
 import { useContext } from 'react';
 import Link from 'next/link'
 import { Context } from '../context'
