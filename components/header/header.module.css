@@ -1,27 +1,17 @@
 .header {
-  margin-top: 2px;
   height: 8vh;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  background: linear-gradient(to right, #04cccc, #955ad4);
   color: white;
   font-weight: 600;
-  border-radius: 20px;
 }
 
 .contWidth {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 80vw;
 }
 
 .buttonContainer {
   height: 8vh;
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
 }
 
 #title {
@@ -35,17 +25,13 @@
 #button {
   background-color: rgba(201, 201, 201, 0.137);
   backdrop-filter: blur(1vw);
-  border-radius: 3vw;
-  border: none;
   width: 10vw;
-  height: 4vh;
   margin-left: 3vw;
   min-width: 100px;
   min-height: 35px;
 }
 
 #avatar {
-  align-self: center;
   margin-left: 3vw;
   width: 3vw;
   height:3vw;

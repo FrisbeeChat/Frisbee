@@ -15,7 +15,7 @@ const UserCard = ({ username, avatar, index }: Props) => {
   const [friend, setFriend] = React.useState(false)
 
   const addFriend = async (friend: string) => {
-    console.log(friend)
+    // console.log(friend)
     setFriend(true);
     const resp = await axios({
       url: 'http://localhost:3000/api/addUser',
@@ -25,11 +25,11 @@ const UserCard = ({ username, avatar, index }: Props) => {
         them: friend,
       },
     });
-
+    return;
   }
 
   const removeFriend = async (friend:string) => {
-    console.log(friend)
+    // console.log(friend)
     setFriend(false);
     const resp = await axios({
       url: 'http://localhost:3000/api/deleteFriend',
@@ -38,8 +38,9 @@ const UserCard = ({ username, avatar, index }: Props) => {
         me: global.userData.username,
         them: friend,
       },
-    });
 
+    });
+    return;
   }
 
   return (
@@ -50,12 +51,12 @@ const UserCard = ({ username, avatar, index }: Props) => {
       {friend ?
         <button className={styles.button}
           value={username}
-          onClick={(e) => removeFriend(e.target.value)}
+          onClick={() => removeFriend(username)}
         >Revoke</button>
         :
         <button className={styles.button}
           value={username}
-          onClick={(e) => addFriend(e.target.value)}
+          onClick={() => addFriend(username)}
         >Request</button>
         }
     </div>

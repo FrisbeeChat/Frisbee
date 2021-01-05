@@ -6,6 +6,7 @@ import { NextPageContext } from 'next';
 import axios from 'axios';
 import Router from 'next/router';
 import { Sender } from '../context';
+import { Paper, Button, Container } from '@material-ui/core';
 
 const Message = ({messages}: any) => {
   const [text, setText] = useState('');
@@ -40,8 +41,8 @@ const Message = ({messages}: any) => {
   }, [global])
 
   return (
-    <div className={styles.container}>
-      <div className={styles.messageContainer}>
+    <Container className={styles.container}>
+      <Paper elevation={8} className={styles.messageContainer}>
         <div className={styles.message}>
           <div className={styles.left}>{text}</div>
 
@@ -63,11 +64,11 @@ const Message = ({messages}: any) => {
             <div className={styles.button}></div>
           </div>
         </div>
-      </div>
+      </Paper>
       <div>
-        <button className={styles.replyButton} onClick={reply}>Reply</button>
+        <Button variant="contained" color="secondary" className={styles.replyButton} onClick={reply}>Reply</Button>
       </div>
-    </div>
+    </Container>
   )
 }
 export default Message;

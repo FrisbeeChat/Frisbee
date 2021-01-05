@@ -5,16 +5,14 @@
 }
 
 .messageContainer {
-  margin: 30px 0px;
+  margin: 80px 0px 30px 0px;
   height: 70vh;
-  width: 80vw;
   display: flex;
   justify-items: center;
   align-content: center;
   overflow: hidden;
   box-shadow: 0px 14px 40px rgba(0, 0, 0, 0.20);
   border-radius: 30px;
-  background: rgb(253, 251, 242);
 }
 
 .message {
@@ -77,7 +75,6 @@
 .replyButton {
   margin-top: 10px;
   width: 300px;
-  background: linear-gradient(to right, #04cccc, #955ad4);
   border: none;
   color: white;
   padding: 6px 0px;

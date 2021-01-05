@@ -1,10 +1,11 @@
 import styles from './view.module.css'
 import React from 'react';
 import { useContext, useState } from 'react';
+import { Paper } from '@material-ui/core';
 
 const Single = ({message, i}: any) => {
   return (
-    <div key={i} className={styles.messContainer}>
+    <Paper elevation={2} key={i} className={styles.messContainer}>
       <div className={styles.messHead}>
         <div className={styles.messProfile}>
           <img className={styles.messAvatar} src={message.avatar}/>
@@ -15,7 +16,7 @@ const Single = ({message, i}: any) => {
       <div className={styles.messText}>
         {message.text}
       </div>
-    </div>
+    </Paper>
   )
 }
 export default Single;

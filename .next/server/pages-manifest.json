@@ -3,7 +3,5 @@
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
   "/": "pages/index.js",
-  "/view": "pages/view.js",
-  "/api/getUserData": "pages/api/getUserData.js",
-  "/api/getMessages": "pages/api/getMessages.js"
+  "/connect": "pages/connect.js"
 }

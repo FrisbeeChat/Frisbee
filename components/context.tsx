@@ -2,7 +2,7 @@ import * as React from 'react';
 import { createContext, useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 import { NextPageContext } from 'next';
-import { Router } from 'next/router';
+import Router from 'next/router';
 import axios from 'axios';
 
 
@@ -49,14 +49,18 @@ export const ConfigProvider = ({ children }: Props) => {
 
   const [draft, setDraft] = useState<Draft>({ username:'', message:'' })
 
-  const getUserData = async () => {
-    const resp = await axios({
+  const getUserData = async () => { //needs to happen server side
+    try {
+      const resp = await axios({
       url: 'http://localhost:3000/api/getUserData',
       method: 'get',
-    });
-    console.log(resp);
-    await setUserData(resp.data);
-    getMessages(resp.data.username);
+      });
+      await setUserData(resp.data);
+      getMessages(resp.data.username);
+    }
+    catch {
+      Router.replace('/login');
+    }
   }
 
   const getMessages = async (username: string) => {
