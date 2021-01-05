@@ -4,6 +4,7 @@ import { useContext, useState, useEffect } from 'react';
 import { Context } from '../context';
 import axios from 'axios';
 import Router from 'next/router';
+import { Paper, Button, Container, Grid } from '@material-ui/core';
 
 const Send: React.FC = () => {
   const [username, setUsername] = useState('');
@@ -40,8 +41,13 @@ const Send: React.FC = () => {
   }
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-      <div className={styles.messageContainer}>
+    <Grid
+      container
+      direction="column"
+      alignItems="center"
+      justify="center"
+    >
+      <Paper elevation={8} className={styles.messageContainer}>
         <div className={styles.message}>
           <div className={styles.left}>
             <div>
@@ -58,15 +64,15 @@ const Send: React.FC = () => {
             <div className={styles.senderInfo}>
               <img className={styles.avatar} src={avatar} />
               <div>
-                <div className={styles.username}>{username}</div>
+                <div className={styles.username}>@{username}</div>
                 <div className={styles.name}>{first} {last}</div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <button onClick={(e) => sendMessage(e)} className={styles.sendButton}>Send</button>
-    </div>
+      </Paper>
+      <Button variant="contained" color="secondary" onClick={(e) => sendMessage(e)} className={styles.sendButton}>Send</Button>
+    </Grid>
   )
 }
 export default Send;

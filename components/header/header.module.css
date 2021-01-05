@@ -15,8 +15,11 @@
 }
 
 #title {
+  margin-left: 24px;
   font-size: 2em;
   cursor: pointer;
+  display: flex;
+  align-items: center;
 }
 #title:hover {
   color: #955ad4;

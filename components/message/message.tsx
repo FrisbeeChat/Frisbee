@@ -6,7 +6,8 @@ import { NextPageContext } from 'next';
 import axios from 'axios';
 import Router from 'next/router';
 import { Sender } from '../context';
-import { Paper, Button, Container } from '@material-ui/core';
+import { Paper, Button, Container, Grid } from '@material-ui/core';
+// import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 
 const Message = ({messages}: any) => {
   const [text, setText] = useState('');
@@ -41,7 +42,12 @@ const Message = ({messages}: any) => {
   }, [global])
 
   return (
-    <Container className={styles.container}>
+    <Grid
+      container
+      direction="column"
+      alignItems="center"
+      justify="center"
+    >
       <Paper elevation={8} className={styles.messageContainer}>
         <div className={styles.message}>
           <div className={styles.left}>{text}</div>
@@ -53,23 +59,20 @@ const Message = ({messages}: any) => {
             <div className={styles.senderInfo}>
               <img className={styles.avatar} src={avatar} />
               <div>
-                <div className={styles.username}>{username}</div>
+                <div className={styles.username}>@{username}</div>
                 <div className={styles.name}>{first} {last}</div>
               </div>
             </div>
           </div>
         </div>
-        {/* <div className={styles.curl}>
-          <div className={styles.curlcontent} onClick={increment} >
-            <div className={styles.button}></div>
-          </div>
-        </div> */}
       </Paper>
-      <div>
-        <Button variant="contained" color="secondary" className={styles.replyButton} onClick={reply}>Reply</Button>
-        <Button variant="contained" color="primary" className={styles.replyButton} onClick={increment}>Next</Button>
-      </div>
-    </Container>
+      <Grid
+        justify="center"
+      >
+        <Button variant="contained" color="secondary" className={styles.button} onClick={reply}>Reply</Button>
+        <Button variant="contained" color="primary" style={{ marginLeft: "20px" }} className={styles.button} onClick={increment}>Next</Button>
+      </Grid>
+    </Grid>
   )
 }
 export default Message;

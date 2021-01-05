@@ -2,14 +2,17 @@ import axios from 'axios';
 import React from 'react';
 import styles from '../connect/connections.module.css'
 import { Context } from '../context';
+import { Paper, Button } from '@material-ui/core';
 
 interface Props {
   username: string;
+  first: string;
+  last: string;
   avatar: string;
   index: number;
 }
 
-const UserCard = ({ username, avatar, index }: Props) => {
+const UserCard = ({ username, first, last, avatar, index }: Props) => {
   const global = React.useContext(Context);
 
   const [friend, setFriend] = React.useState(false)
@@ -44,22 +47,26 @@ const UserCard = ({ username, avatar, index }: Props) => {
   }
 
   return (
-
-    <div className={styles.card} key={index}>
-      <img className={styles.img} src={avatar} />
-      <div className={styles.username}>{username}</div>
+    <Paper elevation={2} className={styles.card} key={index}>
+      <div className={styles.left}>
+        <img className={styles.img} src={avatar} />
+        <div>
+          <div className={styles.username}>@{username}</div>
+          <div>{first} {last}</div>
+        </div>
+      </div>
       {friend ?
-        <button className={styles.button}
+        <Button color="secondary" className={styles.button}
           value={username}
           onClick={() => removeFriend(username)}
-        >Revoke</button>
+        >Revoke</Button>
         :
-        <button className={styles.button}
+        <Button variant="contained" color="secondary" className={styles.button}
           value={username}
           onClick={() => addFriend(username)}
-        >Request</button>
+        >Request</Button>
         }
-    </div>
+    </Paper>
   )
 
 }

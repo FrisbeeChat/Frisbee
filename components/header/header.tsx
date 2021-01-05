@@ -3,6 +3,7 @@ import { useContext } from 'react';
 import Link from 'next/link'
 import { Context } from '../context'
 import { AppBar, Toolbar, Button, Container} from '@material-ui/core';
+import MarkunreadMailboxIcon from '@material-ui/icons/MarkunreadMailbox';
 
 const Header: React.FC = () => {
   const global = useContext(Context);
@@ -13,7 +14,8 @@ const Header: React.FC = () => {
       <div className={styles.contWidth}>
         <Link href="/">
           <span id={styles.title}>
-            {global.appName}
+            <MarkunreadMailboxIcon />
+           <div style={{ marginLeft: "20px" }}>{global.appName}</div>
           </span>
         </Link>
         <Toolbar className={styles.buttonContainer}>
