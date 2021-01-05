@@ -5,6 +5,7 @@ import { Context } from '../context';
 import axios from 'axios';
 import Router from 'next/router';
 import { Paper, Button, Container, Grid } from '@material-ui/core';
+import MarkunreadMailboxIcon from '@material-ui/icons/MarkunreadMailbox';
 
 const Send: React.FC = () => {
   const [username, setUsername] = useState('');
@@ -29,7 +30,7 @@ const Send: React.FC = () => {
     e.preventDefault();
     console.log(global.draft)
     await axios({
-      url: 'http://localhost:3000/api/writeMessage',
+      url: `${window.location.origin}/api/writeMessage`,
       method: 'post',
       data: {
         me: global.userData.username,
@@ -58,8 +59,11 @@ const Send: React.FC = () => {
             <textarea onChange={(e) => handleChange(e)} className={styles.input} style={{ fontFamily: 'Arial, Helvetica, sans-serif' }} value={message} />
           </div>
           <div className={styles.right}>
-            <div className={styles.stamp}>
-              stamp
+            <div className={styles.stampContainer}>
+              <div className={styles.stamp}>
+                <MarkunreadMailboxIcon style={{ fontSize: 40 }} />
+              </div>
+              <Button variant="outlined" color="secondary" style={{ fontSize: 10, marginTop: "10px" }}>Add Photo</Button>
             </div>
             <div className={styles.senderInfo}>
               <img className={styles.avatar} src={avatar} />

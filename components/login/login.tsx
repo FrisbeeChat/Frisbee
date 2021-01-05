@@ -17,7 +17,7 @@ const Login: React.FC = () => {
 
   async function handleLogin() {
 
-      const resp = await axios.post('http://localhost:3000/api/login', {
+      const resp = await axios.post(`${window.location.origin}/api/login`, {
         data: {
           username: userNameRef.current.value,
           password: passwordRef.current.value,

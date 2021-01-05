@@ -52,7 +52,7 @@ export const ConfigProvider = ({ children }: Props) => {
   const getUserData = async () => { //needs to happen server side
     try {
       const resp = await axios({
-      url: 'http://localhost:3000/api/getUserData',
+      url: `${window.location.origin}/api/getUserData`,
       method: 'get',
       });
       await setUserData(resp.data);
@@ -65,7 +65,7 @@ export const ConfigProvider = ({ children }: Props) => {
 
   const getMessages = async (username: string) => {
     const mess = await axios({
-      url: 'http://localhost:3000/api/getMessages',
+      url: `${window.location.origin}/api/getMessages`,
       method: 'post',
       data: {
         username: username

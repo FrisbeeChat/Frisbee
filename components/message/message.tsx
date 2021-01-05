@@ -7,6 +7,7 @@ import axios from 'axios';
 import Router from 'next/router';
 import { Sender } from '../context';
 import { Paper, Button, Container, Grid } from '@material-ui/core';
+import MarkunreadMailboxIcon from '@material-ui/icons/MarkunreadMailbox';
 // import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 
 const Message = ({messages}: any) => {
@@ -54,7 +55,7 @@ const Message = ({messages}: any) => {
 
           <div className={styles.right}>
             <div className={styles.stamp}>
-              stamp
+              <MarkunreadMailboxIcon style={{ fontSize: 40 }} />
             </div>
             <div className={styles.senderInfo}>
               <img className={styles.avatar} src={avatar} />

@@ -15,7 +15,7 @@ const Connections = () => {
 
   const getUsers = async () => {
     const resp = await axios({
-      url: 'http://localhost:3000/api/getUsers',
+      url: `${window.location.origin}/api/getUsers`,
       method: 'get',
     });
     setUsers(resp.data);

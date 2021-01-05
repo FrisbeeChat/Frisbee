@@ -24,7 +24,7 @@ const Search = () => {
 
   const getUsers = async () => {
     const resp = await axios({
-      url: 'http://localhost:3000/api/getFriends',
+      url: `${window.location.origin}/api/getFriends`,
       method: 'post',
       data: {username: global.userData.username}
     });

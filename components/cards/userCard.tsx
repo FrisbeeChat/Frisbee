@@ -21,7 +21,7 @@ const UserCard = ({ username, first, last, avatar, index }: Props) => {
     // console.log(friend)
     setFriend(true);
     const resp = await axios({
-      url: 'http://localhost:3000/api/addUser',
+      url: `${window.location.origin}/api/addUser`,
       method: 'post',
       data: {
         me: global.userData.username,
@@ -35,7 +35,7 @@ const UserCard = ({ username, first, last, avatar, index }: Props) => {
     // console.log(friend)
     setFriend(false);
     const resp = await axios({
-      url: 'http://localhost:3000/api/deleteFriend',
+      url: `${window.location.origin}/api/deleteFriend`,
       method: 'post',
       data: {
         me: global.userData.username,

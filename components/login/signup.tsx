@@ -11,7 +11,7 @@ const SignUp:React.FC = () => {
   const emailRef = useRef<HTMLInputElement>(null)
 
   async function handleSignUp() {
-    const resp = await axios.post('http://localhost:3000/api/signup', {
+    const resp = await axios.post(`${window.location.origin}/api/signup`, {
       data: {
         username: userNameRef.current.value,
         email: emailRef.current.value,
