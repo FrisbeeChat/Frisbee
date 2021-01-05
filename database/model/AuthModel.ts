@@ -35,7 +35,7 @@ interface TripleCallback {
 }
 
 export default {
-  signup: async (data: Signup, callback: StringCallback) => {
+  signup: async (data: Signup, callback: TripleCallback) => {
     try {
       const checkBox = await db.query(`
         for u in users
@@ -63,12 +63,18 @@ export default {
           const newUserBox = await db.query(`
             for u in users
               filter u.username == '${data.username}'
-              return u.username
+              return u
           `)
           const newUser = await newUserBox.all();
-          const claim = {username: newUser[0]};
+          const claim = {username: newUser[0].username};
           const jwt = sign(claim, token);
-          callback(null, jwt);
+          const sendObject = {
+            username: newUser[0].username,
+            first: newUser[0].first,
+            last: newUser[0].last,
+            avatar: newUser[0].avatar
+          };
+          callback(null, jwt, sendObject);
         })
       }
     } catch (err) {

@@ -1,5 +1,5 @@
 import React, { useContext, useRef, useState } from 'react';
-import { useRouter } from 'next/router';
+import Router from 'next/router';
 import { NextPageContext } from 'next';
 import { Context } from '../context'
 import axios from 'axios';
@@ -7,29 +7,46 @@ import styles from './login.module.css'
 
 const Login: React.FC = () => {
   const global = useContext(Context)
-  const router = useRouter();
+  // const router = useRouter();
 
   const [message, setMessage] = useState('')
   const userNameRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
   const passwordButtonRef = useRef<HTMLButtonElement>(null);
 
+  //populate messages upon successful login for fluid UX
+
+  const getMessages = async (username: string) => {
+    const mess = await axios({
+      url: `${window.location.origin}/api/getMessages`,
+      method: 'post',
+      data: {
+        username: username
+      }
+    })
+    global.setMessages(mess.data)
+  }
+
+  // try to login: on sucess -> pop context w/ messages, if any error -> displ message
 
   async function handleLogin() {
-
+    try {
       const resp = await axios.post(`${window.location.origin}/api/login`, {
         data: {
           username: userNameRef.current.value,
           password: passwordRef.current.value,
         }
       })
-      if (resp.data.message) {
-        setMessage('please check the user name or password')
-      } else {
         global.setUserData(resp.data);
-        router.replace('/');
-      }
+        getMessages(resp.data.username);
+      Router.replace('/');
+    }
+    catch {
+      setMessage('please check the user name or password')
+    }
   }
+
+  // hide or show password w/ aria warning
 
   function togglePassword() {
     if (passwordRef.current.type === 'password') {
@@ -45,6 +62,8 @@ const Login: React.FC = () => {
         'Warning: this will display your password on the screen.');
     }
   }
+
+  // onChange: validate password and create custom error message to display
 
   function validatePassword() {
     let message= '';

@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import { NextPageContext } from 'next';
 import Router from 'next/router';
 import axios from 'axios';
+import { ignoreRequest } from '../pages/api/ignoreRequest';
+import { error } from 'console';
 
 
 interface AppContextInterface {
@@ -56,23 +58,23 @@ export const ConfigProvider = ({ children }: Props) => {
       method: 'get',
       });
       await setUserData(resp.data);
-      getMessages(resp.data.username);
+      // getMessages(resp.data.username);
     }
     catch {
       Router.replace('/login');
     }
   }
 
-  const getMessages = async (username: string) => {
-    const mess = await axios({
-      url: `${window.location.origin}/api/getMessages`,
-      method: 'post',
-      data: {
-        username: username
-      }
-    })
-    setMessages(mess.data)
-  }
+  // const getMessages = async (username: string) => {
+  //   const mess = await axios({
+  //     url: `${window.location.origin}/api/getMessages`,
+  //     method: 'post',
+  //     data: {
+  //       username: username
+  //     }
+  //   })
+  //   setMessages(mess.data)
+  // }
 
   React.useEffect(() => {
 

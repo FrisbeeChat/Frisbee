@@ -30,6 +30,7 @@ const Search = () => {
     });
     setUsers(resp.data);
   }
+
   React.useEffect(()=>{
     getUsers()
   },[])
@@ -37,14 +38,15 @@ const Search = () => {
 
   return (
     <div className={styles.container}>
-      <form style={{ marginTop: "80px", marginBottom: "40px" }}>
+      <form style={{ marginTop: "80px", marginBottom: "40px", width: "60vw" }}>
         <TextField
-            id="outlined-search"
-            label="Search"
-            type="search"
-            variant="outlined"
-            onChange={(e)=>setSearchVal(e.target.value.toLowerCase())}
-            autoFocus
+          id="outlined-search"
+          label="Search"
+          type="search"
+          variant="outlined"
+          onChange={(e)=>setSearchVal(e.target.value.toLowerCase())}
+          autoFocus
+          fullWidth
         />
       </form>
       <div>

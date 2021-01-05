@@ -56,10 +56,7 @@ const UserCard = ({ username, first, last, avatar, index }: Props) => {
         </div>
       </div>
       {friend ?
-        <Button color="secondary" className={styles.button}
-          value={username}
-          onClick={() => removeFriend(username)}
-        >Revoke</Button>
+        <div className={styles.sent}>SENT</div>
         :
         <Button variant="contained" color="secondary" className={styles.button}
           value={username}
