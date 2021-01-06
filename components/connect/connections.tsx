@@ -96,7 +96,8 @@ const Connections = () => {
 
   return (
     <div className={styles.container}>
-      <form style={{marginTop: "80px", marginBottom: "30px", width: "60vw"}}>
+      <div style={{ marginBottom: "20px", fontSize: "24px" }}>Search Users</div>
+      <form style={{ marginBottom: "30px", width: "60vw"}}>
         <TextField
           id="outlined-search"
           label="Search"

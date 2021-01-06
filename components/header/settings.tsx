@@ -6,28 +6,18 @@ import { AppBar, Toolbar, Button, Container, Badge, Popover } from '@material-ui
 import MarkunreadMailboxIcon from '@material-ui/icons/MarkunreadMailbox';
 import axios from 'axios';
 
-const Settings: React.FC = () => {
+interface Props {
+  upload: (arg: string) => void;
+  avatar: string;
+}
+
+const Settings = ({upload, avatar}: Props) => {
   const global = useContext(Context);
-  const [loading, setLoading] = useState(false);
-  const [image, setImage] = useState(null);
-  const upload = async (e: any) => {
-    const image = e.target.files[0]
-    const reader = new FormData()
-    reader.append('file', image);
-    reader.append('upload_preset', 'postcardcover')
-    setLoading(true);
-    const res = await fetch('https://api.cloudinary.com/v1_1/avatar/image/upload', {
-      method: 'POST',
-      body: reader
-    })
-    const file = await res.json();
-    setImage(file.url);
-  }
 
   return (
     <div className={styles.settingsContainer}>
       <div>
-        <img className={styles.settingsPhoto} src={global.userData.avatar} />
+        <img className={styles.settingsPhoto} src={avatar} />
         <div className={styles.uploadButton}>
           <input
             accept="image/png, image/jpg"

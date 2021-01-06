@@ -9,15 +9,16 @@ import { error } from 'console';
 
 
 interface AppContextInterface {
-  appName: string,
-  userData: User,
-  setUserData: (arg: User) => void,
-  currentMessage: number,
+  appName: string;
+  userData: User;
+  setUserData: (arg: User) => void;
+  currentMessage: number;
   setCurrentMessage: (arg:number) => void;
-  messages: Sender[],
+  messages: Sender[];
   setMessages: (arg: Sender[]) => void;
-  draft: Draft,
+  draft: Draft;
   setDraft: (arg:Draft) => void;
+  changeSettings: (username: string, first: string, last: string, avatar: string) => void;
 }
 export interface Sender {
   username: string;
@@ -65,6 +66,20 @@ export const ConfigProvider = ({ children }: Props) => {
     }
   }
 
+  const changeSettings = async (username: string, first: string, last: string, avatar: string) => {
+    await axios({
+      url: `${window.location.origin}/api/changeSettings`,
+      method: 'post',
+      data: {
+        username,
+        first,
+        last,
+        avatar
+      }
+    })
+    getUserData();
+  }
+
   const getMessages = async (username: string) => {
     const mess = await axios({
       url: `${window.location.origin}/api/getMessages`,
@@ -97,6 +112,7 @@ export const ConfigProvider = ({ children }: Props) => {
       setMessages,
       draft,
       setDraft,
+      changeSettings
     }}
     >
       {children}

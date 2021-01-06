@@ -185,11 +185,20 @@ export default {
     }
   },
 
-//   changeSettings: async (data: User, callback: st) => {
-//     try {
-//       await db.query(``);
-//     } catch (err) {
-//       callback(err);
-//     }
-//   }
+  changeSettings: async (data: User, callback: StCallback) => {
+    try {
+      await db.query(`
+        let me = (for u in users
+          filter u.username == '${data.username}'
+          return u._key)
+        for u in users
+          for m in me
+            filter u._key == m
+            update {"_key": m, "avatar": '${data.avatar}', "first": '${data.first}', "last": '${data.last}'} in users
+      `);
+      callback(null, 'changed user settings')
+    } catch (err) {
+      callback(err);
+    }
+  }
 }

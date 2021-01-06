@@ -38,7 +38,8 @@ const Search = () => {
 
   return (
     <div className={styles.container}>
-      <form style={{ marginTop: "80px", marginBottom: "40px", width: "60vw" }}>
+      <div style={{ marginBottom: "20px", fontSize: "24px" }}>My Friends</div>
+      <form style={{ marginBottom: "40px", width: "60vw" }}>
         <TextField
           id="outlined-search"
           label="Search"

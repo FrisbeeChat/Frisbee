@@ -43,7 +43,6 @@ const Send: React.FC = () => {
     setImage(file.url);
   }
 
-
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setMessage(e.target.value);
   }

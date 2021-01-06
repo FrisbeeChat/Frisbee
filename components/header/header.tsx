@@ -11,6 +11,8 @@ import axios from 'axios';
 const Header: React.FC = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [requests, setRequests] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [avatar, setAvatar] = useState('');
   const global = useContext(Context);
 
   const handleClick = (event:any) => {
@@ -21,6 +23,21 @@ const Header: React.FC = () => {
   };
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popover' : undefined;
+
+  const upload = async (e) => {
+    const image = e.target.files[0]
+    const reader = new FormData()
+    reader.append('file', image);
+    reader.append('upload_preset', 'postcardcover')
+    setLoading(true);
+    const res = await fetch('https://api.cloudinary.com/v1_1/postcard/image/upload', {
+      method: 'POST',
+      body: reader
+    })
+    const file = await res.json();
+    setAvatar(file.url);
+    global.changeSettings(global.userData.username, global.userData.first, global.userData.last, file.url);
+  }
 
   const getRequests = async () => {
     const reqs = await axios({
@@ -35,6 +52,7 @@ const Header: React.FC = () => {
 
   useEffect(() => {
     getRequests();
+    setAvatar(global.userData.avatar);
   }, [global.userData.username])
 
   return (
@@ -65,7 +83,7 @@ const Header: React.FC = () => {
           <Link href="/view">
             <Button style={{ color: 'white', marginRight: "20px" }}>See All Messages</Button>
           </Link>
-          <img onClick={handleClick} id={styles.avatar} src={global.userData.avatar} /> {/*//use getInitialProps */}
+          <img onClick={handleClick} id={styles.avatar} src={avatar} /> {/*//use getInitialProps */}
           <Popover
             open={open}
             anchorEl={anchorEl}
@@ -79,7 +97,7 @@ const Header: React.FC = () => {
               horizontal: 'right',
             }}
           >
-            <Settings />
+            <Settings upload={upload} avatar={avatar} />
           </Popover>
         </Toolbar>
       </div>

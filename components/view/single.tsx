@@ -28,6 +28,9 @@ const Single = ({message, i}: any) => {
       <div className={styles.messText}>
         <div className={styles.messContent}>{message.text}</div>
       </div>
+      <div>
+        {message.photo ? <img className={styles.singleImage} src={message.photo}/> : <div></div>}
+      </div>
     </Paper>
   )
 }
