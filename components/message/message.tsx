@@ -6,9 +6,10 @@ import { NextPageContext } from 'next';
 import axios from 'axios';
 import Router from 'next/router';
 import { Sender } from '../context';
-import { Paper, Button, Container, Grid } from '@material-ui/core';
+import { Paper, Button, Container, Grid, Fab } from '@material-ui/core';
 import MarkunreadMailboxIcon from '@material-ui/icons/MarkunreadMailbox';
-// import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 
 const Message = ({messages}: any) => {
   const [text, setText] = useState('');
@@ -16,12 +17,24 @@ const Message = ({messages}: any) => {
   const [username, setUsername] = useState('');
   const [first, setFirst] = useState('');
   const [last, setLast] = useState('');
+  const [photo, setPhoto] = useState<string | null>('');
+  const [font, setFont] = useState<string>('font1');
+  const [time, setTime] = useState<string | null>('');
   const global = useContext(Context);
 
   const increment = () => {
     let next = global.currentMessage + 1;
     if (!global.messages[next]) {
       next = 0;
+    }
+    global.setCurrentMessage(next);
+    console.log(global.messages);
+  }
+
+  const decrement = () => {
+    let next = global.currentMessage - 1;
+    if (next === -1) {
+      next = global.messages.length - 1;
     }
     global.setCurrentMessage(next);
   }
@@ -39,6 +52,9 @@ const Message = ({messages}: any) => {
       setUsername(sender.username);
       setFirst(sender.first);
       setLast(sender.last);
+      setPhoto(sender.photo);
+      setFont(sender.font);
+      setTime(sender.time);
     } else {
       setText('Welcome to PostCard, this is where you will find any messages you may receive\n ',);
       setAvatar('https://frisbee-images.s3-us-west-1.amazonaws.com/paint.jpg');
@@ -48,20 +64,45 @@ const Message = ({messages}: any) => {
     }
   }, [global]);
 
+  let selectedFont = styles.font1;
+  switch (font) {
+    case 'font1':
+      selectedFont = styles.font1;
+      break;
+    case 'font2':
+      selectedFont = styles.font2;
+      break;
+    case 'font3':
+      selectedFont = styles.font3;
+      break;
+    case 'font4':
+      selectedFont = styles.font4;
+      break;
+  }
+
   return (
+    <Container>
     <Grid
       container
-      direction="column"
+      direction="row"
       alignItems="center"
-      justify="center"
+      justify="space-between"
+      spacing={0}
     >
+      <Fab color="primary" onClick={decrement}>
+        <ArrowBackIosIcon />
+      </Fab>
       <Paper elevation={8} className={styles.messageContainer}>
         <div className={styles.message}>
-          <div className={styles.left}>{text}</div>
-
+          <div className={`${styles.left} ${selectedFont}`}>{text}</div>
           <div className={styles.right}>
             <div className={styles.stamp}>
-              <MarkunreadMailboxIcon style={{ fontSize: 40 }} />
+              <div className={styles.stampFill}>
+                <MarkunreadMailboxIcon style={{ fontSize: 30 }} />
+              </div>
+            </div>
+            <div>
+              {photo ? <img className={styles.messagePhoto} src={photo}/> : <div></div>}
             </div>
             <div className={styles.senderInfo}>
               <img className={styles.avatar} src={avatar} />
@@ -73,13 +114,20 @@ const Message = ({messages}: any) => {
           </div>
         </div>
       </Paper>
+      <Fab color="primary" onClick={increment}>
+          <ArrowForwardIosIcon />
+        </Fab>
       <Grid
+        container
+        direction="row"
+        alignItems="center"
         justify="center"
       >
         <Button variant="contained" color="secondary" className={styles.button} onClick={reply}>Reply</Button>
-        <Button variant="contained" color="primary" style={{ marginLeft: "20px" }} className={styles.button} onClick={increment}>Next</Button>
+        {/* <Button variant="contained" color="primary" style={{ marginLeft: "20px" }} className={styles.button} onClick={increment}>Next</Button> */}
       </Grid>
     </Grid>
+    </Container>
   )
 }
 export default Message;

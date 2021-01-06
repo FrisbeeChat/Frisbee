@@ -11,27 +11,59 @@ import { TextField } from '@material-ui/core'
 const Connections = () => {
   const global = useContext(Context);
   const [users, setUsers] = useState([]);
-  const [searchVal, setSearchVal] = useState('')
+  const [searchVal, setSearchVal] = useState('');
   const [requests, setRequests] = useState([]);
-  const [friend, setFriend] = useState(false)
+  const [friend, setFriend] = useState(false);
+  const [myFriends, setMyFriends] = useState([]);
 
-  const getUsers = async () => {
+  const getUsers = async (frs) => {
     const resp = await axios({
       url: `${window.location.origin}/api/getUsers`,
       method: 'get',
     });
-    setUsers(resp.data);
+    const filter = [];
+    for (let i = 0; i < resp.data.length; i++) {
+      if (!frs[resp.data[i].username]) {
+        filter.push(resp.data[i]);
+      }
+    }
+    setUsers(filter);
   };
 
-  const getRequests = async () => {
-    const resp = await axios({
+  const getRequestsAndFriends = async () => {
+    const reqs = await axios({
       url: `${window.location.origin}/api/getFriendRequests`,
       method: 'post',
       data: {
         username: global.userData.username
       }
     });
-    setRequests(resp.data);
+    setRequests(reqs.data);
+    const fs = await axios({
+      url: `${window.location.origin}/api/getFriends`,
+      method: 'post',
+      data: {
+        username: global.userData.username
+      }
+    });
+    setMyFriends(fs.data);
+    const friendsAndRequests = reqs.data.concat(fs.data);
+    let obj: any = {};
+    for (let i = 0; i < friendsAndRequests.length; i++) {
+      obj[friendsAndRequests[i].username] = true;
+    }
+    getUsers(obj);
+  }
+
+  const getFriends = async () => {
+    const resp = await axios({
+      url: `${window.location.origin}/api/getFriends`,
+      method: 'post',
+      data: {
+        username: global.userData.username
+      }
+    });
+    setMyFriends(resp.data);
   }
 
   const accept = async (friend: string) => {
@@ -43,7 +75,7 @@ const Connections = () => {
         them: friend,
       },
     });
-    await getRequests();
+    await getRequestsAndFriends();
   }
 
   const ignore = async (friend: string) => {
@@ -55,12 +87,11 @@ const Connections = () => {
         them: friend,
       },
     });
-    await getRequests();
+    await getRequestsAndFriends();
   }
 
   React.useEffect(()=>{
-    getUsers();
-    getRequests();
+    getRequestsAndFriends();
   }, [global.userData.username]);
 
   return (

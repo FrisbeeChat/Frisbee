@@ -20,22 +20,25 @@ interface AppContextInterface {
   setDraft: (arg:Draft) => void;
 }
 export interface Sender {
-  username: string,
-  first: string,
-  last: string,
-  avatar: string,
-  text: string,
+  username: string;
+  first: string;
+  last: string;
+  avatar: string;
+  text: string;
+  photo: string;
+  font: string;
+  time: string;
 }
 
 export interface User {
-  username: string,
-  first: string,
-  last: string,
-  avatar: string,
+  username: string;
+  first: string;
+  last: string;
+  avatar: string;
 }
 export interface Draft {
-  username: string,
-  message: string
+  username: string;
+  message: string;
 }
 
 export const Context = createContext<AppContextInterface | null>(null);
@@ -44,11 +47,8 @@ type Props = {
 }
 export const ConfigProvider = ({ children }: Props) => {
   const [userData, setUserData] = useState<User>({username: '', first: '', last: '', avatar: ''})
-
   const [currentMessage, setCurrentMessage] = useState<number>(0);
-
   const [messages, setMessages] = useState<Sender[]>([]);
-
   const [draft, setDraft] = useState<Draft>({ username:'', message:'' })
 
   const getUserData = async () => { //needs to happen server side
@@ -75,13 +75,12 @@ export const ConfigProvider = ({ children }: Props) => {
     })
     setMessages(mess.data)
   }
-  // fill message with default values for new user
 
 
   React.useEffect(() => {
     getUserData();
-    console.log('messages', messages)
-    console.log('user', userData)
+    // console.log('messages', messages)
+    // console.log('user', userData)
   }, [])
 
   const appName = "Postcard";

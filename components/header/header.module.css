@@ -1,5 +1,5 @@
 .header {
-  height: 8vh;
+  height: 9vh;
   color: white;
   font-weight: 600;
 }
@@ -11,7 +11,7 @@
 }
 
 .buttonContainer {
-  height: 8vh;
+  height: 9vh;
 }
 
 #title {
@@ -35,8 +35,19 @@
 }
 
 #avatar {
-  margin-left: 3vw;
+  margin-left: 1vw;
   width: 3vw;
   height:3vw;
-  border-radius: 3vw;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+/*
+  Settings
+  ====================================================
+*/
+
+.settingsContainer {
+  top: 20px;
 }

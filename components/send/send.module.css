@@ -1,10 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Serif&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Yellowtail&display=swap');
+
+.font1 {
+  font-family: 'IBM Plex Serif', serif;
+}
+.font2 {
+  font-family: 'Caveat', cursive;
+}
+.font3 {
+  font-family: 'Indie Flower', cursive;
+}
+.font4 {
+  font-family: 'Yellowtail', cursive;
+}
+.font {
+  border: 1px solid rgb(211, 211, 207);
+  border-radius: 4px;
+  background: none;
+  font-size: 18px;
+  padding: 4px 8px;
+  cursor: pointer;
+  margin-right: 1px;
+}
+.font:focus {
+  outline: none;
+}
+
 .messageContainer {
-  width: 80vw;
-  margin: 80px 0px 30px 0px;
+  width: 72vw;
+  margin-top: 12vh;
+  margin-bottom: 30px;
   height: 70vh;
   display: flex;
   justify-items: center;
   align-content: center;
+}
+
+.messagePhoto {
+  width: 31.5vw;
+  height: 28vh;
+  margin-left: 2vw;
+  object-fit: cover;
+  border-radius: 5px;
 }
 
 .message {
@@ -22,6 +61,16 @@
   justify-content: space-between;
 }
 
+.topRight {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.uploadButton {
+  font-size: 10;
+  margin-right: 25%;
+}
+
 .stampContainer {
   align-self: flex-end;
   display: flex;
@@ -30,14 +79,31 @@
 }
 
 .stamp {
+  align-self: flex-end;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: blue;
-  width: 80px;
-  height: 100px;
-  border-radius: 20px;
+  background: #3f51b5;
+  width: 64px;
+  height: 80px;
   color: white;
+  background: radial-gradient(
+		transparent 0px,
+		transparent 4px,
+		#3f51b5 4px,
+		#3f51b5
+  );
+  background-size: 16px 16px;
+  background-position: -8px -8px;
+}
+
+.stampFill {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #3f51b5;
+  height: 60px;
+  width: 50px;
 }
 
 .addButton {
@@ -47,6 +113,7 @@
 
 .senderInfo {
   display: flex;
+  margin-top: 30px;
   align-items: center;
   font-size: 24px;
   margin-left: 27%;
@@ -87,6 +154,8 @@
   resize: none;
   font-size: 24px;
   background: none;
+  border-radius: 4px;
+  padding: 10px;
 }
 
 .input:focus {

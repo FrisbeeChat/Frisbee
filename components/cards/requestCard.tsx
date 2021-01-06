@@ -27,7 +27,7 @@ const RequestCard = ({ ignore, accept, username, first, last, avatar, index }: P
         </div>
       </div>
       <div>
-        <Button color="secondary" className={styles.button} onClick={() => accept(username)}>Accept</Button>
+        <Button color="secondary" style={{marginRight: "10px"}} className={styles.button} onClick={() => accept(username)}>Accept</Button>
         <Button color="secondary" className={styles.button} onClick={() => ignore(username)}>Ignore</Button>
       </div>
     </Paper>
