@@ -3,5 +3,12 @@
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
   "/connect": "pages/connect.js",
-  "/": "pages/index.js"
+  "/api/getFriends": "pages/api/getFriends.js",
+  "/": "pages/index.js",
+  "/api/getFriendRequests": "pages/api/getFriendRequests.js",
+  "/next/dist/pages/_error": "pages/next/dist/pages/_error.js",
+  "/view": "pages/view.js",
+  "/login": "pages/login.js",
+  "/api/getUserData": "pages/api/getUserData.js",
+  "/api/login": "pages/api/login.js"
 }
