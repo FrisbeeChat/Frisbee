@@ -24,7 +24,7 @@ const Settings = ({upload, avatar}: Props) => {
             style={{ display: "none" }}
             id="upload"
             type="file"
-            onChange={(e) => upload(e)}
+            onChange={(e:any) => upload(e)}
             data-cloudinary-field="image_id"
             data-form-data="{ 'transformation': {'crop':'limit','tags':'samples','width':3000,'height':2000}}"
           />

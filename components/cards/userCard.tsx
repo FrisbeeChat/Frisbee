@@ -48,7 +48,7 @@ const UserCard = ({ username, first, last, avatar, index, sent }: Props) => {
   }
 
   return (
-    <Paper elevation={2} className={styles.card} key={index}>
+    <Paper elevation={2} className={styles.card} key={username}>
       <div className={styles.left}>
         <img className={styles.img} src={avatar} />
         <div>

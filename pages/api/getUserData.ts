@@ -5,7 +5,6 @@ import { authorize } from './authMiddleware';
 import { User } from '../../database/model/UserModel';
 
 export const getUserData = (req: NextApiRequest, res: NextApiResponse) => {
-  console.log('usercookes', req.cookies.auth);
   model.getUserData(req.cookies.auth, (err: Error | null, results?: User | null) => {
     if (err) {
       res.status(400).end();

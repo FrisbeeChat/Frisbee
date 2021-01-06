@@ -28,7 +28,7 @@ const AllMessages = () => {
     <div className={styles.container}>
       <div style={{ marginBottom: '20px', fontSize: '24px' }}>Messages</div>
       <div>
-        {messages.map((item) => <Single message={item}/>)}
+        {messages.map((item, i) => <Single key={i} message={item}/>)}
       </div>
     </div>
   )

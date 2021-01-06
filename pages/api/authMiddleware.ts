@@ -13,7 +13,6 @@ export const authorize = (fn: NextApiHandler) => async (
       (!err && decoded)
       return await fn(req, res)
     } catch {
-
       res.status(300).end();
     }
 

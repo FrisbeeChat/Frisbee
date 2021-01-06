@@ -9,7 +9,7 @@ const Single = ({message, i}: any) => {
   const global = useContext(Context);
 
   const reply = () => {
-    global.setDraft({username: message.username, message:"navigated from search comp"});
+    global.setDraft({username: message.username, message:"navigated from search comp", image: ''});
     Router.replace('/send');
   }
 

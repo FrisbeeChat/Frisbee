@@ -12,13 +12,14 @@ interface Props {
   last: string;
   avatar: string;
   index: number;
+  sent: boolean;
 }
 
 const RequestCard = ({ ignore, accept, username, first, last, avatar, index }: Props) => {
   const global = React.useContext(Context);
 
   return (
-    <Paper elevation={2} className={styles.card} key={index}>
+    <Paper elevation={2} className={styles.card} key={username}>
       <div className={styles.left}>
         <img className={styles.img} src={avatar} />
         <div>

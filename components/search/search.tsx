@@ -18,7 +18,7 @@ const Search = () => {
   const [searchVal, setSearchVal] = React.useState('');
 
   const handleClick = (user: string) => {
-    global.setDraft({username:user, message:"navigated from search comp"});
+    global.setDraft({username:user, message:"navigated from search comp", image: ''});
     Router.replace('/send');
   }
 

@@ -29,6 +29,9 @@ const Send: React.FC = () => {
       setFirst(global.userData.first);
       setLast(global.userData.last);
     }
+    if (global.draft.username === '') {
+      Router.replace('/')
+    }
   }, [global]);
 
   const upload = async (e: any) => {
@@ -174,7 +177,7 @@ const Send: React.FC = () => {
           </div>
         </div>
       </Paper>
-      <Button variant="contained" color="secondary" onClick={(e) => sendMessage(e)} className={styles.sendButton}>Send</Button>
+      <Button variant="contained" color="secondary" onClick={(e) => sendMessage(e)} className={styles.sendButton}>Send to {global.draft.username}</Button>
     </Grid>
   )
 }

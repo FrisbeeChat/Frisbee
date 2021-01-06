@@ -124,6 +124,7 @@ const Connections = () => {
                     last={user.last}
                     index={i}
                     sent={false}
+                    key={user.username}
                   />
                 )
               }
@@ -140,6 +141,7 @@ const Connections = () => {
               if (key !== 'avatar' && user[key].toLowerCase().includes(searchVal)) {
                 return (
                   <UserCard
+                    key={user.username}
                     username={user.username}
                     avatar={user.avatar}
                     first={user.first}
@@ -161,11 +163,13 @@ const Connections = () => {
               if (key !== 'avatar' && user[key].toLowerCase().includes(searchVal)) {
                 return (
                   <UserCard
+                    key={user.username}
                     username={user.username}
                     avatar={user.avatar}
                     first={user.first}
                     last={user.last}
                     index={i}
+                    sent={false}
                   />
                 )
               }

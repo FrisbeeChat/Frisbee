@@ -24,7 +24,7 @@ const Header: React.FC = () => {
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popover' : undefined;
 
-  const upload = async (e) => {
+  const upload = async (e:any) => {
     const image = e.target.files[0]
     const reader = new FormData()
     reader.append('file', image);
