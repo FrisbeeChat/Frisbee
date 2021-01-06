@@ -39,8 +39,14 @@ const Message = ({messages}: any) => {
       setUsername(sender.username);
       setFirst(sender.first);
       setLast(sender.last);
+    } else {
+      setText('Welcome to PostCard, this is where you will find any messages you may receive\n ',);
+      setAvatar('https://frisbee-images.s3-us-west-1.amazonaws.com/paint.jpg');
+      setUsername('WELCOME');
+      setFirst('this will be',);
+      setLast('the sender\'s info');
     }
-  }, [global])
+  }, [global]);
 
   return (
     <Grid

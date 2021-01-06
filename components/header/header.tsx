@@ -15,7 +15,7 @@ const Header: React.FC = () => {
         <Link href="/">
           <span id={styles.title}>
             <MarkunreadMailboxIcon />
-           <div style={{ marginLeft: "20px" }}>{global.appName}</div>
+           <div style={{ marginLeft: "12px" }}>{global.appName}</div>
           </span>
         </Link>
         <Toolbar className={styles.buttonContainer}>

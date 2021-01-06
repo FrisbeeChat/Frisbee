@@ -58,27 +58,30 @@ export const ConfigProvider = ({ children }: Props) => {
       method: 'get',
       });
       await setUserData(resp.data);
-      // getMessages(resp.data.username);
+      getMessages(resp.data.username);
     }
     catch {
       Router.replace('/login');
     }
   }
 
-  // const getMessages = async (username: string) => {
-  //   const mess = await axios({
-  //     url: `${window.location.origin}/api/getMessages`,
-  //     method: 'post',
-  //     data: {
-  //       username: username
-  //     }
-  //   })
-  //   setMessages(mess.data)
-  // }
+  const getMessages = async (username: string) => {
+    const mess = await axios({
+      url: `${window.location.origin}/api/getMessages`,
+      method: 'post',
+      data: {
+        username: username
+      }
+    })
+    setMessages(mess.data)
+  }
+  // fill message with default values for new user
+
 
   React.useEffect(() => {
-
     getUserData();
+    console.log('messages', messages)
+    console.log('user', userData)
   }, [])
 
   const appName = "Postcard";

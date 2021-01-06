@@ -5,6 +5,8 @@ import { Context } from '../context';
 import { Paper, Button } from '@material-ui/core';
 
 interface Props {
+  ignore: (username: string) => void;
+  accept: (username: string) => void;
   username: string;
   first: string;
   last: string;
@@ -12,22 +14,8 @@ interface Props {
   index: number;
 }
 
-const RequestCard = ({ username, first, last, avatar, index }: Props) => {
+const RequestCard = ({ ignore, accept, username, first, last, avatar, index }: Props) => {
   const global = React.useContext(Context);
-  const [friend, setFriend] = React.useState(false)
-
-  const acceptFriend = async (friend: string) => {
-    setFriend(true);
-    const resp = await axios({
-      url: `${window.location.origin}/api/acceptFriend`,
-      method: 'post',
-      data: {
-        me: global.userData.username,
-        them: friend,
-      },
-    });
-    return;
-  }
 
   return (
     <Paper elevation={2} className={styles.card} key={index}>
@@ -39,8 +27,8 @@ const RequestCard = ({ username, first, last, avatar, index }: Props) => {
         </div>
       </div>
       <div>
-        <Button color="secondary" className={styles.button}>Accept</Button>
-        <Button color="secondary" className={styles.button}>Ignore</Button>
+        <Button color="secondary" className={styles.button} onClick={() => accept(username)}>Accept</Button>
+        <Button color="secondary" className={styles.button} onClick={() => ignore(username)}>Ignore</Button>
       </div>
     </Paper>
   )
