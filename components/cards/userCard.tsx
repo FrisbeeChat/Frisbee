@@ -10,9 +10,10 @@ interface Props {
   last: string;
   avatar: string;
   index: number;
+  sent: boolean;
 }
 
-const UserCard = ({ username, first, last, avatar, index }: Props) => {
+const UserCard = ({ username, first, last, avatar, index, sent }: Props) => {
   const global = React.useContext(Context);
 
   const [friend, setFriend] = React.useState(false)
@@ -55,8 +56,10 @@ const UserCard = ({ username, first, last, avatar, index }: Props) => {
           <div>{first} {last}</div>
         </div>
       </div>
-      {friend ?
-        <div className={styles.sent}>SENT</div>
+      {friend || sent ?
+        <Button variant="contained" color="secondary" disabled className={styles.button}
+          value={username}
+        >Sent</Button>
         :
         <Button variant="contained" color="secondary" className={styles.button}
           value={username}

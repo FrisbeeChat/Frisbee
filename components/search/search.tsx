@@ -32,8 +32,10 @@ const Search = () => {
   }
 
   React.useEffect(()=>{
-    getUsers()
-  },[])
+    if (global.userData.username !== '') {
+      getUsers();
+    }
+  },[global.userData.username])
 
 
   return (

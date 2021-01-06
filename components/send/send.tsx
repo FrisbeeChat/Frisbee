@@ -23,10 +23,12 @@ const Send: React.FC = () => {
   const global = useContext(Context);
 
   React.useEffect(() => {
-    setAvatar(global.userData.avatar);
-    setUsername(global.userData.username);
-    setFirst(global.userData.first);
-    setLast(global.userData.last);
+    if (global.userData.username !== '') {
+      setAvatar(global.userData.avatar);
+      setUsername(global.userData.username);
+      setFirst(global.userData.first);
+      setLast(global.userData.last);
+    }
   }, [global]);
 
   const upload = async (e: any) => {
@@ -40,6 +42,7 @@ const Send: React.FC = () => {
       body: reader
     })
     const file = await res.json();
+    // global.setDraft{{}}
     setImage(file.url);
   }
 

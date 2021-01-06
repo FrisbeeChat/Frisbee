@@ -15,6 +15,13 @@ const Connections = () => {
   const [requests, setRequests] = useState([]);
   const [friend, setFriend] = useState(false);
   const [myFriends, setMyFriends] = useState([]);
+  const [requested, setRequested] = useState([]);
+
+  useEffect(() => {
+    if (global.userData.username !== '') {
+      getRequestsAndFriends(global.userData.username);
+    }
+  }, [global.userData.username]);
 
   const getUsers = async (frs:any) => {
     const resp = await axios({
@@ -30,41 +37,39 @@ const Connections = () => {
     setUsers(filter);
   };
 
-  const getRequestsAndFriends = async () => {
+  const getRequestsAndFriends = async (username: string) => {
     const reqs = await axios({
       url: `${window.location.origin}/api/getFriendRequests`,
       method: 'post',
       data: {
-        username: global.userData.username
+        username: username
       }
     });
-    setRequests(reqs.data);
+    await setRequests(reqs.data);
+    const sent = await axios({
+      url: `${window.location.origin}/api/getSentRequests`,
+      method: 'post',
+      data: {
+        username: username
+      }
+    });
+    await setRequested(sent.data);
     const fs = await axios({
       url: `${window.location.origin}/api/getFriends`,
       method: 'post',
       data: {
-        username: global.userData.username
+        username: username
       }
     });
-    setMyFriends(fs.data);
-    const friendsAndRequests = reqs.data.concat(fs.data);
+    // console.log(fs.data);
+    await setMyFriends(fs.data);
+    const friendsAndRequests = reqs.data.concat(fs.data, sent.data);
     let obj: any = {};
     for (let i = 0; i < friendsAndRequests.length; i++) {
       obj[friendsAndRequests[i].username] = true;
     }
     getUsers(obj);
-  }
-
-  const getFriends = async () => {
-    const resp = await axios({
-      url: `${window.location.origin}/api/getFriends`,
-      method: 'post',
-      data: {
-        username: global.userData.username
-      }
-    });
-    setMyFriends(resp.data);
-  }
+  };
 
   const accept = async (friend: string) => {
     await axios({
@@ -75,7 +80,7 @@ const Connections = () => {
         them: friend,
       },
     });
-    await getRequestsAndFriends();
+    await getRequestsAndFriends(global.userData.username);
   }
 
   const ignore = async (friend: string) => {
@@ -87,12 +92,8 @@ const Connections = () => {
         them: friend,
       },
     });
-    await getRequestsAndFriends();
+    await getRequestsAndFriends(global.userData.username);
   }
-
-  React.useEffect(()=>{
-    getRequestsAndFriends();
-  }, [global.userData.username]);
 
   return (
     <div className={styles.container}>
@@ -122,6 +123,7 @@ const Connections = () => {
                     first={user.first}
                     last={user.last}
                     index={i}
+                    sent={false}
                   />
                 )
               }
@@ -129,24 +131,47 @@ const Connections = () => {
           })}
         </div>) : (<div></div>)}
       <div>
-        {users.map((user, i) => {
-          if (user.username === global.userData.username) {
-            return;
-          }
-          for (var key in user) {
-            if (key !== 'avatar' && user[key].toLowerCase().includes(searchVal)) {
-              return (
-                <UserCard
-                  username={user.username}
-                  avatar={user.avatar}
-                  first={user.first}
-                  last={user.last}
-                  index={i}
-                />
-              )
+        <div>
+          {requested.map((user, i) => {
+            if (user.username === global.userData.username) {
+              return;
             }
-          }
-        })}
+            for (var key in user) {
+              if (key !== 'avatar' && user[key].toLowerCase().includes(searchVal)) {
+                return (
+                  <UserCard
+                    username={user.username}
+                    avatar={user.avatar}
+                    first={user.first}
+                    last={user.last}
+                    index={i}
+                    sent={true}
+                  />
+                )
+              }
+            }
+          })}
+        </div>
+        <div>
+          {users.map((user, i) => {
+            if (user.username === global.userData.username) {
+              return;
+            }
+            for (var key in user) {
+              if (key !== 'avatar' && user[key].toLowerCase().includes(searchVal)) {
+                return (
+                  <UserCard
+                    username={user.username}
+                    avatar={user.avatar}
+                    first={user.first}
+                    last={user.last}
+                    index={i}
+                  />
+                )
+              }
+            }
+          })}
+        </div>
       </div>
     </div>
   )

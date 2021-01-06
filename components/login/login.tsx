@@ -16,16 +16,16 @@ const Login: React.FC = () => {
 
   //populate messages upon successful login for fluid UX
 
-  const getMessages = async (username: string) => {
-    const mess = await axios({
-      url: `${window.location.origin}/api/getMessages`,
-      method: 'post',
-      data: {
-        username: username
-      }
-    })
-    global.setMessages(mess.data)
-  }
+  // const getMessages = async (username: string) => {
+  //   const mess = await axios({
+  //     url: `${window.location.origin}/api/getMessages`,
+  //     method: 'post',
+  //     data: {
+  //       username: username
+  //     }
+  //   })
+  //   global.setMessages(mess.data)
+  // }
 
   // try to login: on sucess -> pop context w/ messages, if any error -> displ message
 
@@ -37,9 +37,10 @@ const Login: React.FC = () => {
           password: passwordRef.current.value,
         }
       })
-        global.setUserData(resp.data);
-        getMessages(resp.data.username);
-      Router.replace('/');
+        // global.setLoggedIn(true);
+        // global.setUserData(resp.data);
+        // getMessages(resp.data.username);
+        Router.replace('/');
     }
     catch {
       setMessage('please check the user name or password')

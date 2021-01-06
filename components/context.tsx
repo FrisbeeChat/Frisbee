@@ -19,6 +19,8 @@ interface AppContextInterface {
   draft: Draft;
   setDraft: (arg:Draft) => void;
   changeSettings: (username: string, first: string, last: string, avatar: string) => void;
+  loggedIn: boolean;
+  setLoggedIn: (arg: boolean) => void;
 }
 export interface Sender {
   username: string;
@@ -40,6 +42,7 @@ export interface User {
 export interface Draft {
   username: string;
   message: string;
+  image: string;
 }
 
 export const Context = createContext<AppContextInterface | null>(null);
@@ -50,18 +53,21 @@ export const ConfigProvider = ({ children }: Props) => {
   const [userData, setUserData] = useState<User>({username: '', first: '', last: '', avatar: ''})
   const [currentMessage, setCurrentMessage] = useState<number>(0);
   const [messages, setMessages] = useState<Sender[]>([]);
-  const [draft, setDraft] = useState<Draft>({ username:'', message:'' })
+  const [draft, setDraft] = useState<Draft>({ username:'', message:'', image: '' })
+  const [loggedIn, setLoggedIn] = useState<boolean>(false);
 
   const getUserData = async () => { //needs to happen server side
     try {
+      console.log('hello');
       const resp = await axios({
-      url: `${window.location.origin}/api/getUserData`,
-      method: 'get',
+        url: `${window.location.origin}/api/getUserData`,
+        method: 'get',
       });
-      await setUserData(resp.data);
+      console.log('hi');
+      setUserData(resp.data);
       getMessages(resp.data.username);
-    }
-    catch {
+    } catch (err) {
+      console.log('an error has occured', err)
       Router.replace('/login');
     }
   }
@@ -96,7 +102,7 @@ export const ConfigProvider = ({ children }: Props) => {
     getUserData();
     // console.log('messages', messages)
     // console.log('user', userData)
-  }, [])
+  }, []);
 
   const appName = "Postcard";
 
@@ -112,7 +118,9 @@ export const ConfigProvider = ({ children }: Props) => {
       setMessages,
       draft,
       setDraft,
-      changeSettings
+      changeSettings,
+      loggedIn,
+      setLoggedIn
     }}
     >
       {children}

@@ -103,6 +103,26 @@ export default {
     }
   },
 
+  getSentRequests: async (user: {username: string}, callback: UserCallback) => {
+    try {
+      const requestsBox = await db.query(`
+        let filt = (for u in users
+          for r in requests
+            filter r.from == u._key
+            filter u.username == '${user.username}'
+            return {'from': r.to})
+        for u in users
+          for f in filt
+            filter u._key == f.from
+            return {"username": u.username, "first": u.first, "last": u.last, "avatar": u.avatar}
+      `)
+      const requests: User[] = await requestsBox.all();
+      callback(null, requests)
+    } catch (err) {
+      callback(err);
+    }
+  },
+
   acceptFriend: async (users: {me: string, them: string}, callback: StCallback) => {
     try {
       await db.query(`

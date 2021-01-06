@@ -40,7 +40,7 @@ const Message = ({messages}: any) => {
   }
 
   const reply = () => {
-    global.setDraft({username: username, message:"navigated from search comp"});
+    global.setDraft({username: username, message:"navigated from search comp", image: ''});
     Router.replace('/send');
   }
 
