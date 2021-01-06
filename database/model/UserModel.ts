@@ -185,11 +185,11 @@ export default {
     }
   },
 
-  changeSettings: async (data: User, callback) => {
-    try {
-      await db.query(``);
-    } catch (err) {
-      callback(err);
-    }
-  }
-}
+//   changeSettings: async (data: User, callback: st) => {
+//     try {
+//       await db.query(``);
+//     } catch (err) {
+//       callback(err);
+//     }
+//   }
+// }
