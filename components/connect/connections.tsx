@@ -16,7 +16,7 @@ const Connections = () => {
   const [friend, setFriend] = useState(false);
   const [myFriends, setMyFriends] = useState([]);
 
-  const getUsers = async (frs) => {
+  const getUsers = async (frs:any) => {
     const resp = await axios({
       url: `${window.location.origin}/api/getUsers`,
       method: 'get',

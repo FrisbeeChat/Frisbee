@@ -13,7 +13,7 @@ const Header: React.FC = () => {
   const [requests, setRequests] = useState([]);
   const global = useContext(Context);
 
-  const handleClick = (event) => {
+  const handleClick = (event:any) => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
@@ -76,7 +76,7 @@ const Header: React.FC = () => {
             }}
             transformOrigin={{
               vertical: 'top',
-              horizontal: 'center',
+              horizontal: 'right',
             }}
           >
             <Settings />

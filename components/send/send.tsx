@@ -6,8 +6,8 @@ import axios from 'axios';
 import Router from 'next/router';
 import { Paper, Button, InputBase, ButtonGroup, Grid } from '@material-ui/core';
 import MarkunreadMailboxIcon from '@material-ui/icons/MarkunreadMailbox';
-import {Image, Video, Transformation, CloudinaryContext} from 'cloudinary-react';
-import {Cloudinary} from 'cloudinary-core';
+// import {Image, Video, Transformation, CloudinaryContext} from 'cloudinary-react';
+// import {Cloudinary} from 'cloudinary-core';
 // const cloudinaryCore = new cloudinary.Cloudinary({cloud_name: 'demo'});
 
 const Send: React.FC = () => {
