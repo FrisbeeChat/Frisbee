@@ -32,7 +32,6 @@ const Send: React.FC = () => {
   const upload = async (e: any) => {
     const image = e.target.files[0]
     const reader = new FormData()
-    console.log(image) /* now you can work with the file list */
     reader.append('file', image);
     reader.append('upload_preset', 'postcardcover')
     setLoading(true);
@@ -42,7 +41,6 @@ const Send: React.FC = () => {
     })
     const file = await res.json();
     setImage(file.url);
-///image/upload/c_imagga_scale,h_300,16:9'
   }
 
 
