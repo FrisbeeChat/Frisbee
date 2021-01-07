@@ -70,18 +70,11 @@ export const ConfigProvider = ({ children }: Props) => {
       });
       setUserData(resp.data);
       getMessages(resp.data.username);
-      // sortMessages();
       trigRefresh(false);
     } catch (err) {
       Router.replace('/login');
     }
   }
-
-  // const  sortMessages = async() => {
-  //   messages.sort((a, b) => {
-  //     // return b.time - a.time;
-  //   })
-  // }
 
   const changeSettings = async (username: string, first: string, last: string, avatar: string) => {
     await axios({
@@ -112,8 +105,8 @@ export const ConfigProvider = ({ children }: Props) => {
         username: username
       }
     })
-    setSent(sentMess.data);
-    setMessages(mess.data)
+    setSent(sentMess.data.reverse());
+    setMessages(mess.data.reverse())
   }
 
   React.useEffect(() => {
@@ -122,9 +115,6 @@ export const ConfigProvider = ({ children }: Props) => {
     }
   }, [refresh]);
 
-  // React.useEffect(() => {
-  //   getMessages();
-  // }, [messages]);
 
   const appName = "Postcard";
 

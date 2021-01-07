@@ -103,12 +103,15 @@ const Message = ({messages}: any) => {
             <div>
               {photo ? <img className={styles.messagePhoto} src={photo}/> : <div></div>}
             </div>
-            <div className={styles.senderInfo}>
-              <img className={styles.avatar} src={avatar} />
-              <div>
-                <div className={styles.username}>@{username}</div>
-                <div className={styles.name}>{first} {last}</div>
+            <div style={{ display: "flex", justifyContent: "space-between" }}>
+              <div className={styles.senderInfo}>
+                <img className={styles.avatar} src={avatar} />
+                <div>
+                  <div className={styles.username}>@{username}</div>
+                  <div className={styles.name}>{first} {last}</div>
+                </div>
               </div>
+              <div className={styles.time}>{time}</div>
             </div>
           </div>
         </div>
@@ -122,7 +125,7 @@ const Message = ({messages}: any) => {
         alignItems="center"
         justify="center"
       >
-        <Button variant="contained" color="secondary" className={styles.button} onClick={reply}>Reply</Button>
+        <Button variant="contained" color="secondary" style={{ background: "" }}className={styles.button} onClick={reply}>Reply</Button>
       </Grid>
     </Grid>
   )

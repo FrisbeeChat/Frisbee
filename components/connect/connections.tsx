@@ -34,7 +34,7 @@ const Connections = () => {
         filter.push(resp.data[i]);
       }
     }
-    setUsers(filter);
+    setUsers(filter.reverse());
   };
 
   const getRequestsAndFriends = async (username: string) => {
@@ -42,23 +42,23 @@ const Connections = () => {
       url: `${window.location.origin}/api/getFriendRequests`,
       method: 'post',
       data: {
-        username: username
+        username,
       }
     });
-    await setRequests(reqs.data);
+    await setRequests(reqs.data.reverse());
     const sent = await axios({
       url: `${window.location.origin}/api/getSentRequests`,
       method: 'post',
       data: {
-        username: username
+        username,
       }
     });
-    await setRequested(sent.data);
+    await setRequested(sent.data.reverse());
     const fs = await axios({
       url: `${window.location.origin}/api/getFriends`,
       method: 'post',
       data: {
-        username: username
+        username,
       }
     });
     // console.log(fs.data);
@@ -105,6 +105,7 @@ const Connections = () => {
           type="search"
           variant="outlined"
           onChange={(e)=>setSearchVal(e.target.value.toLowerCase())}
+          style={{ background: "white" }}
           autoFocus
           fullWidth
         />

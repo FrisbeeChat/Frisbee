@@ -55,8 +55,8 @@ const Login = ({signUp}: any) => {
         />
         <TextField
           id="psw"
-          label="password"
           variant="outlined"
+          label="password"
           type="password"
           value={password}
           onChange={(e) => changePassword(e)}

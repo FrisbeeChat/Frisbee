@@ -23,10 +23,10 @@ const AllMessages = () => {
   const global = useContext(Context);
 
   React.useEffect(() => {
-    console.log(global.messages);
-
-    setMessages(global.messages)
+    setMessages(global.messages);
     setSent(global.sent);
+    console.log('from',global.messages);
+    console.log('sent',global.sent)
     // console.log(global.messages[1].time)
   }, [global])
 

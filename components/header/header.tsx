@@ -56,7 +56,7 @@ const Header: React.FC = () => {
   }, [global.userData.username])
 
   return (
-    <AppBar className={styles.header} style={{ background: "" }}>
+    <AppBar className={styles.header}>
       <Container>
       <div className={styles.contWidth}>
         <Link href="/">

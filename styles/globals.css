@@ -15,6 +15,7 @@ html, body {
   justify-content: space-between;
   font-family: 'Noto Sans JP', sans-serif;
   background: rgb(244, 246, 252);
+  /* background: rgb(231, 238, 241); */
 }
 
 /* button:hover {

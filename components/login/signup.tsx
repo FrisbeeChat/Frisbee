@@ -16,25 +16,36 @@ const SignUp = ({login}: any) => {
   const [last, setLast] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
-  const passwordButtonRef = useRef<HTMLButtonElement>(null);
-
+  const [existingErr, setExistingErr] = useState(false);
+  const [usernameErr, setUsernameErr] = useState(false);
+  const [nameErr, setNameErr] = useState(false);
 
   async function handleSignUp() {
     // console.log(userNameRef.current.value)
-    const resp = await axios.post(`${window.location.origin}/api/signup`, {
-      data: {
-        username,
-        email,
-        first,
-        last,
-        password,
+    try {
+      if (username === '') {
+        setUsernameErr(true);
+      } else if (first === '' || last === '') {
+        setNameErr(true);
+      } else {
+        const resp = await axios.post(`${window.location.origin}/api/signup`, {
+          data: {
+            username,
+            email,
+            first,
+            last,
+            password,
+          }
+        })
+        if (resp.data.message) {
+          setMessage('please check the user name or password')
+        } else {
+          // global.setUserData(resp.data);
+          Router.replace('/');
+        }
       }
-    })
-    if (resp.data.message) {
-      setMessage('please check the user name or password')
-    } else {
-      // global.setUserData(resp.data);
-      Router.replace('/');
+    } catch {
+      setExistingErr(true);
     }
   }
 
@@ -78,6 +89,9 @@ const SignUp = ({login}: any) => {
       <Grid
        className={styles.login} //make css mother fucker
       >
+        {existingErr ? <div style={{ fontSize: "12px", color: "red" }}>Existing user</div> : <div></div>}
+        {nameErr ? <div style={{ fontSize: "12px", color: "red" }}>Must fill in name</div> : <div></div>}
+        {usernameErr ? <div style={{ fontSize: "12px", color: "red" }}>Please fill in username</div> : <div></div>}
         <TextField
           id="username"
           label="username"
@@ -110,6 +124,7 @@ const SignUp = ({login}: any) => {
         <TextField
           id="psw"
           label="password"
+          type="password"
           variant="outlined"
           value={password}
           onChange={(e)=>setPassword(e.target.value)}

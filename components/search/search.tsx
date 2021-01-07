@@ -28,7 +28,7 @@ const Search = () => {
       method: 'post',
       data: {username: global.userData.username}
     });
-    setUsers(resp.data);
+    setUsers(resp.data.reverse());
   }
 
   React.useEffect(()=>{
@@ -48,6 +48,7 @@ const Search = () => {
           type="search"
           variant="outlined"
           onChange={(e)=>setSearchVal(e.target.value.toLowerCase())}
+          style={{ background: "white" }}
           autoFocus
           fullWidth
         />
