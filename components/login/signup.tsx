@@ -72,6 +72,7 @@ const SignUp = ({login}: any) => {
       container
       alignItems="center"
       justify="center"
+      style={{ background: "white", height: "100vh" }}
     >
       <LoginHead />
       <Grid

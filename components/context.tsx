@@ -21,6 +21,8 @@ interface AppContextInterface {
   changeSettings: (username: string, first: string, last: string, avatar: string) => void;
   loggedIn: boolean;
   setLoggedIn: (arg: boolean) => void;
+  sent: Sender[];
+  setSent: (arg: Sender[]) => void;
 }
 export interface Sender {
   username: string;
@@ -53,6 +55,7 @@ export const ConfigProvider = ({ children }: Props) => {
   const [userData, setUserData] = useState<User>({username: '', first: '', last: '', avatar: ''})
   const [currentMessage, setCurrentMessage] = useState<number>(0);
   const [messages, setMessages] = useState<Sender[]>([]);
+  const [sent, setSent] = useState<Sender[]>([]);
   const [draft, setDraft] = useState<Draft>({ username:'', message:'', image: '' })
   const [loggedIn, setLoggedIn] = useState<boolean>(false);
 
@@ -94,6 +97,14 @@ export const ConfigProvider = ({ children }: Props) => {
         username: username
       }
     })
+    const sentMess = await axios({
+      url: `${window.location.origin}/api/getSentMessages`,
+      method: 'post',
+      data: {
+        username: username
+      }
+    })
+    setSent(sentMess.data);
     setMessages(mess.data)
   }
 
@@ -120,7 +131,9 @@ export const ConfigProvider = ({ children }: Props) => {
       setDraft,
       changeSettings,
       loggedIn,
-      setLoggedIn
+      setLoggedIn,
+      sent,
+      setSent
     }}
     >
       {children}

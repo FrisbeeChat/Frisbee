@@ -81,13 +81,12 @@ const Message = ({messages}: any) => {
   }
 
   return (
-    <Container>
     <Grid
       container
       direction="row"
       alignItems="center"
       justify="space-between"
-      spacing={0}
+      style={{ width: "84vw" }}
     >
       <Fab color="primary" onClick={decrement}>
         <ArrowBackIosIcon />
@@ -124,10 +123,8 @@ const Message = ({messages}: any) => {
         justify="center"
       >
         <Button variant="contained" color="secondary" className={styles.button} onClick={reply}>Reply</Button>
-        {/* <Button variant="contained" color="primary" style={{ marginLeft: "20px" }} className={styles.button} onClick={increment}>Next</Button> */}
       </Grid>
     </Grid>
-    </Container>
   )
 }
 export default Message;

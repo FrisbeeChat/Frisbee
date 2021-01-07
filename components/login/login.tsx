@@ -35,20 +35,23 @@ const Login = ({signUp}: any) => {
   return (
     <Grid
       container
+      direction="column"
       alignItems="center"
       justify="center"
+      style={{ background: "white", height: "100vh" }}
     >
       <LoginHead />
       <Grid
        className={styles.login}
-       style={message === '' ? {height: "350px"} : {height: "390px"}}
+       style={message === '' ? {height: "280px"} : {height: "315px"}}
       >
-        {message === '' ? <div></div> : <div style={{ color: "red", alignSelf: "center", marginTop: "10px" }}>{message}</div>}
-        <TextField id="outlined-basic" label="username" variant="outlined" value={username} onChange={(e) => changeUsername(e)} />
-        <TextField id="outlined-basic" label="password" variant="outlined" type="password" value={password} onChange={(e) => changePassword(e)} />
+        {message === '' ? <div></div> : <div style={{ color: "red", alignSelf: "center", marginTop: "0px" }}>{message}</div>}
+        <TextField id="username" label="username" variant="outlined" value={username} onChange={(e) => changeUsername(e)} />
+        <TextField id="psw" label="password" variant="outlined" type="password" value={password} onChange={(e) => changePassword(e)} />
         <Button variant="contained" color="primary" onClick={handleLogin}>Login</Button>
         <Button variant="contained" color="secondary" onClick={signUp}>Sign up</Button>
       </Grid>
+      <img className={styles.mailbox} src="https://frisbee-images.s3-us-west-1.amazonaws.com/mailbox.jpg"/>
     </Grid>
   )
 }

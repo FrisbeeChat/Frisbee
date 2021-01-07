@@ -10,7 +10,12 @@
   padding-top: 10px;
   padding-left: 2vw;
   padding-right: 2vw;
-  margin-top: 18vh;
+}
+
+.mailbox {
+  margin-top: 30px;
+  width: 220px;
+  object-fit: cover;
 }
 
 .loginHeader {

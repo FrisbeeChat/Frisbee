@@ -2,13 +2,11 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/": "pages/index.js",
   "/contacts": "pages/contacts.js",
-  "/view": "pages/view.js",
-  "/connect": "pages/connect.js",
-  "/api/getFriendRequests": "pages/api/getFriendRequests.js",
-  "/api/getFriends": "pages/api/getFriends.js",
   "/login": "pages/login.js",
-  "/api/getUsers": "pages/api/getUsers.js",
-  "/api/getSentRequests": "pages/api/getSentRequests.js"
+  "/": "pages/index.js",
+  "/api/getFriendRequests": "pages/api/getFriendRequests.js",
+  "/api/getUserData": "pages/api/getUserData.js",
+  "/api/getSentMessages": "pages/api/getSentMessages.js",
+  "/api/getMessages": "pages/api/getMessages.js"
 }

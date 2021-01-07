@@ -5,6 +5,13 @@
   align-items: center;
 }
 
+.messTop {
+  display: flex;
+  justify-content: space-between;
+  width: 56vw;
+  margin-bottom: 30px;
+}
+
 .messContainer {
   width: 60vw;
   margin: 0px 20px 0px;

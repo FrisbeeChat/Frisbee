@@ -57,6 +57,36 @@ export default {
       callback(err);
     }
   },
+
+  getSentMessages: async (user: {username: string}, callback: MessageCallback) => {
+    try {
+      const messagesBox = await db.query(`
+        let filt = (for m in messages
+          for u in users
+            filter m.from == u._key
+            filter u.username == '${user.username}'
+            return {"text": m.text, "photo": m.photo, "time": m.time, "font": m.font, "from": m.to})
+        for u in users
+          for f in filt
+            filter u._key == f.from
+            return {
+              "username": u.username,
+              "first": u.first,
+              "last": u.last,
+              "avatar": u.avatar,
+              "text": f.text,
+              "photo": f.photo,
+              "time": f.time,
+              "font": f.font
+            }
+        `)
+      const messages: Message[] = await messagesBox.all();
+      callback(null, messages);
+    } catch (err) {
+      callback(err);
+    }
+  },
+
   writeMessage: async (data: WriteMessage, callback: StringCallback) => {
     try {
       await db.query(`

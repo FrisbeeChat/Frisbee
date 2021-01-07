@@ -5,7 +5,7 @@ import { Context } from '../context';
 import Router from 'next/router';
 import { Paper, Button } from '@material-ui/core';
 
-const Single = ({message, i}: any) => {
+const Single = ({message, i, type}: any) => {
   const global = useContext(Context);
 
   const reply = () => {
@@ -23,7 +23,9 @@ const Single = ({message, i}: any) => {
             <div style={{ marginRight: '20px' }}>{message.first} {message.last}</div>
           </div>
         </div>
-        <Button variant="contained" color="secondary" className={styles.replyButton} onClick={reply}>Reply</Button>
+        {type ?
+        <Button variant="contained" color="secondary" className={styles.replyButton} onClick={reply}>Reply</Button> : <Button variant="contained" color="primary" className={styles.replyButton} onClick={reply}>Message</Button>
+        }
       </div>
       <div className={styles.messText}>
         <div className={styles.messContent}>{message.text}</div>

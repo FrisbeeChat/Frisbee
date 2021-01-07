@@ -54,6 +54,7 @@ const Send: React.FC = () => {
   }
 
   const sendMessage = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    console.log(global.userData.username, global.draft.username)
     e.preventDefault();
     const current = new Date().toString().split(' ');
     const currentTime = current[4].split(':');
