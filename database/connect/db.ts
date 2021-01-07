@@ -2,10 +2,10 @@ import arango from 'arangojs';
 
 import { Database } from 'arangojs';
 const db = new Database({
-  url: 'http://13.57.219.36:8529'
+  url: process.env.DB_HOST,
 });
 
-db.useDatabase('frisbee');
-db.useBasicAuth('root', 'open');
+db.useDatabase(process.env.DB_NAME);
+db.useBasicAuth(process.env.DB_USER, process.env.DB_PASS);
 
 export default db;

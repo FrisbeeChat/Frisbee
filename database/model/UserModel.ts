@@ -103,6 +103,26 @@ export default {
     }
   },
 
+  getSentRequests: async (user: {username: string}, callback: UserCallback) => {
+    try {
+      const requestsBox = await db.query(`
+        let filt = (for u in users
+          for r in requests
+            filter r.from == u._key
+            filter u.username == '${user.username}'
+            return {'from': r.to})
+        for u in users
+          for f in filt
+            filter u._key == f.from
+            return {"username": u.username, "first": u.first, "last": u.last, "avatar": u.avatar}
+      `)
+      const requests: User[] = await requestsBox.all();
+      callback(null, requests)
+    } catch (err) {
+      callback(err);
+    }
+  },
+
   acceptFriend: async (users: {me: string, them: string}, callback: StCallback) => {
     try {
       await db.query(`
@@ -183,23 +203,25 @@ export default {
     } catch (err) {
       callback(err);
     }
+  },
+
+  changeSettings: async (data: User, callback: UserCallback) => {
+    try {
+      const changeBox = await db.query(`
+        let me = (for u in users
+          filter u.username == '${data.username}'
+          return u._key)
+        for u in users
+          for m in me
+            filter u._key == m
+            update {"_key": m, "avatar": '${data.avatar}', "first": '${data.first}', "last": '${data.last}'} in users
+            LET updated = NEW
+            RETURN UNSET(updated, "_key", "password", "friends", "_rev", "_id", "email")
+      `);
+      const change = await changeBox.all();
+      callback(null, change);
+    } catch (err) {
+      callback(err);
+    }
   }
 }
-
-// let list = (for u in users
-//   filter u.username == '${user.username}'
-//   return u.friends)[0]
-// for l in list
-//   for u in users
-//   filter l == u._key
-//   return {"username": u.username, "first": u.first, "last": u.last, "avatar": u.avatar}
-
-// let filt = (for u in users
-//   for r in requests
-//     filter r.to == u._key
-//     filter u.username == '${user.username}'
-//     return {'from': r.from})
-// for u in users
-//   for f in filt
-//     filter u._key == f.from
-//     return {"username": u.username, "first": u.first, "last": u.last, "avatar": u.avatar}

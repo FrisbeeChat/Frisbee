@@ -1,6 +1,6 @@
 node_modules*
 package-lock*
-.next
+.next/*
 .node_repl_history
 .env
 .env.build
@@ -9,6 +9,5 @@ yarn-debug.log*
 yarn-error.log*
 logs
 *.log
-token.ts
-database/connect/db.ts
+.env*
 bugs.md

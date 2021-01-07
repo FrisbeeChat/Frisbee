@@ -20,4 +20,4 @@ export const config = {
   },
 }
 
-export default authorize(getUserData);
+export default getUserData;

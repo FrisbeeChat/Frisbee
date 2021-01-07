@@ -6,6 +6,7 @@ import { authorize } from './authMiddleware';
 import { SendObj } from '../../database/model/AuthModel';
 
 export default (req: NextApiRequest, res: NextApiResponse) => {
+  console.log('data', req.body.data);
   model.login(req.body.data, (err: Error | string | null, results: string | null, send?: SendObj | null) => {
     if (err) {
       res.status(400).json({message: 'failed login'});
@@ -13,7 +14,6 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
       res.json({message: results})
     } else  {
       res.setHeader('Set-Cookie', cookie.serialize('auth', results, {
-        httpOnly: true,
         // maxAge: 20,
         path: '/'
       }))

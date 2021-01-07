@@ -1,105 +1,71 @@
 import React, { useContext, useRef, useState } from 'react';
-import { useRouter } from 'next/router';
+import Router from 'next/router';
 import { NextPageContext } from 'next';
-import { Context } from '../context'
 import axios from 'axios';
 import styles from './login.module.css'
+import LoginHead from './loginHead';
+import { Grid, TextField, Button, Container } from '@material-ui/core';
 
-const Login: React.FC = () => {
-  const global = useContext(Context)
-  const router = useRouter();
+const Login = ({signUp}: any) => {
+  const [message, setMessage] = useState('');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
-  const [message, setMessage] = useState('')
-  const userNameRef = useRef<HTMLInputElement>(null);
-  const passwordRef = useRef<HTMLInputElement>(null);
-  const passwordButtonRef = useRef<HTMLButtonElement>(null);
+  const changeUsername = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+    setUsername(e.target.value)
+  }
+  const changePassword = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+    setPassword(e.target.value)
+  }
 
-
-  async function handleLogin() {
-
-      const resp = await axios.post('http://localhost:3000/api/login', {
+  const handleLogin = async () => {
+    try {
+      await axios.post(`${window.location.origin}/api/login`, {
         data: {
-          username: userNameRef.current.value,
-          password: passwordRef.current.value,
+          username,
+          password,
         }
       })
-      if (resp.data.message) {
-        setMessage('please check the user name or password')
-      } else {
-        global.setUserData(resp.data);
-        router.replace('/');
-      }
-  }
-
-  function togglePassword() {
-    if (passwordRef.current.type === 'password') {
-      passwordRef.current.type = 'text';
-      passwordButtonRef.current.textContent = 'Hide password';
-      passwordButtonRef.current.setAttribute('aria-label',
-        'Hide password.');
-    } else {
-      passwordRef.current.type = 'password';
-      passwordButtonRef.current.textContent = 'Show password';
-      passwordButtonRef.current.setAttribute('aria-label',
-        'Show password as plain text. ' +
-        'Warning: this will display your password on the screen.');
+      Router.replace('/');
+    } catch {
+      setMessage('please check username or password')
     }
   }
 
-  function validatePassword() {
-    let message= '';
-    if (!/.{8,}/.test(passwordRef.current.value)) {
-      message = 'At least eight characters. ';
-    }
-    if (!/.*[A-Z].*/.test(passwordRef.current.value)) {
-      message += '\nAt least one uppercase letter. ';
-    }
-    if (!/.*[a-z].*/.test(passwordRef.current.value)) {
-      message += '\nAt least one lowercase letter.';
-    }
-    passwordRef.current.setCustomValidity(message);
-  }
   return (
-    <div>
-      <h2>{message}</h2>
-      <form className={styles.container} method="POST">
-        <section>
-          <label htmlFor="userName">User Name</label>
-          <input
-            id="userName"
-            name="name"
-            type="name"
-            placeholder="User Name"
-            ref={userNameRef}
-            autoFocus
-            required
-          />
-        </section>
-        <section>
-          <label htmlFor="inputPassword">Password</label>
-          <input
-            id="inputPassword"
-            name="current-password"
-            type="password"
-            placeholder="password"
-            autoComplete="current-password"
-            onChange={validatePassword}
-            ref={passwordRef}
-            required
-          />
-          <div id="password-constraints">*Eight or more characters, with at least one&nbsp;lowercase and one uppercase letter.</div>
-          <button
-            id="toggle-password"
-            type="button"
-            aria-label="Show password as plain text. Warning: this will display your password on the screen."
-            ref={passwordButtonRef}
-            onClick={togglePassword}
-          >Show password</button>
-
-        </section>
-        <button onClick={handleLogin}>Submit</button>
-      </form>
-    </div>
+    <Grid
+      container
+      direction="column"
+      alignItems="center"
+      justify="center"
+      style={{ background: "white", height: "100vh" }}
+    >
+      <LoginHead />
+      <Grid
+       className={styles.login}
+       style={message === '' ? {height: "280px"} : {height: "315px"}}
+      >
+        {message === '' ? <div></div> : <div style={{ color: "red", alignSelf: "center", marginTop: "0px" }}>{message}</div>}
+        <TextField id="username"
+          label="username"
+          variant="outlined"
+          value={username}
+          onChange={(e) => changeUsername(e)}
+          autoFocus
+        />
+        <TextField
+          id="psw"
+          variant="outlined"
+          label="password"
+          type="password"
+          value={password}
+          onChange={(e) => changePassword(e)}
+        />
+        <Button variant="contained" color="primary" onClick={handleLogin}>Login</Button>
+        <Button variant="contained" color="secondary" onClick={signUp}>Sign up</Button>
+      </Grid>
+      <img className={styles.mailbox} src="https://frisbee-images.s3-us-west-1.amazonaws.com/mailbox.jpg"/>
+    </Grid>
   )
 }
 

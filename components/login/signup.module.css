@@ -1,0 +1,29 @@
+.login {
+  width: 30vw;
+  height: 540px;
+  border: 2px solid #E07860;
+  padding: 10px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-bottom: 50px;
+  padding-top: 10px;
+  padding-left: 2vw;
+  padding-right: 2vw;
+}
+
+.loginHeader {
+  height: 9vh;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+}
+
+.headerContent {
+  display: flex;
+  align-items: center;
+  height: 9vh;
+  font-size: 34px;
+  font-weight: 600;
+}

@@ -35,7 +35,7 @@ interface TripleCallback {
 }
 
 export default {
-  signup: async (data: Signup, callback: StringCallback) => {
+  signup: async (data: Signup, callback: TripleCallback) => {
     try {
       const checkBox = await db.query(`
         for u in users
@@ -63,12 +63,18 @@ export default {
           const newUserBox = await db.query(`
             for u in users
               filter u.username == '${data.username}'
-              return u.username
+              return u
           `)
           const newUser = await newUserBox.all();
-          const claim = {username: newUser[0]};
+          const claim = {username: newUser[0].username};
           const jwt = sign(claim, token);
-          callback(null, jwt);
+          const sendObject = {
+            username: newUser[0].username,
+            first: newUser[0].first,
+            last: newUser[0].last,
+            avatar: newUser[0].avatar
+          };
+          callback(null, jwt, sendObject);
         })
       }
     } catch (err) {
@@ -103,6 +109,30 @@ export default {
           }
         })
       }
+    } catch (err) {
+      callback(err);
+    }
+  },
+
+  changePassword: async (data: Login, callback: StringCallback) => {
+    try {
+      hash(data.password, 10, async (err: Error, hash: string) => {
+        const usernameBox = await db.query(`
+          let me = (for u in users
+            filter u.username == '${data.username}'
+            return u._key)
+          for u in users
+            for m in me
+              filter u._key == m
+              update {"_key": m, "password": '${hash}'} in users
+              LET updated = NEW
+              RETURN UNSET(updated, "_key", "password", "friends", "_rev", "_id", "email", "first", "last", "avatar")
+          `);
+        const username = await usernameBox.all();
+        const claim = {username: username[0].username};
+        const jwt = sign(claim, token);
+        callback(null, jwt);
+      })
     } catch (err) {
       callback(err);
     }

@@ -2,63 +2,71 @@ import axios from 'axios';
 import React from 'react';
 import styles from '../connect/connections.module.css'
 import { Context } from '../context';
+import { Paper, Button } from '@material-ui/core';
 
 interface Props {
   username: string;
+  first: string;
+  last: string;
   avatar: string;
   index: number;
+  sent: boolean;
 }
 
-const UserCard = ({ username, avatar, index }: Props) => {
+const UserCard = ({ username, first, last, avatar, index, sent }: Props) => {
   const global = React.useContext(Context);
 
   const [friend, setFriend] = React.useState(false)
 
   const addFriend = async (friend: string) => {
-    console.log(friend)
+    // console.log(friend)
     setFriend(true);
     const resp = await axios({
-      url: 'http://localhost:3000/api/addUser',
+      url: `${window.location.origin}/api/addUser`,
       method: 'post',
       data: {
         me: global.userData.username,
         them: friend,
       },
     });
-
+    return;
   }
 
   const removeFriend = async (friend:string) => {
-    console.log(friend)
+    // console.log(friend)
     setFriend(false);
     const resp = await axios({
-      url: 'http://localhost:3000/api/deleteFriend',
+      url: `${window.location.origin}/api/deleteFriend`,
       method: 'post',
       data: {
         me: global.userData.username,
         them: friend,
       },
-    });
 
+    });
+    return;
   }
 
   return (
-
-    <div className={styles.card} key={index}>
-      <img className={styles.img} src={avatar} />
-      <div className={styles.username}>{username}</div>
-      {friend ?
-        <button className={styles.button}
+    <Paper elevation={2} className={styles.card} key={username}>
+      <div className={styles.left}>
+        <img className={styles.img} src={avatar} />
+        <div>
+          <div className={styles.username}>@{username}</div>
+          <div>{first} {last}</div>
+        </div>
+      </div>
+      {friend || sent ?
+        <Button variant="contained" color="secondary" disabled className={styles.button}
           value={username}
-          onClick={(e) => removeFriend(e.target.value)}
-        >Revoke</button>
+        >Sent</Button>
         :
-        <button className={styles.button}
+        <Button variant="contained" color="secondary" className={styles.button}
           value={username}
-          onClick={(e) => addFriend(e.target.value)}
-        >Request</button>
+          onClick={() => addFriend(username)}
+        >Request</Button>
         }
-    </div>
+    </Paper>
   )
 
 }

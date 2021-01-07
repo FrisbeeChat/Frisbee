@@ -9,7 +9,7 @@ export const getFriends = (req: NextApiRequest, res: NextApiResponse) => {
     if (err) {
       res.status(400).end();
     } else {
-      res.json(results);
+      res.status(200).json(results);
     }
   })
 };

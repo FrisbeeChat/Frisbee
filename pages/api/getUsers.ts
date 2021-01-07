@@ -6,6 +6,7 @@ import { authorize } from './authMiddleware';
 
 export const getUsers = (req: NextApiRequest, res: NextApiResponse) => {
   model.getUsers((err: Error | null, results?: User[] | null) => {
+    console.log('hi from getUsers API')
     if (err) {
       res.status(400).end();
     } else {

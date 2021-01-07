@@ -1,53 +1,100 @@
 .header {
-  margin-top: 2px;
-  height: 8vh;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  background: linear-gradient(to right, #04cccc, #955ad4);
+  height: 74px;
   color: white;
   font-weight: 600;
-  border-radius: 20px;
 }
 
 .contWidth {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 80vw;
 }
 
 .buttonContainer {
-  height: 8vh;
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
+  height: 9vh;
 }
 
 #title {
-  font-size: 2em;
+  margin-left: 24px;
+  font-size: 34px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
 }
 #title:hover {
-  color: #955ad4;
+  color: #dddddd;
 }
 
 #button {
   background-color: rgba(201, 201, 201, 0.137);
   backdrop-filter: blur(1vw);
-  border-radius: 3vw;
-  border: none;
   width: 10vw;
-  height: 4vh;
   margin-left: 3vw;
   min-width: 100px;
   min-height: 35px;
 }
 
 #avatar {
-  align-self: center;
-  margin-left: 3vw;
-  width: 3vw;
-  height:3vw;
-  border-radius: 3vw;
+  margin-left: 1vw;
+  width: 48px;
+  height: 48px;
+  border: 2px solid white;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+}
+#avatar:hover {
+  border: 2px solid #78D1AD;
+}
+
+/*
+  Settings
+  ====================================================
+*/
+
+.settingsContainer {
+  display: flex;
+  padding: 30px 50px 30px 50px;
+}
+
+.settingsPhoto {
+  object-fit: cover;
+  border: 1px solid rgb(221, 221, 221);
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  margin-left: 10px;
+  margin-bottom: 12px;
+}
+
+.userInfo {
+  font-size: 20px;
+  line-height: 36px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.username {
+  font-weight: 600;
+}
+
+.settingsLeft {
+  margin-right: 60px;
+}
+
+.settings {
+  display: flex;
+  flex-direction: column;
+  height: 540px;
+}
+
+.settingBox {
+  display: flex;
+  flex-direction: column;
+  width: 220px;
+  padding: 10px;
+  border-radius: 4px;
+  margin: 20px 0px 5px 0px;
+  border: 1px solid rgb(200, 200, 200);
 }

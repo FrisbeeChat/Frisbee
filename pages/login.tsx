@@ -18,18 +18,18 @@ const App: React.FC = () => {
       <div>
         { onLogin ?
         <div>
-          <Login />
+          <Login signUp={()=>setOnLogin(false)}/>
         </div>
         :
         <div>
-          <SignUp />
+          <SignUp login={()=>setOnLogin(true)}/>
         </div>
         }
-        <div>
+        {/* <div>
           <button onClick={()=>{setOnLogin(true)}}>Login</button>
           <button onClick={()=>{setOnLogin(false)}}>Create Account</button>
         </div>
-        <br />
+        <br /> */}
         {/* <Link href="/">
           HOME
         </Link> */}
