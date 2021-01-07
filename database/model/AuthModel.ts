@@ -113,4 +113,28 @@ export default {
       callback(err);
     }
   },
+
+  changePassword: async (data: Login, callback: StringCallback) => {
+    try {
+      hash(data.password, 10, async (err: Error, hash: string) => {
+        const usernameBox = await db.query(`
+          let me = (for u in users
+            filter u.username == '${data.username}'
+            return u._key)
+          for u in users
+            for m in me
+              filter u._key == m
+              update {"_key": m, "password": '${hash}'} in users
+              LET updated = NEW
+              RETURN UNSET(updated, "_key", "password", "friends", "_rev", "_id", "email", "first", "last", "avatar")
+          `);
+        const username = await usernameBox.all();
+        const claim = {username: username[0].username};
+        const jwt = sign(claim, token);
+        callback(null, jwt);
+      })
+    } catch (err) {
+      callback(err);
+    }
+  },
 }

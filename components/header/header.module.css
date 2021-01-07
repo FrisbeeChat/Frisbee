@@ -55,23 +55,47 @@
 
 .settingsContainer {
   display: flex;
-  padding: 30px 55px 20px 45px;
+  padding: 30px 50px 30px 50px;
 }
 
 .settingsPhoto {
   object-fit: cover;
   border: 1px solid rgb(221, 221, 221);
-  width: 110px;
-  height: 110px;
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
-  margin: 0px 60px 0px 12px;
+  margin-left: 10px;
+  margin-bottom: 12px;
 }
 
 .userInfo {
   font-size: 20px;
   line-height: 36px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
 }
 
 .username {
   font-weight: 600;
+}
+
+.settingsLeft {
+  margin-right: 60px;
+}
+
+.settings {
+  display: flex;
+  flex-direction: column;
+  height: 540px;
+}
+
+.settingBox {
+  display: flex;
+  flex-direction: column;
+  width: 220px;
+  padding: 10px;
+  border-radius: 4px;
+  margin: 20px 0px 5px 0px;
+  border: 1px solid rgb(200, 200, 200);
 }

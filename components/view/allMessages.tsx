@@ -24,8 +24,10 @@ const AllMessages = () => {
 
   React.useEffect(() => {
     console.log(global.messages);
+
     setMessages(global.messages)
     setSent(global.sent);
+    // console.log(global.messages[1].time)
   }, [global])
 
   return (

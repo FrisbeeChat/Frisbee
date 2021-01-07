@@ -46,8 +46,21 @@ const Login = ({signUp}: any) => {
        style={message === '' ? {height: "280px"} : {height: "315px"}}
       >
         {message === '' ? <div></div> : <div style={{ color: "red", alignSelf: "center", marginTop: "0px" }}>{message}</div>}
-        <TextField id="username" label="username" variant="outlined" value={username} onChange={(e) => changeUsername(e)} />
-        <TextField id="psw" label="password" variant="outlined" type="password" value={password} onChange={(e) => changePassword(e)} />
+        <TextField id="username"
+          label="username"
+          variant="outlined"
+          value={username}
+          onChange={(e) => changeUsername(e)}
+          autoFocus
+        />
+        <TextField
+          id="psw"
+          label="password"
+          variant="outlined"
+          type="password"
+          value={password}
+          onChange={(e) => changePassword(e)}
+        />
         <Button variant="contained" color="primary" onClick={handleLogin}>Login</Button>
         <Button variant="contained" color="secondary" onClick={signUp}>Sign up</Button>
       </Grid>

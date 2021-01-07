@@ -205,9 +205,9 @@ export default {
     }
   },
 
-  changeSettings: async (data: User, callback: StCallback) => {
+  changeSettings: async (data: User, callback: UserCallback) => {
     try {
-      await db.query(`
+      const changeBox = await db.query(`
         let me = (for u in users
           filter u.username == '${data.username}'
           return u._key)
@@ -215,8 +215,11 @@ export default {
           for m in me
             filter u._key == m
             update {"_key": m, "avatar": '${data.avatar}', "first": '${data.first}', "last": '${data.last}'} in users
+            LET updated = NEW
+            RETURN UNSET(updated, "_key", "password", "friends", "_rev", "_id", "email")
       `);
-      callback(null, 'changed user settings')
+      const change = await changeBox.all();
+      callback(null, change);
     } catch (err) {
       callback(err);
     }

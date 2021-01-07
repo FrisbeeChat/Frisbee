@@ -14,7 +14,6 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
       res.json({message: results})
     } else  {
       res.setHeader('Set-Cookie', cookie.serialize('auth', results, {
-        httpOnly: true,
         // maxAge: 20,
         path: '/'
       }))

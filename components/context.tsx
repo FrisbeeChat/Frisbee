@@ -23,6 +23,8 @@ interface AppContextInterface {
   setLoggedIn: (arg: boolean) => void;
   sent: Sender[];
   setSent: (arg: Sender[]) => void;
+  refresh: boolean;
+  trigRefresh: (arg: boolean) => void;
 }
 export interface Sender {
   username: string;
@@ -58,22 +60,28 @@ export const ConfigProvider = ({ children }: Props) => {
   const [sent, setSent] = useState<Sender[]>([]);
   const [draft, setDraft] = useState<Draft>({ username:'', message:'', image: '' })
   const [loggedIn, setLoggedIn] = useState<boolean>(false);
+  const [refresh, trigRefresh] = useState<boolean>(true);
 
   const getUserData = async () => { //needs to happen server side
     try {
-      console.log('hello');
       const resp = await axios({
         url: `${window.location.origin}/api/getUserData`,
         method: 'get',
       });
-      console.log('hi');
       setUserData(resp.data);
       getMessages(resp.data.username);
+      // sortMessages();
+      trigRefresh(false);
     } catch (err) {
-      console.log('an error has occured', err)
       Router.replace('/login');
     }
   }
+
+  // const  sortMessages = async() => {
+  //   messages.sort((a, b) => {
+  //     // return b.time - a.time;
+  //   })
+  // }
 
   const changeSettings = async (username: string, first: string, last: string, avatar: string) => {
     await axios({
@@ -108,12 +116,15 @@ export const ConfigProvider = ({ children }: Props) => {
     setMessages(mess.data)
   }
 
-
   React.useEffect(() => {
-    getUserData();
-    // console.log('messages', messages)
-    // console.log('user', userData)
-  }, []);
+    if (refresh) {
+      getUserData();
+    }
+  }, [refresh]);
+
+  // React.useEffect(() => {
+  //   getMessages();
+  // }, [messages]);
 
   const appName = "Postcard";
 
@@ -133,7 +144,9 @@ export const ConfigProvider = ({ children }: Props) => {
       loggedIn,
       setLoggedIn,
       sent,
-      setSent
+      setSent,
+      refresh,
+      trigRefresh,
     }}
     >
       {children}

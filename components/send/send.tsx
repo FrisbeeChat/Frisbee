@@ -32,7 +32,7 @@ const Send: React.FC = () => {
     if (global.draft.username === '') {
       Router.replace('/')
     }
-  }, [global]);
+  }, [global.refresh]);
 
   const upload = async (e: any) => {
     const image = e.target.files[0]
@@ -71,6 +71,7 @@ const Send: React.FC = () => {
         time: string
       },
     });
+    global.trigRefresh(true);
     Router.replace('/');
   }
 

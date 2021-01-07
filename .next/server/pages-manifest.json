@@ -3,10 +3,19 @@
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
   "/contacts": "pages/contacts.js",
+  "/view": "pages/view.js",
   "/login": "pages/login.js",
   "/": "pages/index.js",
   "/api/getFriendRequests": "pages/api/getFriendRequests.js",
   "/api/getUserData": "pages/api/getUserData.js",
+  "/api/getMessages": "pages/api/getMessages.js",
   "/api/getSentMessages": "pages/api/getSentMessages.js",
-  "/api/getMessages": "pages/api/getMessages.js"
+  "/api/logout": "pages/api/logout.js",
+  "/api/login": "pages/api/login.js",
+  "/api/changePassword": "pages/api/changePassword.js",
+  "/connect": "pages/connect.js",
+  "/api/getFriends": "pages/api/getFriends.js",
+  "/api/getUsers": "pages/api/getUsers.js",
+  "/next/dist/pages/_error": "pages/next/dist/pages/_error.js",
+  "/api/getSentRequests": "pages/api/getSentRequests.js"
 }

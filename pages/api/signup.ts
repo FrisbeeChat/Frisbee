@@ -10,7 +10,6 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
       res.status(400).end();
     } else {
       res.setHeader('Set-Cookie', cookie.serialize('auth', results, {
-        httpOnly: true,
         // maxAge: 5,
         path: '/'
       }))
