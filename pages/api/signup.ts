@@ -1,5 +1,4 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import db from '../../database/connect/db';
 import model from '../../database/model/AuthModel';
 import cookie from 'cookie';
 import { SendObj } from '../../database/model/AuthModel';

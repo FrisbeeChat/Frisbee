@@ -1,11 +1,8 @@
 import * as React from 'react';
-import { createContext, useMemo, useState } from 'react';
+import { createContext, useState } from 'react';
 import PropTypes from 'prop-types';
-import { NextPageContext } from 'next';
 import Router from 'next/router';
 import axios from 'axios';
-import { ignoreRequest } from '../pages/api/ignoreRequest';
-import { error } from 'console';
 
 
 interface AppContextInterface {
@@ -26,6 +23,7 @@ interface AppContextInterface {
   refresh: boolean;
   trigRefresh: (arg: boolean) => void;
 }
+
 export interface Sender {
   username: string;
   first: string;
@@ -49,10 +47,12 @@ export interface Draft {
   image: string;
 }
 
-export const Context = createContext<AppContextInterface | null>(null);
 type Props = {
   children: React.ReactNode
 }
+
+export const Context = createContext<AppContextInterface | null>(null);
+
 export const ConfigProvider = ({ children }: Props) => {
   const [userData, setUserData] = useState<User>({username: '', first: '', last: '', avatar: ''})
   const [currentMessage, setCurrentMessage] = useState<number>(0);
@@ -62,7 +62,7 @@ export const ConfigProvider = ({ children }: Props) => {
   const [loggedIn, setLoggedIn] = useState<boolean>(false);
   const [refresh, trigRefresh] = useState<boolean>(true);
 
-  const getUserData = async () => { //needs to happen server side
+  const getUserData = async () => {
     try {
       const resp = await axios({
         url: `${window.location.origin}/api/getUserData`,
@@ -146,32 +146,3 @@ export const ConfigProvider = ({ children }: Props) => {
 ConfigProvider.propTypes = {
   children: PropTypes.node.isRequired,
 };
-
-// ConfigProvider.getIntialProps = async (ctx: NextPageContext) => {
-//   const cookie = ctx.req?.headers.cookie;
-
-//   const resp = await axios({
-//     url: 'http://localhost:3000/api/getUserData',
-//     method: 'get',
-//     headers: {
-//       cookie: cookie!,
-//     },
-//   });
-//   console.log('kljflkasjdflasdfjh;jdsifhds;lfhds;fhsdf',resp);
-//   return {user: resp};
-//   // if (resp.status === 401 && !ctx.req) {
-//   //   Router.replace('/login');
-//   //   return;
-//   // }
-//   // if (resp.status === 401) {
-//   //   ctx.res.writeHead(302, {
-//   //     location: 'http://localhost.com/login'
-//   //   });
-//   //   ctx.res.end();
-//   //   return;
-//   // }
-//   // console.log('hello from get initial props',resp)
-//   // return {messages: resp}
-// }
-
-

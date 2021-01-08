@@ -1,12 +1,15 @@
-import React, { useContext, useRef, useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Router from 'next/router';
-import { NextPageContext } from 'next';
 import axios from 'axios';
 import styles from './login.module.css'
 import LoginHead from './loginHead';
-import { Grid, TextField, Button, Container } from '@material-ui/core';
+import { Grid, TextField, Button } from '@material-ui/core';
+
+import { Context } from '../context';
 
 const Login = ({signUp}: any) => {
+  const global = useContext(Context);
+
   const [message, setMessage] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -61,8 +64,20 @@ const Login = ({signUp}: any) => {
           value={password}
           onChange={(e) => changePassword(e)}
         />
-        <Button variant="contained" color="primary" onClick={handleLogin}>Login</Button>
-        <Button variant="contained" color="secondary" onClick={signUp}>Sign up</Button>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handleLogin}
+        >
+          Login
+        </Button>
+        <Button
+          variant="contained"
+          color="secondary"
+          onClick={signUp}
+        >
+          Sign up
+        </Button>
       </Grid>
       <img className={styles.mailbox} src="https://frisbee-images.s3-us-west-1.amazonaws.com/mailbox.jpg"/>
     </Grid>

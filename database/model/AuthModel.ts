@@ -1,4 +1,3 @@
-import { aql } from 'arangojs'
 import db from '../connect/db';
 import { hash, compare } from 'bcrypt';
 import { sign } from 'jsonwebtoken';

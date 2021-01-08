@@ -7,7 +7,6 @@ import Router from 'next/router';
 import { Paper, Button, ButtonGroup, Grid } from '@material-ui/core';
 import MarkunreadMailboxIcon from '@material-ui/icons/MarkunreadMailbox';
 
-
 const Send: React.FC = () => {
   const [username, setUsername] = useState('');
   const [first, setFirst] = useState('');
@@ -15,7 +14,6 @@ const Send: React.FC = () => {
   const [avatar, setAvatar] = useState('');
   const [message, setMessage] = useState('');
   const [font, setFont] = useState('font1');
-  const [loading, setLoading] = useState(false);
   const [image, setImage] = useState('');
 
   const global = useContext(Context);
@@ -37,7 +35,6 @@ const Send: React.FC = () => {
     const reader = new FormData()
     reader.append('file', image);
     reader.append('upload_preset', 'postcardcover')
-    setLoading(true);
     const res = await fetch('https://api.cloudinary.com/v1_1/postcard/image/upload', {
       method: 'POST',
       body: reader
@@ -51,12 +48,9 @@ const Send: React.FC = () => {
   }
 
   const sendMessage = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-
-    // data sanitization
+    e.preventDefault();
     let text = message.replaceAll('"','\'');
     text = text.replaceAll('\\',' ');
-
-    e.preventDefault();
     const current = new Date().toString().split(' ');
     const currentTime = current[4].split(':');
     const string = `${current[1]} ${current[2]} ${current[3]}, ${currentTime[0]}:${currentTime[1]}`;
@@ -146,8 +140,6 @@ const Send: React.FC = () => {
                   id="upload"
                   type="file"
                   onChange={(e)=>upload(e)}
-                  data-cloudinary-field="image_id"
-                  data-form-data="{ 'transformation': {'crop':'limit','tags':'samples','width':3000,'height':2000}}"
                 />
                 <label htmlFor="upload">
                   <Button
@@ -180,7 +172,14 @@ const Send: React.FC = () => {
           </div>
         </div>
       </Paper>
-      <Button variant="contained" color="secondary" onClick={(e) => sendMessage(e)} className={styles.sendButton}>Send to {global.draft.username}</Button>
+      <Button
+        variant="contained"
+        color="secondary"
+        onClick={(e) => sendMessage(e)}
+        className={styles.sendButton}
+      >
+        Send to {global.draft.username}
+      </Button>
     </Grid>
   )
 }

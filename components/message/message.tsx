@@ -2,16 +2,14 @@ import styles from './message.module.css'
 import React from 'react';
 import { useContext, useState } from 'react';
 import { Context } from '../context';
-import { NextPageContext } from 'next';
-import axios from 'axios';
 import Router from 'next/router';
 import { Sender } from '../context';
-import { Paper, Button, Container, Grid, Fab } from '@material-ui/core';
+import { Paper, Button, Grid, Fab } from '@material-ui/core';
 import MarkunreadMailboxIcon from '@material-ui/icons/MarkunreadMailbox';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 
-const Message = ({messages}: any) => {
+const Message = () => {
   const [text, setText] = useState('');
   const [avatar, setAvatar] = useState('');
   const [username, setUsername] = useState('');
@@ -28,7 +26,6 @@ const Message = ({messages}: any) => {
       next = 0;
     }
     global.setCurrentMessage(next);
-    console.log(global.messages);
   }
 
   const decrement = () => {
@@ -125,7 +122,15 @@ const Message = ({messages}: any) => {
         alignItems="center"
         justify="center"
       >
-        <Button variant="contained" color="secondary" style={{ background: "" }}className={styles.button} onClick={reply}>Reply</Button>
+        <Button
+          variant="contained"
+          color="secondary"
+          style={{ background: "" }}
+          className={styles.button}
+          onClick={reply}
+        >
+          Reply
+        </Button>
       </Grid>
     </Grid>
   )

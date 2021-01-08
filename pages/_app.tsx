@@ -1,8 +1,6 @@
 import '../styles/globals.css'
 import React from 'react';
-import { ConfigProvider, Context } from '../components/context'
-import axios from 'axios';
-import { NextComponentType, NextPageContext } from 'next';
+import { ConfigProvider } from '../components/context'
 import Login from './login';
 import type { AppProps } from 'next/app'
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'

@@ -1,9 +1,6 @@
 import React from 'react';
 import { useContext, useState } from 'react';
 import { Context } from '../context';
-import { NextPageContext } from 'next';
-import axios from 'axios';
-import Router from 'next/router';
 import Single from './single';
 import styles from './view.module.css'
 import { Button } from '@material-ui/core';
@@ -25,9 +22,6 @@ const AllMessages = () => {
   React.useEffect(() => {
     setMessages(global.messages);
     setSent(global.sent);
-    console.log('from',global.messages);
-    console.log('sent',global.sent)
-    // console.log(global.messages[1].time)
   }, [global])
 
   return (
@@ -35,8 +29,21 @@ const AllMessages = () => {
       <div className={styles.messTop}>
         <div style={{ fontSize: '24px' }}>Messages</div>
         <div>
-          <Button variant={view ? 'contained' : 'outlined'} color="primary" onClick={() => setView(true)}>Recieved</Button>
-          <Button variant={view ? 'outlined' : 'contained'} color="primary" onClick={() => setView(false)} style={{ marginLeft: '20px' }}>Sent</Button>
+          <Button
+            variant={view ? 'contained' : 'outlined'}
+            color="primary"
+            onClick={() => setView(true)}
+          >
+            Recieved
+          </Button>
+          <Button
+            variant={view ? 'outlined' : 'contained'}
+            color="primary"
+            onClick={() => setView(false)}
+            style={{ marginLeft: '20px' }}
+          >
+            Sent
+          </Button>
         </div>
       </div>
       {

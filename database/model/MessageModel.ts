@@ -1,4 +1,3 @@
-import { aql } from 'arangojs'
 import db from '../connect/db';
 
 export interface Message {

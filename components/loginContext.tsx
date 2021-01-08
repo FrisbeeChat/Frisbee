@@ -1,4 +1,3 @@
-
 import { createContext, useState } from 'react';
 import PropTypes from 'prop-types';
 
@@ -19,11 +18,8 @@ type Props = {
 }
 export const LoginProvider: React.FC = ({ children }: Props) => {
   const [firstName, setFirstName] = useState<string>('')
-
   const [lastName, setLastName] = useState<string>('')
-
   const [email, setEmail] = useState<string>('');
-
   const [password, setPassword] = useState<string>('');
 
   return (

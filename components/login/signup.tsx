@@ -1,15 +1,12 @@
-import React, { useState, useRef, useContext } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import styles from './signup.module.css';
 import Router from 'next/router';
-import { Context } from '../context';
 import LoginHead from './loginHead';
 import { Grid, TextField, Button } from '@material-ui/core';
 
 
 const SignUp = ({login}: any) => {
-  const [message, setMessage] = useState('');
-  const global = useContext(Context);
   const [username, setUsername] = useState('');
   const [first, setFirst] = useState('');
   const [last, setLast] = useState('');
@@ -20,7 +17,7 @@ const SignUp = ({login}: any) => {
   const [nameErr, setNameErr] = useState(false);
   const [charErr, setCharErr] = useState(false);
 
-  async function handleSignUp() {
+  const handleSignUp = async () =>  {
     try {
       if (username === '') {
         setUsernameErr(true);
@@ -38,14 +35,9 @@ const SignUp = ({login}: any) => {
             password,
           }
         })
-        if (resp.data.message) {
-          setMessage('please check the user name or password');
-        } else {
-          global.setUserData(resp.data);
           Router.replace('/');
-        }
       }
-    } catch {
+    } catch (err) {
       setExistingErr(true);
     }
   }
@@ -105,17 +97,12 @@ const SignUp = ({login}: any) => {
         <Button
           variant="contained"
           color="primary"
-          onClick={handleSignUp}
-        >
+          onClick={handleSignUp}>
           Submit
         </Button>
         <Button
-          variant="contained"
-          color="secondary"
-          onClick={login}
-        >
-          Back to Login
-        </Button>
+          variant="contained" color="secondary" onClick={login}>Back to Login</Button>
+
       </Grid>
     </Grid>
   )

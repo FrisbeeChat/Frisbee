@@ -14,17 +14,39 @@ const Single = ({message, i, type}: any) => {
   }
 
   return (
-    <Paper elevation={2} key={i} className={styles.messContainer}>
+    <Paper
+      elevation={2}
+      key={i}
+      className={styles.messContainer}
+    >
       <div className={styles.messHead}>
         <div className={styles.messProfile}>
           <img className={styles.messAvatar} src={message.avatar}/>
           <div>
             <div className={styles.username}>@{message.username}</div>
-            <div style={{ marginRight: '20px' }}>{message.first} {message.last}</div>
+            <div style={{ marginRight: '20px' }}>
+              {message.first} {message.last}
+            </div>
           </div>
         </div>
-        {type ?
-        <Button variant="contained" color="secondary" className={styles.replyButton} onClick={reply}>Reply</Button> : <Button variant="contained" color="primary" className={styles.replyButton} onClick={reply}>Message</Button>
+        {
+          type ?
+          <Button
+            variant="contained"
+            color="secondary"
+            className={styles.replyButton}
+            onClick={reply}
+          >
+            Reply
+          </Button> :
+          <Button
+            variant="contained"
+            color="primary"
+            className={styles.replyButton}
+            onClick={reply}
+          >
+            Message
+          </Button>
         }
       </div>
       <div className={styles.messText}>

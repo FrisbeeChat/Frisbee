@@ -29,15 +29,25 @@
       "static/chunks/webpack.js",
       "static/chunks/pages/_error.js"
     ],
-    "/login": [
+    "/connect": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
-      "static/chunks/pages/login.js"
+      "static/chunks/pages/connect.js"
     ],
-    "/send": [
+    "/contacts": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
-      "static/chunks/pages/send.js"
+      "static/chunks/pages/contacts.js"
+    ],
+    "/next/dist/pages/_error": [
+      "static/chunks/main.js",
+      "static/chunks/webpack.js",
+      "static/chunks/pages/next/dist/pages/_error.js"
+    ],
+    "/view": [
+      "static/chunks/main.js",
+      "static/chunks/webpack.js",
+      "static/chunks/pages/view.js"
     ]
   },
   "ampFirstPages": []
