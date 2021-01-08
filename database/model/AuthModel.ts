@@ -1,4 +1,3 @@
-import { aql } from 'arangojs'
 import db from '../connect/db';
 import { hash, compare } from 'bcrypt';
 import { sign } from 'jsonwebtoken';
@@ -51,12 +50,12 @@ export default {
           const avatars = await avatarsBox.all();
           await db.query(`
             insert {
-              "username": '${data.username}',
+              "username": "${data.username}",
               "email": '${data.email}',
-              "first": '${data.first}',
-              "last": '${data.last}',
+              "first": "${data.first}",
+              "last": "${data.last}",
               "avatar": '${avatars[Math.floor(Math.random() * 10)]}',
-              "password": '${hash}',
+              "password": "${hash}",
               "friends": []
             } into users
           `);

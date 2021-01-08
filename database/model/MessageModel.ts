@@ -1,4 +1,3 @@
-import { aql } from 'arangojs'
 import db from '../connect/db';
 
 export interface Message {
@@ -88,6 +87,7 @@ export default {
   },
 
   writeMessage: async (data: WriteMessage, callback: StringCallback) => {
+
     try {
       await db.query(`
         let keys = (for u in users
@@ -102,16 +102,16 @@ export default {
         INSERT {
           from: keys.from,
           to: keys.to,
-          text: '${data.text}',
-          photo: '${data.photo || ""}',
+          text: "${data.text}",
+          photo: "${data.photo || ""}",
           time: '${data.time || ""}',
           font: '${data.font || "font1"}'
         }
         UPDATE {
           from: keys.from,
           to: keys.to,
-          text: '${data.text}',
-          photo: '${data.photo || ""}',
+          text: "${data.text}",
+          photo: "${data.photo || ""}",
           time: '${data.time || ""}',
           font: '${data.font || "font1"}'
         } IN messages

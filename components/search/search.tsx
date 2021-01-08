@@ -1,4 +1,3 @@
-
 import axios from 'axios';
 import Router from 'next/router';
 import React from 'react';
@@ -6,10 +5,6 @@ import { Context } from '../context';
 import styles from './search.module.css';
 import { Paper } from '@material-ui/core';
 import { TextField, Button } from '@material-ui/core';
-
-interface Query {
-  query: string;
-}
 
 const Search = () => {
   const global = React.useContext(Context);
@@ -35,7 +30,7 @@ const Search = () => {
     if (global.userData.username !== '') {
       getUsers();
     }
-  },[global.userData.username])
+  }, [global.userData.username])
 
 
   return (
@@ -60,7 +55,6 @@ const Search = () => {
           }
           for (var key in user) {
             if (key !== 'avatar' && user[key].toLowerCase().includes(searchVal)) {
-              // console.log(user[key])
               return (
                 <Paper
                   className={styles.card}
@@ -76,7 +70,13 @@ const Search = () => {
                     </div>
                   </div>
                   <div className={styles.right}>
-                    <Button variant="contained" color="primary" className={styles.username}>Message</Button>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      className={styles.username}
+                    >
+                      Message
+                    </Button>
                   </div>
                 </Paper>
               )

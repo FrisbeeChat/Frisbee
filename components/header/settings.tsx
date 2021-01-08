@@ -33,13 +33,17 @@ const Settings = ({upload, avatar}: Props) => {
   }
 
   const changeName = async () => {
+    let forFirstName = global.userData.first.replaceAll('"','\'');
+    forFirstName = forFirstName.replaceAll('\\',' ');
+    let forLastName = global.userData.last.replaceAll('"','\'');
+    forLastName = global.userData.last.replaceAll('\\',' ');
     const resp = await axios({
       url: `${window.location.origin}/api/changeSettings`,
       method: 'post',
       data: {
         username: global.userData.username,
-        first,
-        last,
+        first: forFirstName,
+        last: forLastName,
         avatar: global.userData.avatar,
       }
     })
@@ -61,7 +65,6 @@ const Settings = ({upload, avatar}: Props) => {
       setMessage(false);
     } else {
       setMessage(true);
-      console.log('passwords dont match')
     }
   }
 
@@ -77,8 +80,6 @@ const Settings = ({upload, avatar}: Props) => {
               id="upload"
               type="file"
               onChange={(e:any) => upload(e)}
-              data-cloudinary-field="image_id"
-              // data-form-data="{ 'transformation': {'crop':'limit','tags':'samples','width':3000,'height':2000}}"
             />
             <label htmlFor="upload">
               <Button
@@ -98,7 +99,8 @@ const Settings = ({upload, avatar}: Props) => {
             style={{ marginTop: "26px", alignSelf: "center" }}
             variant="contained"
             color="secondary"
-            onClick={logout}>
+            onClick={logout}
+          >
             Log out
           </Button>
         </div>
@@ -132,25 +134,29 @@ const Settings = ({upload, avatar}: Props) => {
           {message ? <div style={{ fontSize: "12px", color: "red" }}>Passwords do not match</div> : <div></div>}
           <TextField
             style={{ marginTop: "12px" }}
-            id="first"
+            id="psw1"
             type="password"
             label="password"
             variant="outlined"
             onChange={(e) => setPassword(e.target.value)}
-            value={password} />
+            value={password}
+          />
           <TextField
             style={{ marginTop: "12px" }}
-            id="last"
+            id="psw2"
             type="password"
             label="verify password"
             variant="outlined"
             onChange={(e) => setPasswordCheck(e.target.value)}
-            value={passwordCheck} />
+            value={passwordCheck}
+          />
           <Button
             style={{ marginTop: "12px" }}
             variant="contained"
             onClick={changePassword}
-            >Reset</Button>
+            >
+              Reset
+            </Button>
         </div>
       </div>
     </div>

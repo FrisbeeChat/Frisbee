@@ -1,5 +1,4 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import db from '../../database/connect/db';
 import model from '../../database/model/MessageModel';
 import { Message } from '../../database/model/MessageModel';
 import { authorize } from './authMiddleware';

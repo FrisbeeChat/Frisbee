@@ -1,8 +1,5 @@
 import * as React from 'react';
-
-import Link from 'next/link';
 import Header from '../components/header/header'
-import Footer from '../components/footer/footer'
 import Send from '../components/send/send'
 import styles from '../styles/Home.module.css'
 

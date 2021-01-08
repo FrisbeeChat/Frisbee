@@ -11,7 +11,6 @@ import axios from 'axios';
 const Header: React.FC = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [requests, setRequests] = useState([]);
-  const [loading, setLoading] = useState(false);
   const [avatar, setAvatar] = useState('');
   const global = useContext(Context);
 
@@ -22,14 +21,12 @@ const Header: React.FC = () => {
     setAnchorEl(null);
   };
   const open = Boolean(anchorEl);
-  const id = open ? 'simple-popover' : undefined;
 
   const upload = async (e:any) => {
-    const image = e.target.files[0]
-    const reader = new FormData()
+    const image = e.target.files[0];
+    const reader = new FormData();
     reader.append('file', image);
-    reader.append('upload_preset', 'postcardcover')
-    setLoading(true);
+    reader.append('upload_preset', 'postcardcover');
     const res = await fetch('https://api.cloudinary.com/v1_1/postcard/image/upload', {
       method: 'POST',
       body: reader
@@ -70,10 +67,7 @@ const Header: React.FC = () => {
             <Badge
               badgeContent={requests.length}
               color="secondary"
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-            }}>
+              anchorOrigin={{ vertical: 'top', horizontal: 'left' }}>
               <Button style={{ color: 'white', marginRight: "20px" }}>Connect</Button>
             </Badge>
           </Link>
@@ -83,19 +77,13 @@ const Header: React.FC = () => {
           <Link href="/view">
             <Button style={{ color: 'white', marginRight: "20px" }}>See All Messages</Button>
           </Link>
-          <img onClick={handleClick} id={styles.avatar} src={avatar} /> {/*//use getInitialProps */}
+          <img onClick={handleClick} id={styles.avatar} src={avatar} />
           <Popover
             open={open}
             anchorEl={anchorEl}
             onClose={handleClose}
-            anchorOrigin={{
-              vertical: 'bottom',
-              horizontal: 'center',
-            }}
-            transformOrigin={{
-              vertical: 'top',
-              horizontal: 'right',
-            }}
+            anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+            transformOrigin={{ vertical: 'top', horizontal: 'right' }}
           >
             <Settings upload={upload} avatar={avatar} />
           </Popover>

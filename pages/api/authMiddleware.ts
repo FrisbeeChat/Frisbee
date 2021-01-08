@@ -1,5 +1,4 @@
 import type { NextApiRequest, NextApiResponse, NextApiHandler } from 'next'
-import db from '../../database/connect/db';
 import { verify } from 'jsonwebtoken';
 import token from '../../database/token';
 

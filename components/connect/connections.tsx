@@ -7,14 +7,11 @@ import UserCard from '../cards/userCard';
 import RequestCard from '../cards/requestCard';
 import { TextField } from '@material-ui/core'
 
-
 const Connections = () => {
   const global = useContext(Context);
   const [users, setUsers] = useState([]);
   const [searchVal, setSearchVal] = useState('');
   const [requests, setRequests] = useState([]);
-  const [friend, setFriend] = useState(false);
-  const [myFriends, setMyFriends] = useState([]);
   const [requested, setRequested] = useState([]);
 
   useEffect(() => {
@@ -45,7 +42,7 @@ const Connections = () => {
         username,
       }
     });
-    await setRequests(reqs.data.reverse());
+    setRequests(reqs.data.reverse());
     const sent = await axios({
       url: `${window.location.origin}/api/getSentRequests`,
       method: 'post',
@@ -53,7 +50,7 @@ const Connections = () => {
         username,
       }
     });
-    await setRequested(sent.data.reverse());
+    setRequested(sent.data.reverse());
     const fs = await axios({
       url: `${window.location.origin}/api/getFriends`,
       method: 'post',
@@ -61,8 +58,7 @@ const Connections = () => {
         username,
       }
     });
-    // console.log(fs.data);
-    await setMyFriends(fs.data);
+
     const friendsAndRequests = reqs.data.concat(fs.data, sent.data);
     let obj: any = {};
     for (let i = 0; i < friendsAndRequests.length; i++) {
@@ -123,7 +119,6 @@ const Connections = () => {
                     avatar={user.avatar}
                     first={user.first}
                     last={user.last}
-                    index={i}
                     sent={false}
                     key={user.username}
                   />
@@ -147,7 +142,6 @@ const Connections = () => {
                     avatar={user.avatar}
                     first={user.first}
                     last={user.last}
-                    index={i}
                     sent={true}
                   />
                 )
@@ -169,7 +163,6 @@ const Connections = () => {
                     avatar={user.avatar}
                     first={user.first}
                     last={user.last}
-                    index={i}
                     sent={false}
                   />
                 )
