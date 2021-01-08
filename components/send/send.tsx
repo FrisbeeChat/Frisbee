@@ -1,14 +1,12 @@
 import styles from './send.module.css'
 import React from 'react';
-import { useContext, useState, useEffect } from 'react';
+import { useContext, useState } from 'react';
 import { Context } from '../context';
 import axios from 'axios';
 import Router from 'next/router';
-import { Paper, Button, InputBase, ButtonGroup, Grid } from '@material-ui/core';
+import { Paper, Button, ButtonGroup, Grid } from '@material-ui/core';
 import MarkunreadMailboxIcon from '@material-ui/icons/MarkunreadMailbox';
-// import {Image, Video, Transformation, CloudinaryContext} from 'cloudinary-react';
-// import {Cloudinary} from 'cloudinary-core';
-// const cloudinaryCore = new cloudinary.Cloudinary({cloud_name: 'demo'});
+
 
 const Send: React.FC = () => {
   const [username, setUsername] = useState('');
@@ -45,7 +43,6 @@ const Send: React.FC = () => {
       body: reader
     })
     const file = await res.json();
-    // global.setDraft{{}}
     setImage(file.url);
   }
 
@@ -54,7 +51,11 @@ const Send: React.FC = () => {
   }
 
   const sendMessage = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    console.log(global.userData.username, global.draft.username)
+
+    // data sanitization
+    let text = message.replaceAll('"','\'');
+    text = text.replaceAll('\\',' ');
+
     e.preventDefault();
     const current = new Date().toString().split(' ');
     const currentTime = current[4].split(':');
@@ -65,7 +66,7 @@ const Send: React.FC = () => {
       data: {
         me: global.userData.username,
         them: global.draft.username,
-        text: message,
+        text,
         photo: image,
         font: font,
         time: string

@@ -33,13 +33,19 @@ const Settings = ({upload, avatar}: Props) => {
   }
 
   const changeName = async () => {
+    // sanitizing data
+    let forFirstName = global.userData.first.replaceAll('"','\'');
+    forFirstName = forFirstName.replaceAll('\\',' ');
+
+    let forLastName = global.userData.last.replaceAll('"','\'');
+    forLastName = global.userData.last.replaceAll('\\',' ');
     const resp = await axios({
       url: `${window.location.origin}/api/changeSettings`,
       method: 'post',
       data: {
         username: global.userData.username,
-        first,
-        last,
+        first: forFirstName,
+        last: forLastName,
         avatar: global.userData.avatar,
       }
     })

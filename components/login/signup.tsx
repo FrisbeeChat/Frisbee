@@ -8,7 +8,6 @@ import { Grid, TextField, Button } from '@material-ui/core';
 
 
 const SignUp = ({login}: any) => {
-
   const [message, setMessage] = useState('');
   const global = useContext(Context);
   const [username, setUsername] = useState('');
@@ -19,14 +18,16 @@ const SignUp = ({login}: any) => {
   const [existingErr, setExistingErr] = useState(false);
   const [usernameErr, setUsernameErr] = useState(false);
   const [nameErr, setNameErr] = useState(false);
+  const [charErr, setCharErr] = useState(false);
 
   async function handleSignUp() {
-    // console.log(userNameRef.current.value)
     try {
       if (username === '') {
         setUsernameErr(true);
       } else if (first === '' || last === '') {
         setNameErr(true);
+      } else if (username.includes('"') || username.includes("'") || username.match(/\\/) || password.includes("'") || password.includes("'") || password.match(/\\/)) {
+        setCharErr(true);
       } else {
         const resp = await axios.post(`${window.location.origin}/api/signup`, {
           data: {
@@ -38,9 +39,9 @@ const SignUp = ({login}: any) => {
           }
         })
         if (resp.data.message) {
-          setMessage('please check the user name or password')
+          setMessage('please check the user name or password');
         } else {
-          // global.setUserData(resp.data);
+          global.setUserData(resp.data);
           Router.replace('/');
         }
       }
@@ -48,35 +49,6 @@ const SignUp = ({login}: any) => {
       setExistingErr(true);
     }
   }
-
-  // function validatePassword() {
-  //   let message= '';
-  //   if (!/.{8,}/.test(passwordRef.current.value)) {
-  //     message = 'At least eight characters. ';
-  //   }
-  //   if (!/.*[A-Z].*/.test(passwordRef.current.value)) {
-  //     message += '\nAt least one uppercase letter. ';
-  //   }
-  //   if (!/.*[a-z].*/.test(passwordRef.current.value)) {
-  //     message += '\nAt least one lowercase letter.';
-  //   }
-  //   passwordRef.current.setCustomValidity(message);
-  // }
-
-  // function togglePassword() {
-  //   if (passwordRef.current.type === 'password') {
-  //     passwordRef.current.type = 'text';
-  //     passwordButtonRef.current.textContent = 'Hide password';
-  //     passwordButtonRef.current.setAttribute('aria-label',
-  //       'Hide password.');
-  //   } else {
-  //     passwordRef.current.type = 'password';
-  //     passwordButtonRef.current.textContent = 'Show password';
-  //     passwordButtonRef.current.setAttribute('aria-label',
-  //       'Show password as plain text. ' +
-  //       'Warning: this will display your password on the screen.');
-  //   }
-  // }
 
   return (
     <Grid
@@ -87,9 +59,10 @@ const SignUp = ({login}: any) => {
     >
       <LoginHead />
       <Grid
-       className={styles.login} //make css mother fucker
+       className={styles.login}
       >
         {existingErr ? <div style={{ fontSize: "12px", color: "red" }}>Existing user</div> : <div></div>}
+        {charErr ? <div style={{ fontSize: "12px", color: "red" }}>Cannot use ', ", or backslashes</div> : <div></div>}
         {nameErr ? <div style={{ fontSize: "12px", color: "red" }}>Must fill in name</div> : <div></div>}
         {usernameErr ? <div style={{ fontSize: "12px", color: "red" }}>Please fill in username</div> : <div></div>}
         <TextField
@@ -129,9 +102,20 @@ const SignUp = ({login}: any) => {
           value={password}
           onChange={(e)=>setPassword(e.target.value)}
         />
-        <Button variant="contained" color="primary" onClick={handleSignUp}>Submit</Button>
-        <Button variant="contained" color="secondary" onClick={login}>Back to Login</Button>
-
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handleSignUp}
+        >
+          Submit
+        </Button>
+        <Button
+          variant="contained"
+          color="secondary"
+          onClick={login}
+        >
+          Back to Login
+        </Button>
       </Grid>
     </Grid>
   )
