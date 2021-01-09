@@ -50,7 +50,7 @@ const Header: React.FC = () => {
   useEffect(() => {
     getRequests();
     setAvatar(global.userData.avatar);
-  }, [global.userData.username])
+  }, [global])
 
   return (
     <AppBar className={styles.header}>
@@ -59,7 +59,7 @@ const Header: React.FC = () => {
         <Link href="/">
           <span id={styles.title}>
             <MarkunreadMailboxIcon />
-           <div style={{ marginLeft: "12px" }}>{global.appName}</div>
+           <div className={styles.title}>Postcard</div>
           </span>
         </Link>
         <Toolbar className={styles.buttonContainer}>
@@ -68,14 +68,14 @@ const Header: React.FC = () => {
               badgeContent={requests.length}
               color="secondary"
               anchorOrigin={{ vertical: 'top', horizontal: 'left' }}>
-              <Button style={{ color: 'white', marginRight: "20px" }}>Connect</Button>
+              <Button className={styles.pages}>Connect</Button>
             </Badge>
           </Link>
           <Link href="/contacts">
-            <Button style={{ color: 'white', marginRight: "20px" }}>Send a message</Button>
+            <Button className={styles.pages}>Send a message</Button>
           </Link>
           <Link href="/view">
-            <Button style={{ color: 'white', marginRight: "20px" }}>See All Messages</Button>
+            <Button className={styles.pages}>See All Messages</Button>
           </Link>
           <img onClick={handleClick} id={styles.avatar} src={avatar} />
           <Popover

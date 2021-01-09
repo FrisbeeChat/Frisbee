@@ -18,7 +18,7 @@ const Connections = () => {
     if (global.userData.username !== '') {
       getRequestsAndFriends(global.userData.username);
     }
-  }, [global.userData.username]);
+  }, [global]);
 
   const getUsers = async (frs:any) => {
     const resp = await axios({

@@ -1,3 +1,23 @@
+
+/* If the screen size is 601px or more */
+@media only screen and (min-width: 601px) {
+
+}
+
+/* If the screen size is 600px or less */
+@media only screen and (max-width: 600px) {
+  .title {
+    display: none;
+  }
+  button.pages {
+    font-size: 10px;
+  }
+}
+
+button.pages {
+  color: white;
+  margin-right: 20px;
+}
 .header {
   height: 74px;
   color: white;

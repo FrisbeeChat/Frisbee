@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Snapshots all messages 1`] = `ShallowWrapper {}`;
+
+exports[`Snapshots connections 1`] = `ShallowWrapper {}`;
+
+exports[`Snapshots header 1`] = `ShallowWrapper {}`;
+
+exports[`Snapshots login 1`] = `ShallowWrapper {}`;
+
+exports[`Snapshots message 1`] = `ShallowWrapper {}`;
+
+exports[`Snapshots request card 1`] = `ShallowWrapper {}`;
+
+exports[`Snapshots seearch 1`] = `ShallowWrapper {}`;
+
+exports[`Snapshots send 1`] = `ShallowWrapper {}`;
+
+exports[`Snapshots settings 1`] = `ShallowWrapper {}`;
+
+exports[`Snapshots signup 1`] = `ShallowWrapper {}`;
+
+exports[`Snapshots single 1`] = `ShallowWrapper {}`;
+
+exports[`Snapshots user card 1`] = `ShallowWrapper {}`;

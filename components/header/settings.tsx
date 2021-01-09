@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './header.module.css'
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { Context } from '../context'
 import { Button, TextField } from '@material-ui/core';
 import Router from 'next/router';
@@ -14,11 +14,18 @@ interface Props {
 const Settings = ({upload, avatar}: Props) => {
   const global = useContext(Context);
 
-  const [first, setFirst] = useState(global.userData.first);
-  const [last, setLast] = useState(global.userData.last);
+  const [first, setFirst] = useState('');
+  const [last, setLast] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [passwordCheck, setPasswordCheck] = useState('');
   const [message, setMessage] = useState(false);
+
+  useEffect(() => {
+    setFirst(global.userData.first);
+    setLast(global.userData.last);
+    setUsername(global.userData.username);
+  }, [global])
 
   const logout = async () => {
     try {
@@ -93,8 +100,8 @@ const Settings = ({upload, avatar}: Props) => {
         </div>
         <div className={styles.userInfo}>
           <div>Hello, </div>
-          <div>{global.userData.first} {global.userData.last}</div>
-          <div className={styles.username}>@{global.userData.username}</div>
+          <div>{first} {last}</div>
+          <div className={styles.username}>@{username}</div>
           <Button
             style={{ marginTop: "26px", alignSelf: "center" }}
             variant="contained"

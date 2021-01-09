@@ -30,13 +30,13 @@ const Search = () => {
     if (global.userData.username !== '') {
       getUsers();
     }
-  }, [global.userData.username])
+  }, [global])
 
 
   return (
     <div className={styles.container}>
       <div style={{ marginBottom: "20px", fontSize: "24px" }}>My Friends</div>
-      <form style={{ marginBottom: "40px", width: "60vw" }}>
+      <form className={styles.search}>
         <TextField
           id="outlined-search"
           label="Search"

@@ -7,6 +7,7 @@ import Router from 'next/router';
 import { Paper, Button, ButtonGroup, Grid } from '@material-ui/core';
 import MarkunreadMailboxIcon from '@material-ui/icons/MarkunreadMailbox';
 
+
 const Send: React.FC = () => {
   const [username, setUsername] = useState('');
   const [first, setFirst] = useState('');
@@ -15,10 +16,12 @@ const Send: React.FC = () => {
   const [message, setMessage] = useState('');
   const [font, setFont] = useState('font1');
   const [image, setImage] = useState('');
+  const [draftUser, setDraftUser] = useState('');
 
   const global = useContext(Context);
 
   React.useEffect(() => {
+    setDraftUser(global.draft.username);
     if (global.userData.username !== '') {
       setAvatar(global.userData.avatar);
       setUsername(global.userData.username);
@@ -28,7 +31,7 @@ const Send: React.FC = () => {
     if (global.draft.username === '') {
       Router.replace('/')
     }
-  }, [global.refresh]);
+  }, [global]);
 
   const upload = async (e: any) => {
     const image = e.target.files[0]
@@ -40,7 +43,7 @@ const Send: React.FC = () => {
       body: reader
     })
     const file = await res.json();
-    setImage(file.url);
+    setImage(file.secure_url);
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -62,7 +65,7 @@ const Send: React.FC = () => {
         them: global.draft.username,
         text,
         photo: image,
-        font: font,
+        font,
         time: string
       },
     });
@@ -160,7 +163,14 @@ const Send: React.FC = () => {
               </div>
             </div>
             <div>
-                {image ? <img className={styles.messagePhoto} src={image}/> : <div></div>}
+                {image ?
+                  <img className={styles.messagePhoto}
+                    src={image}
+                    alt="Uploaded photo"
+                  />
+                  :
+                  <div></div>
+                }
               </div>
             <div className={styles.senderInfo}>
               <img className={styles.avatar} src={avatar} />
@@ -178,7 +188,7 @@ const Send: React.FC = () => {
         onClick={(e) => sendMessage(e)}
         className={styles.sendButton}
       >
-        Send to {global.draft.username}
+        Send to {draftUser}
       </Button>
     </Grid>
   )

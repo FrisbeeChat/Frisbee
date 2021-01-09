@@ -1,6 +1,9 @@
 node_modules*
 package-lock*
+./next/*
 .next/*
+/next/*
+next/*
 .node_repl_history
 .env
 .env.build

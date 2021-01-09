@@ -1,3 +1,72 @@
+
+
+
+/* If the screen size is 601px or more */
+@media only screen and (min-width: 601px) {
+  .messContainer {
+    width: 60vw;
+    margin: 0px 20px 0px;
+    padding: 20px 30px;
+    margin-bottom: 40px;
+  }
+  .messTop {
+    display: flex;
+    justify-content: space-between;
+    width: 56vw;
+    margin-bottom: 30px;
+  }
+  .messContent {
+    width: 34vw
+  }
+  .username {
+    font-size: 20px;
+    font-weight: 600;
+  }
+  .img {
+    width: 70px;
+    height: 70px;
+  }
+  .search {
+    padding: 8px;
+    width: 61vw;
+  }
+.singleImage {
+    margin-top: 16px;
+    margin-left: 90px;
+    object-fit: cover;
+    width: 39vw;
+    height: 44vh;
+  }
+}
+
+/* If the screen size is 600px or less */
+@media only screen and (max-width: 600px) {
+  .messContainer {
+    width: 90vw;
+    margin: 0px 20px 0px;
+    padding: 20px 30px;
+    margin-bottom: 40px;
+  }
+  .messTop {
+    display: flex;
+    justify-content: space-between;
+    width: 80vw;
+    margin-bottom: 30px;
+  }
+  .messContent {
+    width: 90vw
+  }
+  .username {
+    font-size: 16px;
+  }
+  .singleImage {
+    margin-top: 16px;
+    margin-left: 9px;
+    object-fit: cover;
+    width: 70vw;
+    height: 70vw;
+  }
+}
 .container {
   margin-top: 12vh;
   display: flex;
@@ -5,19 +74,7 @@
   align-items: center;
 }
 
-.messTop {
-  display: flex;
-  justify-content: space-between;
-  width: 56vw;
-  margin-bottom: 30px;
-}
 
-.messContainer {
-  width: 60vw;
-  margin: 0px 20px 0px;
-  padding: 20px 30px;
-  margin-bottom: 40px;
-}
 
 .messHead {
   display: flex;
@@ -53,9 +110,6 @@
   align-items: flex-start;
 }
 
-.messContent {
-  width: 34vw
-}
 
 .replyButton {
   width: 100px;
@@ -63,10 +117,5 @@
 }
 
 .singleImage {
-  margin-top: 16px;
-  margin-left: 90px;
-  object-fit: cover;
-  width: 39vw;
-  height: 44vh;
   border-radius: 5px;
 }

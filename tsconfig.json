@@ -20,7 +20,7 @@
     "noEmit": true, // don't emit messages
     "esModuleInterop": true, //
     "resolveJsonModule": true, // allows importing .json extensions
-    "isolatedModules": true // able to import a type and export it
+    "isolatedModules": true, // able to import a type and export it
   },
   "exclude": [
     "node_modules"

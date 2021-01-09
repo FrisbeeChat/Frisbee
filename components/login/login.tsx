@@ -30,7 +30,9 @@ const Login = ({signUp}: any) => {
         }
       })
       Router.replace('/');
-    } catch {
+    } catch (err) {
+      console.log(username, password)
+      console.log(err)
       setMessage('please check username or password')
     }
   }
@@ -49,7 +51,8 @@ const Login = ({signUp}: any) => {
        style={message === '' ? {height: "280px"} : {height: "315px"}}
       >
         {message === '' ? <div></div> : <div style={{ color: "red", alignSelf: "center", marginTop: "0px" }}>{message}</div>}
-        <TextField id="username"
+        <TextField
+          id="username"
           label="username"
           variant="outlined"
           value={username}
@@ -65,6 +68,7 @@ const Login = ({signUp}: any) => {
           onChange={(e) => changePassword(e)}
         />
         <Button
+          id="login"
           variant="contained"
           color="primary"
           onClick={handleLogin}

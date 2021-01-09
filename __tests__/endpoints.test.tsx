@@ -8,13 +8,13 @@ describe('Startup', () => {
       expect(sum(1, 2)).toBe(3);
     });
 
-    it('should change test to running', () => {
+    xit('should change test to running', () => {
       // running = true;
     });
 });
 
 describe('Endpoint Tests', () => {
-  it('should get all friends', async () => {
+  xit('should get all friends', async () => {
     const friends = await axios.get('http://localhost:3000/api/getFriends', {
       data: {username: 'ChosenOne'}
     })
@@ -22,13 +22,13 @@ describe('Endpoint Tests', () => {
     expect(friends.status).toBe(200);
   });
 
-  it('should get all users', async () => {
+  xit('should get all users', async () => {
     const users = await axios.get('http://localhost:3000/api/getUsers')
     expect(users.data.length).not.toEqual(0);
     expect(users.status).toBe(200);
   });
 
-  it('should get all messages', async () => {
+  xit('should get all messages', async () => {
     const messages = await axios.get('http://localhost:3000/api/getMessages', {
       data: {username: 'ChosenOne'}
     })
@@ -36,7 +36,7 @@ describe('Endpoint Tests', () => {
     expect(messages.status).toBe(200);
   });
 
-  it('should send a friend request, then be able to ignore it', async () => {
+  xit('should send a friend request, then be able to ignore it', async () => {
     // Get friend requests
     const before = await axios.get('http://localhost:3000/api/getFriendRequests', {
       data: {username: 'Chewy'}
@@ -61,7 +61,7 @@ describe('Endpoint Tests', () => {
     expect(ignored.data.length).toEqual(before.data.length);
   });
 
-  it('should accept a friend request, then delete the friend', async () => {
+  xit('should accept a friend request, then delete the friend', async () => {
     // Get Anakin and Chewbacca's lists of friends
     const beforeAnakin = await axios.get('http://localhost:3000/api/getFriends', {
       data: {username: 'ChosenOne'}
@@ -92,7 +92,7 @@ describe('Endpoint Tests', () => {
     expect(afterChewbacca.data.length).toEqual(beforeChewbacca.data.length + 1);
   });
 
-  it('should write a message, then delete it', async () => {
+  xit('should write a message, then delete it', async () => {
     // write a message from Obi Wan to Anakin
     const note = 'You were supposed to destroy the sith not join them';
     await axios.get('http://localhost:3000/api/writeMessage', {

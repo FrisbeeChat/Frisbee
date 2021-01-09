@@ -79,7 +79,6 @@ const UserCard = ({ username, first, last, avatar, sent }: Props) => {
         }
     </Paper>
   )
-
 }
 
 export default UserCard;

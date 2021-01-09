@@ -97,7 +97,9 @@ const SignUp = ({login}: any) => {
         <Button
           variant="contained"
           color="primary"
-          onClick={handleSignUp}>
+          onClick={handleSignUp}
+          data-testid="submit"
+        >
           Submit
         </Button>
         <Button

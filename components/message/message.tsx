@@ -53,7 +53,9 @@ const Message = () => {
       setFont(sender.font);
       setTime(sender.time);
     } else {
-      setText('Welcome to Postcard, this is where you will find any messages you may receive\n.',);
+      setText(`Hi ${global.userData.first} ${global.userData.last},
+      Welcome to Postcard,
+      this is where you will find any messages you may receive.`);
       setAvatar('https://frisbee-images.s3-us-west-1.amazonaws.com/paint.jpg');
       setUsername('WELCOME');
       setFirst('Add a friend to',);
@@ -82,10 +84,10 @@ const Message = () => {
       container
       direction="row"
       alignItems="center"
-      justify="space-between"
-      style={{ width: "84vw" }}
+      justify="space-evenly"
+      style={{ width: "calc(100% - 10px)" }}
     >
-      <Fab color="primary" onClick={decrement}>
+      <Fab color="primary" onClick={decrement} size="small" className={styles.arrow}>
         <ArrowBackIosIcon />
       </Fab>
       <Paper elevation={8} className={styles.messageContainer}>
@@ -107,14 +109,14 @@ const Message = () => {
                   <div className={styles.username}>@{username}</div>
                   <div className={styles.name}>{first} {last}</div>
                 </div>
+                <div className={styles.time}>{time}</div>
               </div>
-              <div className={styles.time}>{time}</div>
             </div>
           </div>
         </div>
       </Paper>
-      <Fab color="primary" onClick={increment}>
-          <ArrowForwardIosIcon />
+      <Fab color="primary" onClick={increment} size="small" className={styles.arrow} >
+          <ArrowForwardIosIcon/>
         </Fab>
       <Grid
         container
