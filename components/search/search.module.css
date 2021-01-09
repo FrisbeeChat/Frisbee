@@ -6,8 +6,8 @@
     width: 60vw;
     padding: 20px 30px;
     margin: 0px 20px 0px;
-    margin-bottom: 50px;
-
+    margin-bottom: 30px;
+    margin-top: 20px;
   }
   .username {
     font-size: 20px;
@@ -41,7 +41,7 @@
   }
   .search {
     padding: 8px;
-    width: 93vw;
+    width: 95vw;
   }
 }
 
@@ -60,17 +60,14 @@
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
-
 }
 .img {
-
   border-radius: 50%;
   margin-right: 30px;
   object-fit: cover;
   border: 1px solid rgb(228, 228, 228);
 }
 .username {
-
   margin-bottom: 10px;
 }
 

@@ -95,11 +95,12 @@ const Send: React.FC = () => {
       direction="column"
       alignItems="center"
       justify="center"
+      style={{ width: "calc(100% - 10px)" }}
     >
       <Paper elevation={8} className={styles.messageContainer}>
         <div className={styles.message}>
           <div className={styles.left}>
-            <ButtonGroup color="primary" style={{ marginBottom: "6px" }}>
+            <ButtonGroup color="primary" className={styles.fontGroup}>
               <button
                 style={font === 'font1' ? {background: 'rgb(235, 235, 235)'} : {}}
                 className={`${styles.font1} ${styles.font}`}
@@ -149,8 +150,9 @@ const Send: React.FC = () => {
                     variant="outlined"
                     color="primary"
                     component="span"
+                    className={styles.button}
                   >
-                    Upload Photo
+                    Add Photo
                   </Button>
                 </label>
               </div>

@@ -53,12 +53,12 @@ const Header: React.FC = () => {
   }, [global])
 
   return (
-    <AppBar className={styles.header}>
-      <Container>
+    <AppBar className={styles.header} >
+      <Container style={{paddingRight: "0px"}}>
       <div className={styles.contWidth}>
         <Link href="/">
           <span id={styles.title}>
-            <MarkunreadMailboxIcon />
+            <MarkunreadMailboxIcon className={styles.logo} />
            <div className={styles.title}>Postcard</div>
           </span>
         </Link>

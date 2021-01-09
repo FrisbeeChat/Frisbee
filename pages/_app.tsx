@@ -36,7 +36,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
     return (
       <ConfigProvider>
         <Head>
-          <title>PostCard</title>
+          <title>Postcard</title>
           <meta charSet="utf-8"/>
           <meta
             name="Chat app"

@@ -94,13 +94,14 @@ const Connections = () => {
   return (
     <div className={styles.container}>
       <div style={{ marginBottom: "20px", fontSize: "24px" }}>Search Users</div>
-      <form style={{ marginBottom: "30px", width: "60vw"}}>
+      <form className={styles.search}>
         <TextField
           id="outlined-search"
           label="Search"
           type="search"
           variant="outlined"
-          onChange={(e)=>setSearchVal(e.target.value.toLowerCase())}
+          onChange={(e)=>setSearchVal(e.target.value)}
+          value={searchVal}
           style={{ background: "white" }}
           autoFocus
           fullWidth

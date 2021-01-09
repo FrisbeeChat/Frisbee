@@ -28,7 +28,7 @@ const AllMessages = () => {
     <div className={styles.container}>
       <div className={styles.messTop}>
         <div style={{ fontSize: '24px' }}>Messages</div>
-        <div>
+        <div className={styles.buttonContainer}>
           <Button
             variant={view ? 'contained' : 'outlined'}
             color="primary"

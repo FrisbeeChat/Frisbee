@@ -16,11 +16,14 @@ const SignUp = ({login}: any) => {
   const [usernameErr, setUsernameErr] = useState(false);
   const [nameErr, setNameErr] = useState(false);
   const [charErr, setCharErr] = useState(false);
+  const [lengthErr, setLengthErr] = useState(false);
 
   const handleSignUp = async () =>  {
     try {
       if (username === '') {
         setUsernameErr(true);
+      } else if (username.length > 16) {
+        setLengthErr(true);
       } else if (first === '' || last === '') {
         setNameErr(true);
       } else if (username.includes('"') || username.includes("'") || username.match(/\\/) || password.includes("'") || password.includes("'") || password.match(/\\/)) {
@@ -54,6 +57,7 @@ const SignUp = ({login}: any) => {
        className={styles.login}
       >
         {existingErr ? <div style={{ fontSize: "12px", color: "red" }}>Existing user</div> : <div></div>}
+        {lengthErr ? <div style={{ fontSize: "12px", color: "red" }}>Username cannot be over 16 characters</div> : <div></div>}
         {charErr ? <div style={{ fontSize: "12px", color: "red" }}>Cannot use ', ", or backslashes</div> : <div></div>}
         {nameErr ? <div style={{ fontSize: "12px", color: "red" }}>Must fill in name</div> : <div></div>}
         {usernameErr ? <div style={{ fontSize: "12px", color: "red" }}>Please fill in username</div> : <div></div>}

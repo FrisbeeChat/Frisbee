@@ -2,11 +2,8 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/": "pages/index.js",
-  "/contacts": "pages/contacts.js",
-  "/view": "pages/view.js",
   "/api/getFriendRequests": "pages/api/getFriendRequests.js",
-  "/api/getSentRequests": "pages/api/getSentRequests.js",
-  "/api/getUsers": "pages/api/getUsers.js",
-  "/api/getFriends": "pages/api/getFriends.js"
+  "/": "pages/index.js",
+  "/send": "pages/send.js",
+  "/contacts": "pages/contacts.js"
 }

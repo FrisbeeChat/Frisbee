@@ -5,8 +5,8 @@
     width: 60vw;
     padding: 20px 30px;
     margin: 0px 20px 0px;
-    margin-bottom: 50px;
-
+    margin-bottom: 30px;
+    margin-top: 20px;
   }
   .username {
     font-size: 20px;
@@ -15,6 +15,10 @@
   .img {
     width: 70px;
     height: 70px;
+  }
+  .search {
+    padding: 8px;
+    width: 61vw;
   }
 }
 
@@ -34,17 +38,19 @@
     width: 40px;
     height: 40px;
   }
+  .search {
+    padding: 8px;
+    width: 95vw;
+  }
 }
-
 .container {
   margin-top: 12vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-
+  /* width: 100%; */
 }
-
 .card {
   display: flex;
   flex-flow: row nowrap;
@@ -67,7 +73,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-
   margin-bottom: 10px;
 }
 

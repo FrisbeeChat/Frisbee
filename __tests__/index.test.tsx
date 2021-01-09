@@ -103,5 +103,43 @@ describe('Signup', () => {
     wrapper.find('#username').simulate('change', { target: { value: 'test' }});
     const input = wrapper.find('#username');
     expect(input.prop('value')).toEqual('test');
-  })
+  });
+});
+
+describe('Homepage', () => {
+  it('Should show an example username on page load', () => {
+    const wrapper = shallow(<Message />);
+    expect(wrapper.contains(<div
+      style={{
+        fontWeight: "600",
+        borderBottom: "1px solid black",
+        lineHeight: "38px"}}
+      >@WELCOME</div>)).toBe(true);
+  });
+
+  it('Should show an example first and last name on page load', () => {
+    const wrapper = shallow(<Message />);
+    expect(wrapper.contains(<div style={{
+      borderBottom: "1px solid black",
+      lineHeight: "38px"
+    }}>Add a friend to send cards!</div>)).toBe(true);
+  });
+});
+
+describe('Connect page', () => {
+  it('Should be able to search for a user', () => {
+    const wrapper = shallow(<Connections />);
+    wrapper.find('#outlined-search').simulate('change', { target: { value: 'c' }});
+    const input = wrapper.find('#outlined-search');
+    expect(input.prop('value')).toEqual('c');
+  });
+});
+
+describe('Friends page', () => {
+  it('Should be able to search for a friend', () => {
+    const wrapper = shallow(<Search />);
+    wrapper.find('#outlined-search').simulate('change', { target: { value: 'a' }});
+    const input = wrapper.find('#outlined-search');
+    expect(input.prop('value')).toEqual('a');
+  });
 });

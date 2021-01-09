@@ -42,7 +42,8 @@ const Search = () => {
           label="Search"
           type="search"
           variant="outlined"
-          onChange={(e)=>setSearchVal(e.target.value.toLowerCase())}
+          onChange={(e)=>setSearchVal(e.target.value)}
+          value={searchVal}
           style={{ background: "white" }}
           autoFocus
           fullWidth

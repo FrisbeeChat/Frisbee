@@ -9,6 +9,11 @@ import MarkunreadMailboxIcon from '@material-ui/icons/MarkunreadMailbox';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 
+const exUsername = 'WELCOME';
+const exFirst = 'Add a friend to';
+const exLast = 'send cards!';
+const exAvatar = 'https://frisbee-images.s3-us-west-1.amazonaws.com/paint.jpg';
+
 const Message = () => {
   const [text, setText] = useState('');
   const [avatar, setAvatar] = useState('');
@@ -56,10 +61,10 @@ const Message = () => {
       setText(`Hi ${global.userData.first} ${global.userData.last},
       Welcome to Postcard,
       this is where you will find any messages you may receive.`);
-      setAvatar('https://frisbee-images.s3-us-west-1.amazonaws.com/paint.jpg');
-      setUsername('WELCOME');
-      setFirst('Add a friend to',);
-      setLast('send cards!');
+      setAvatar(exAvatar);
+      setUsername(exUsername);
+      setFirst(exFirst);
+      setLast(exLast);
     }
   }, [global]);
 
@@ -79,6 +84,12 @@ const Message = () => {
       break;
   }
 
+  //nav button size based on screen width
+  const buttonSize = () => {
+    if (first !== '') {
+      return window.screen.width < 601 ? "small" : "large"
+    }
+  }
   return (
     <Grid
       container
@@ -87,7 +98,7 @@ const Message = () => {
       justify="space-evenly"
       style={{ width: "calc(100% - 10px)" }}
     >
-      <Fab color="primary" onClick={decrement} size="small" className={styles.arrow}>
+      <Fab color="primary" onClick={decrement} size={buttonSize() || "small"} className={styles.arrowLeft}>
         <ArrowBackIosIcon />
       </Fab>
       <Paper elevation={8} className={styles.messageContainer}>
@@ -104,18 +115,22 @@ const Message = () => {
             </div>
             <div style={{ display: "flex", justifyContent: "space-between" }}>
               <div className={styles.senderInfo}>
-                <img className={styles.avatar} src={avatar} />
+                <img className={styles.avatar} src={avatar || exAvatar} />
                 <div>
-                  <div className={styles.username}>@{username}</div>
-                  <div className={styles.name}>{first} {last}</div>
+                  <div
+                  className={styles.username}
+                  >@{username || exUsername}</div>
+                  <div
+                    className={styles.name}
+                  >{first || exFirst} {last || exLast}</div>
                 </div>
-                <div className={styles.time}>{time}</div>
+                <div className={styles.time || ''}>{time}</div>
               </div>
             </div>
           </div>
         </div>
       </Paper>
-      <Fab color="primary" onClick={increment} size="small" className={styles.arrow} >
+      <Fab color="primary" onClick={increment} size={buttonSize()|| "small"} className={styles.arrowRight} >
           <ArrowForwardIosIcon/>
         </Fab>
       <Grid

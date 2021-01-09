@@ -30,7 +30,7 @@
     padding: 8px;
     width: 61vw;
   }
-.singleImage {
+  .singleImage {
     margin-top: 16px;
     margin-left: 90px;
     object-fit: cover;
@@ -50,7 +50,8 @@
   .messTop {
     display: flex;
     justify-content: space-between;
-    width: 80vw;
+    flex-flow: row nowrap;
+    width: 89vw;
     margin-bottom: 30px;
   }
   .messContent {
@@ -70,11 +71,15 @@
 .container {
   margin-top: 12vh;
   display: flex;
-  flex-direction: column;
+  flex-flow: column nowrap;
   align-items: center;
+  justify-content: space-between;
+
 }
 
-
+.buttonContainer {
+  flex: none;
+}
 
 .messHead {
   display: flex;

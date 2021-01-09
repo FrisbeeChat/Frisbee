@@ -2,30 +2,89 @@
 /* If the screen size is 601px or more */
 @media only screen and (min-width: 601px) {
 
+  .title {
+    margin-left: 16px;
+  }
+  button.pages {
+    margin-right: 20px;
+  }
+  .settingsContainer {
+    padding: 30px 50px 30px 50px;
+  }
+  .settingsPhoto {
+    width: 120px;
+    height: 120px;
+    margin-left: 10px;
+    margin-bottom: 12px;
+  }
+  .settingsLeft {
+    margin-right: 60px;
+  }
+  .settingBox {
+
+
+    width: 220px;
+    padding: 10px;
+
+    margin: 20px 0px 5px 0px;
+
+  }
 }
 
 /* If the screen size is 600px or less */
 @media only screen and (max-width: 600px) {
+  .contWidth {
+    margin-top: 8px;
+  }
   .title {
     display: none;
   }
+  #title {
+    margin-left: 0px;
+  }
   button.pages {
     font-size: 10px;
+    margin-right: 5px;
+  }
+  .settingsContainer {
+    padding: 10px 20px 15px 20px;
+  }
+  .settingsPhoto {
+    width: 80px;
+    height: 80px;
+    margin-left: 0px;
+    margin-bottom: 2px;
+  }
+  .settingsLeft {
+    margin-right: 20px;
+  }
+  .settingBox {
+    /* display: flex; */
+    /* flex-direction: column; */
+    width: 100%;
+    /* height: 100%; */
+    padding: 10px;
+    /* border-radius: 4px; */
+    margin: 20px 0px 5px 0px;
+    /* border: 1px solid rgb(200, 200, 200); */
   }
 }
 
 button.pages {
   color: white;
-  margin-right: 20px;
 }
 .header {
   height: 74px;
   color: white;
   font-weight: 600;
+  padding-right: 0px;
+
 }
+
 
 .contWidth {
   display: flex;
+  flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
 }
@@ -35,7 +94,6 @@ button.pages {
 }
 
 #title {
-  margin-left: 24px;
   font-size: 34px;
   cursor: pointer;
   display: flex;
@@ -74,17 +132,13 @@ button.pages {
 
 .settingsContainer {
   display: flex;
-  padding: 30px 50px 30px 50px;
+  /* padding: 30px 50px 30px 50px; */
 }
 
 .settingsPhoto {
   object-fit: cover;
   border: 1px solid rgb(221, 221, 221);
-  width: 120px;
-  height: 120px;
   border-radius: 50%;
-  margin-left: 10px;
-  margin-bottom: 12px;
 }
 
 .userInfo {
@@ -99,22 +153,18 @@ button.pages {
   font-weight: 600;
 }
 
-.settingsLeft {
-  margin-right: 60px;
-}
-
 .settings {
   display: flex;
   flex-direction: column;
-  height: 540px;
+  height: 570px;
 }
 
 .settingBox {
   display: flex;
   flex-direction: column;
-  width: 220px;
-  padding: 10px;
+  /* width: 220px; */
+  /* padding: 10px; */
   border-radius: 4px;
-  margin: 20px 0px 5px 0px;
+  /* margin: 20px 0px 5px 0px; */
   border: 1px solid rgb(200, 200, 200);
 }

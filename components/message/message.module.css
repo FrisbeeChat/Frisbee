@@ -20,16 +20,41 @@
     margin-left: 7%;
     margin-bottom: 10px;
   }
+  .stamp {
+    width: 64px;
+    height: 64px;
+    /* margin-top: -10px */
+  }
   .messagePhoto {
+    margin-left: 2vw;
     width: 31.5vw;
     height: 36vh;
   }
+  .left {
+    font-size: 20px;
+  }
+  .name {
+    line-height: 38px;
+  }
+  .username {
+    line-height: 38px;
+  }
+  .time {
+    margin-bottom: 10px;
+    margin-right: -30px;
+  }
 }
 
-/* If the screen size is 600px or less */
+/* If the screen size is 600px or less --PHONE--*/
 @media only screen and (max-width: 600px) {
   .messageContainer {
     width: 75%;
+  }
+  .stamp {
+    width: 40px;
+    height: 40px;
+    margin-right: -15px;
+    margin-top: -10px;
   }
   .avatar {
     width: 40px;
@@ -38,32 +63,43 @@
   .senderInfo {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-self: flex-end;
+    justify-content: flex-end;
     font-size: 12px;
     margin-left: 7px;
-    margin-bottom: 5px;
+  }
+  .name {
+    line-height: 20px;
+  }
+  .username {
+    line-height: 20px;
   }
   .messagePhoto {
+    align-self: center;
+    margin-left: 6px;
     width: 31.5vw;
     height: 20vh;
   }
-  .arrow {
-    width: 10px;
-    height: 10px;
-    /* size: small; */
+  .name {
+    line-height: 20px;
+  }
+  .arrowLeft {
+    left: -5px;
+  }
+  .arrowRight {
+    right: -5px;
+  }
+  .left {
+    font-size: 14px;
   }
 }
 
-.arrow {
-  size: small;
-}
 
 .font1 {
   font-family: 'IBM Plex Serif', serif;
 }
 .font2 {
   font-family: 'Caveat', cursive;
-  font-size: 20px;
 }
 .font3 {
   font-family: 'Indie Flower', cursive;
@@ -72,15 +108,8 @@
   font-family: 'Yellowtail', cursive;
 }
 
-/* .container {
-  /* display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 80vw;
-} */
 
 .messageContainer {
-  /* width: 72vw; */
   margin-top: 12vh;
   margin-bottom: 30px;
   height: 70vh;
@@ -110,41 +139,22 @@
   justify-content: center;
   align-items: center;
   background: #78D1AD;
-  width: 64px;
-  height: 64px;
   color: white;
-  background: radial-gradient(
-		transparent 0px,
-		transparent 4px,
-		#78D1AD 4px,
-		#78D1AD
-  );
-  background-size: 16px 16px;
-  background-position: -8px -8px;
-}
-
-.stampFill {
-  position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #78D1AD;
-  height: 40px;
-  width: 40px;
+  border-image: url(../../public/stamp-border.png) 9 round;
+	border-width: 4pt;
+  border-style: solid;
+  border-image-outset: 5px;
+  box-shadow: 0 0 4px 3px black;
+  margin-bottom: 30px;
 }
 
 .messagePhoto {
-  margin-left: 2vw;
   object-fit: cover;
   border-radius: 5px;
 }
 
-
-
 .time {
   align-self: flex-end;
-  font-size: 14px;
-  margin-bottom: 10px;
   font-style: italic;
 }
 
@@ -155,23 +165,19 @@
   border: 1px solid rgb(228, 228, 228);
 }
 
+.name {
+  border-bottom: 1px solid black;
+}
+
 .username {
   font-weight: 600;
   border-bottom: 1px solid black;
-  line-height: 38px;
-}
-
-.name {
-  border-bottom: 1px solid black;
-  line-height: 38px;
 }
 
 .left {
-  font-size: 20px;
   border-right: 1px solid black;
   width: 50%;
   padding-right: 40px;
-  font-size: 24px;
 }
 
 .button {
