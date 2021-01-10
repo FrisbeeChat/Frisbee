@@ -1,5 +1,5 @@
 import styles from './message.module.css'
-import React from 'react';
+import React, { lazy } from 'react';
 import { useContext, useState } from 'react';
 import { Context } from '../context';
 import Router from 'next/router';
@@ -98,7 +98,14 @@ const Message = () => {
       justify="space-evenly"
       style={{ width: "calc(100% - 10px)" }}
     >
-      <Fab color="primary" onClick={decrement} size={buttonSize() || "small"} className={styles.arrowLeft}>
+      <Fab
+        className={styles.arrowLeft}
+        color="primary"
+        onClick={decrement}
+        size={buttonSize() || "small"}
+        role="navigation"
+        aria-label="Previous message"
+      >
         <ArrowBackIosIcon />
       </Fab>
       <Paper elevation={8} className={styles.messageContainer}>
@@ -115,7 +122,11 @@ const Message = () => {
             </div>
             <div style={{ display: "flex", justifyContent: "space-between" }}>
               <div className={styles.senderInfo}>
-                <img className={styles.avatar} src={avatar || exAvatar} />
+                <img
+                  className={styles.avatar}
+                  alt={`${username}'s profile picture`}
+                  src={avatar || exAvatar}
+                />
                 <div>
                   <div
                   className={styles.username}
@@ -130,7 +141,14 @@ const Message = () => {
           </div>
         </div>
       </Paper>
-      <Fab color="primary" onClick={increment} size={buttonSize()|| "small"} className={styles.arrowRight} >
+      <Fab
+        className={styles.arrowRight}
+        color="primary"
+        onClick={increment}
+        size={buttonSize()|| "small"}
+        role="navigation"
+        aria-label="Next message"
+      >
           <ArrowForwardIosIcon/>
         </Fab>
       <Grid
@@ -145,6 +163,8 @@ const Message = () => {
           style={{ background: "" }}
           className={styles.button}
           onClick={reply}
+          role="navigation"
+          aria-label="Reply to current message"
         >
           Reply
         </Button>

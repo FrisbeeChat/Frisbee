@@ -8,7 +8,9 @@
   --desktop-font-size: 16px;
   --mobile-font-size: 22px;
 }
-
+/* input:-internal-autofill-selected {
+  background-color: white;
+} */
 html, body {
   display: flex;
   flex-flow: column nowrap;

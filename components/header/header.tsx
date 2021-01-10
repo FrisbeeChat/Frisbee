@@ -55,29 +55,41 @@ const Header: React.FC = () => {
   return (
     <AppBar className={styles.header} >
       <Container style={{paddingRight: "0px"}}>
-      <div className={styles.contWidth}>
-        <Link href="/">
-          <span id={styles.title}>
+      <div role="banner" className={styles.contWidth}>
+        <Link href="/" >
+          <nav role="navigation" id={styles.title}>
             <MarkunreadMailboxIcon className={styles.logo} />
            <div className={styles.title}>Postcard</div>
-          </span>
+          </nav>
         </Link>
         <Toolbar className={styles.buttonContainer}>
           <Link href="/connect">
-            <Badge
+            <Badge //-------- WHY BADGE HERE AND SPAN(changed to NAV) ABOVE?
               badgeContent={requests.length}
               color="secondary"
               anchorOrigin={{ vertical: 'top', horizontal: 'left' }}>
-              <Button className={styles.pages}>Connect</Button>
+              <Button
+                role="navigation"
+                aria-label="Find new friends"
+                className={styles.pages}
+              >Connect</Button>
             </Badge>
           </Link>
           <Link href="/contacts">
-            <Button className={styles.pages}>Send a message</Button>
+            <Button
+              role="navigation"
+              aria-label="Send a message to an existing friend"
+              className={styles.pages}
+            >Send a message</Button>
           </Link>
           <Link href="/view">
-            <Button className={styles.pages}>See All Messages</Button>
+            <Button
+              role="navigation"
+              aria-label="View all sent and received messages"
+              className={styles.pages}
+            >See All Messages</Button>
           </Link>
-          <img onClick={handleClick} id={styles.avatar} src={avatar} />
+          <img onClick={handleClick} id={styles.avatar} alt="profile picture" src={avatar} />
           <Popover
             open={open}
             anchorEl={anchorEl}

@@ -3,7 +3,7 @@ import axios from 'axios';
 import styles from './signup.module.css';
 import Router from 'next/router';
 import LoginHead from './loginHead';
-import { Input, FormControl, Grid, TextField, Button } from '@material-ui/core';
+import { FormControl, Grid, Button } from '@material-ui/core';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import InputLabel from '@material-ui/core/InputLabel';
