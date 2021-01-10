@@ -47,3 +47,5 @@ From the repo
 3. Run ```npm run dev``` in the command line
 4. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result
 
+--[Derek Velzy](https://github.com/derekvelzy)
+--[Blake Whitham](https://github.com/Blake-Whitham)
