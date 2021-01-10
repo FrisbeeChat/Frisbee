@@ -39,7 +39,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
           <title>Postcard</title>
           <meta charSet="utf-8"/>
           <meta
-            name="Chat app"
+            name="postcard"
             lang="en-IE"
             content="Accessibility focused desktop chat app for old people, young people, and everyone in between"
           />

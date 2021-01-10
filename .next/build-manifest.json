@@ -34,10 +34,10 @@
       "static/chunks/webpack.js",
       "static/chunks/pages/contacts.js"
     ],
-    "/send": [
+    "/login": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
-      "static/chunks/pages/send.js"
+      "static/chunks/pages/login.js"
     ]
   },
   "ampFirstPages": []

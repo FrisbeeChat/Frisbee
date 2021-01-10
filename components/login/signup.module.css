@@ -1,18 +1,66 @@
+/* If the screen size is 601px or more*/
+@media only screen and (min-width: 601px) {
+  .container {
+    align-items: center;
+  }
+  .login {
+    width: 50vw;
+    height: 50vh;
+    padding: 26px 26px 26px 26px;
+  }
+  .form {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+/* If the screen size is 600px or less --PHONE--*/
+@media only screen and (max-width: 600px) {
+  .container {
+    align-items: flex-start;
+    margin-top: 9vh;
+  }
+  .login {
+    width: 75vw;
+    height: 65vh;
+    padding: 20px 10px 20px 10px;
+
+  }
+}
+.container {
+  justify-content: center;
+  height: 98vh;
+  background: white;
+}
 .login {
-  width: 30vw;
-  height: 540px;
   border: 2px solid #E07860;
-  padding: 10px;
   border-radius: 5px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding-bottom: 50px;
-  padding-top: 10px;
-  padding-left: 2vw;
-  padding-right: 2vw;
+  height: 485px;
 }
+.form {
+  width: 100%;
+}
+.field {
+  width: 100%;
+  height: 68px;
+  margin-bottom: 5px;
+}
+.invalid {
+  display: flex;
+  height: fit-content;
+  margin-bottom: 6px;
 
+}
+.valid {
+  display: none;
+
+}
+.button {
+  width: 100%;
+}
 .loginHeader {
   height: 9vh;
   font-size: 24px;

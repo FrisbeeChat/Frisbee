@@ -124,8 +124,8 @@ const Message = () => {
                     className={styles.name}
                   >{first || exFirst} {last || exLast}</div>
                 </div>
-                <div className={styles.time || ''}>{time}</div>
               </div>
+              <div className={styles.time || ''}>{time}</div>
             </div>
           </div>
         </div>

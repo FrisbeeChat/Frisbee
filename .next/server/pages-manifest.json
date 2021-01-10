@@ -2,8 +2,7 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/api/getFriendRequests": "pages/api/getFriendRequests.js",
-  "/": "pages/index.js",
-  "/send": "pages/send.js",
-  "/contacts": "pages/contacts.js"
+  "/contacts": "pages/contacts.js",
+  "/login": "pages/login.js",
+  "/": "pages/index.js"
 }
