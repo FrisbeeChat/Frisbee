@@ -19,7 +19,7 @@
   }
   .search {
     padding: 8px;
-    width: 61vw;
+    width: 60.5vw;
   }
 }
 
@@ -41,10 +41,14 @@
   }
   .search {
     padding: 8px;
-    width: 95vw;
+    width: 90.5vw;
   }
+
 }
 
+.search {
+  background: white;
+}
 
 .container {
   margin-top: 12vh;

@@ -4,7 +4,10 @@ import React from 'react';
 import { Context } from '../context';
 import styles from './search.module.css';
 import { Paper } from '@material-ui/core';
-import { TextField, Button } from '@material-ui/core';
+import { Button } from '@material-ui/core';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
+import { FormControl } from '@material-ui/core';
+import InputLabel from '@material-ui/core/InputLabel';
 
 const Search = () => {
   const global = React.useContext(Context);
@@ -36,18 +39,16 @@ const Search = () => {
   return (
     <div className={styles.container}>
       <div style={{ marginBottom: "20px", fontSize: "24px" }}>My Friends</div>
-      <form className={styles.search}>
-        <TextField
-          id="outlined-search"
-          label="Search"
-          type="search"
-          variant="outlined"
-          onChange={(e)=>setSearchVal(e.target.value)}
-          value={searchVal}
-          style={{ background: "white" }}
-          autoFocus
-          fullWidth
-        />
+      <form className={styles.form}>
+        <FormControl className={styles.search} style={{ marginBottom: "10px" }} variant="outlined">
+            <InputLabel htmlFor="search">Search</InputLabel>
+            <OutlinedInput
+              id="search"
+              aria-describe={`username, cannot be longer than 16 characters or include ' or "`}
+              value={searchVal}
+              onChange={(e)=>setSearchVal(e.target.value)}
+            />
+          </FormControl>
       </form>
       <div>
         {users.map((user, i) => {

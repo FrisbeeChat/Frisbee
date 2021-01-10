@@ -2,7 +2,15 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
+  "/api/getFriendRequests": "pages/api/getFriendRequests.js",
+  "/connect": "pages/connect.js",
   "/": "pages/index.js",
   "/contacts": "pages/contacts.js",
-  "/login": "pages/login.js"
+  "/api/getSentRequests": "pages/api/getSentRequests.js",
+  "/api/getFriends": "pages/api/getFriends.js",
+  "/api/getUsers": "pages/api/getUsers.js",
+  "/api/getUserData": "pages/api/getUserData.js",
+  "/api/getMessages": "pages/api/getMessages.js",
+  "/api/getSentMessages": "pages/api/getSentMessages.js",
+  "/next/dist/pages/_error": "pages/next/dist/pages/_error.js"
 }
