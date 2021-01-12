@@ -4,6 +4,8 @@
 ## Overview ##
 This application was created to allow people send their friends a message (or image & message) in a way they're likely familiar with - a Postcard! This was originally inspired by Blake's desire to create a way for his Grandmother (who is currently battling throat cancer) to easily communicate with her loved ones during a time in which it is already hard to feel close to those you outside your household.
 
+## UX GIF ##
+![User Story](https://res.cloudinary.com/postcard/image/upload/v1610433738/postCard/Demo_w0wq7i.gif)
 ## Screenshots ##
 ![Postcard Home](https://frisbee-images.s3-us-west-1.amazonaws.com/Home.png)
 ![Postcard Search](https://frisbee-images.s3-us-west-1.amazonaws.com/Search.png)
